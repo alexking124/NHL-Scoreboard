@@ -16,6 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let scoreboardViewController = ScoreboardViewController()
+        let mainNavigation = UINavigationController(rootViewController: scoreboardViewController)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = mainNavigation
+        window?.makeKeyAndVisible()
+        
         return true
     }
 

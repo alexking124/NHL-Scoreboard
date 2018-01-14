@@ -12,6 +12,9 @@
 		3944702D200C21DA008E402B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3944702B200C21DA008E402B /* Main.storyboard */; };
 		3944702F200C21DA008E402B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3944702E200C21DA008E402B /* Assets.xcassets */; };
 		39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39447030200C21DA008E402B /* LaunchScreen.storyboard */; };
+		3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447039200C2244008E402B /* ScoreboardCell.swift */; };
+		3944703C200C2288008E402B /* ScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703B200C2288008E402B /* ScoreService.swift */; };
+		3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703D200C232E008E402B /* ScoreboardViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		3944702E200C21DA008E402B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39447031200C21DA008E402B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39447033200C21DA008E402B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		39447039200C2244008E402B /* ScoreboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardCell.swift; sourceTree = "<group>"; };
+		3944703B200C2288008E402B /* ScoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreService.swift; sourceTree = "<group>"; };
+		3944703D200C232E008E402B /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				3944702E200C21DA008E402B /* Assets.xcassets */,
 				39447030200C21DA008E402B /* LaunchScreen.storyboard */,
 				39447033200C21DA008E402B /* Info.plist */,
+				39447039200C2244008E402B /* ScoreboardCell.swift */,
+				3944703B200C2288008E402B /* ScoreService.swift */,
+				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
 			);
 			path = "nhl-scores";
 			sourceTree = "<group>";
@@ -136,8 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				3944702A200C21DA008E402B /* ViewController.swift in Sources */,
+				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
+				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
