@@ -8,26 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		39447028200C21DA008E402B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447027200C21DA008E402B /* AppDelegate.swift */; };
-		3944702A200C21DA008E402B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447029200C21DA008E402B /* ViewController.swift */; };
-		3944702D200C21DA008E402B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3944702B200C21DA008E402B /* Main.storyboard */; };
 		3944702F200C21DA008E402B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3944702E200C21DA008E402B /* Assets.xcassets */; };
 		39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39447030200C21DA008E402B /* LaunchScreen.storyboard */; };
 		3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447039200C2244008E402B /* ScoreboardCell.swift */; };
 		3944703C200C2288008E402B /* ScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703B200C2288008E402B /* ScoreService.swift */; };
 		3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703D200C232E008E402B /* ScoreboardViewController.swift */; };
+		39447040200C2E4A008E402B /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703F200C2E4A008E402B /* Score.swift */; };
+		39447043200DA49B008E402B /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 39447042200DA49B008E402B /* Cartfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		39447024200C21D9008E402B /* nhl-scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nhl-scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39447027200C21DA008E402B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		39447029200C21DA008E402B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3944702C200C21DA008E402B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3944702E200C21DA008E402B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39447031200C21DA008E402B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39447033200C21DA008E402B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39447039200C2244008E402B /* ScoreboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardCell.swift; sourceTree = "<group>"; };
 		3944703B200C2288008E402B /* ScoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreService.swift; sourceTree = "<group>"; };
 		3944703D200C232E008E402B /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
+		3944703F200C2E4A008E402B /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		39447042200DA49B008E402B /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +44,7 @@
 		3944701B200C21D9008E402B = {
 			isa = PBXGroup;
 			children = (
+				39447041200DA482008E402B /* Supporting Files */,
 				39447026200C21D9008E402B /* nhl-scores */,
 				39447025200C21D9008E402B /* Products */,
 			);
@@ -61,16 +62,23 @@
 			isa = PBXGroup;
 			children = (
 				39447027200C21DA008E402B /* AppDelegate.swift */,
-				39447029200C21DA008E402B /* ViewController.swift */,
-				3944702B200C21DA008E402B /* Main.storyboard */,
-				3944702E200C21DA008E402B /* Assets.xcassets */,
-				39447030200C21DA008E402B /* LaunchScreen.storyboard */,
-				39447033200C21DA008E402B /* Info.plist */,
 				39447039200C2244008E402B /* ScoreboardCell.swift */,
 				3944703B200C2288008E402B /* ScoreService.swift */,
 				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
+				3944703F200C2E4A008E402B /* Score.swift */,
 			);
 			path = "nhl-scores";
+			sourceTree = "<group>";
+		};
+		39447041200DA482008E402B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3944702E200C21DA008E402B /* Assets.xcassets */,
+				39447030200C21DA008E402B /* LaunchScreen.storyboard */,
+				39447033200C21DA008E402B /* Info.plist */,
+				39447042200DA49B008E402B /* Cartfile */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,9 +140,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39447043200DA49B008E402B /* Cartfile in Resources */,
 				39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */,
 				3944702F200C21DA008E402B /* Assets.xcassets in Resources */,
-				3944702D200C21DA008E402B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +154,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
-				3944702A200C21DA008E402B /* ViewController.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
+				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,14 +164,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3944702B200C21DA008E402B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3944702C200C21DA008E402B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		39447030200C21DA008E402B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
