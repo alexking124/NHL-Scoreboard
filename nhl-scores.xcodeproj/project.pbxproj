@@ -17,6 +17,7 @@
 		39447043200DA49B008E402B /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 39447042200DA49B008E402B /* Cartfile */; };
 		39447047200DA71D008E402B /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; };
 		3944704A200DAB5E008E402B /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3944704C200F2E9B008E402B /* ScoreboardCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +46,7 @@
 		3944703F200C2E4A008E402B /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		39447042200DA49B008E402B /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		39447046200DA71D008E402B /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = SOURCE_ROOT; };
+		3944704C200F2E9B008E402B /* ScoreboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreboardCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				39447027200C21DA008E402B /* AppDelegate.swift */,
 				39447039200C2244008E402B /* ScoreboardCell.swift */,
+				3944704C200F2E9B008E402B /* ScoreboardCell.xib */,
 				3944703B200C2288008E402B /* ScoreService.swift */,
 				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
 				3944703F200C2E4A008E402B /* Score.swift */,
@@ -176,6 +179,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */,
 				39447043200DA49B008E402B /* Cartfile in Resources */,
 				39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */,
 				3944702F200C21DA008E402B /* Assets.xcassets in Resources */,
@@ -323,13 +327,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DUYQ44RPLQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "aking.nhl-scores";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aking.nhl-scores";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -341,13 +346,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DUYQ44RPLQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "aking.nhl-scores";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aking.nhl-scores";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

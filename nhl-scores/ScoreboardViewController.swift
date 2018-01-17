@@ -14,7 +14,8 @@ class ScoreboardViewController: UITableViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        tableView.register(ScoreboardCell.self, forCellReuseIdentifier: String(describing: ScoreboardCell.self))
+        tableView.register(UINib(nibName: String(describing: ScoreboardCell.self), bundle: nil) , forCellReuseIdentifier: String(describing: ScoreboardCell.self))
+//        tableView.register(ScoreboardCell.self, forCellReuseIdentifier: String(describing: ScoreboardCell.self))
     }
     
     @available(*, unavailable)
@@ -27,9 +28,15 @@ class ScoreboardViewController: UITableViewController {
         
         title = "Scores"
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 50
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tableView.separatorInset = .zero
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshScores), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         
         refreshScores()
     }
@@ -50,10 +57,6 @@ extension ScoreboardViewController {
         return scoreCell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    
 }
 
 private extension ScoreboardViewController {
@@ -63,6 +66,7 @@ private extension ScoreboardViewController {
         ScoreService.fetchScores { [weak self] scores in
             self?.scores = scores
             DispatchQueue.main.async {
+                self?.tableView.refreshControl?.endRefreshing()
                 self?.tableView.reloadData()
             }
         }
