@@ -10,12 +10,14 @@ import UIKit
 
 class ScoreboardViewController: UITableViewController {
     
+    let date: Date
+    
     private var scores = [Score]()
     
-    init() {
+    init(date: Date) {
+        self.date = date
         super.init(nibName: nil, bundle: nil)
         tableView.register(UINib(nibName: String(describing: ScoreboardCell.self), bundle: nil) , forCellReuseIdentifier: String(describing: ScoreboardCell.self))
-//        tableView.register(ScoreboardCell.self, forCellReuseIdentifier: String(describing: ScoreboardCell.self))
     }
     
     @available(*, unavailable)
@@ -32,7 +34,8 @@ class ScoreboardViewController: UITableViewController {
         tableView.estimatedRowHeight = 50
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        tableView.separatorInset = .zero
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshScores), for: .valueChanged)
@@ -63,7 +66,7 @@ private extension ScoreboardViewController {
     
     @objc
     func refreshScores() {
-        ScoreService.fetchScores { [weak self] scores in
+        ScoreService.fetchScores(date: date) { [weak self] scores in
             self?.scores = scores
             DispatchQueue.main.async {
                 self?.tableView.refreshControl?.endRefreshing()

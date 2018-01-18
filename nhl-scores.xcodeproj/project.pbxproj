@@ -18,6 +18,9 @@
 		39447047200DA71D008E402B /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; };
 		3944704A200DAB5E008E402B /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3944704C200F2E9B008E402B /* ScoreboardCell.xib */; };
+		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
+		39D3D48F20107A7B0077384E /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				39D3D48F20107A7B0077384E /* SwiftDate.framework in Embed Frameworks */,
 				3944704A200DAB5E008E402B /* TinyConstraints.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -47,6 +51,8 @@
 		39447042200DA49B008E402B /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		39447046200DA71D008E402B /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = SOURCE_ROOT; };
 		3944704C200F2E9B008E402B /* ScoreboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreboardCell.xib; sourceTree = "<group>"; };
+		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
+		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */,
 				39447047200DA71D008E402B /* TinyConstraints.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +95,7 @@
 				3944703B200C2288008E402B /* ScoreService.swift */,
 				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
 				3944703F200C2E4A008E402B /* Score.swift */,
+				39D3D490201083E80077384E /* ScoreboardPageViewController.swift */,
 			);
 			path = "nhl-scores";
 			sourceTree = "<group>";
@@ -114,6 +122,7 @@
 		39447045200DA700008E402B /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
+				39D3D48C20107A6F0077384E /* SwiftDate.framework */,
 				39447046200DA71D008E402B /* TinyConstraints.framework */,
 			);
 			path = Carthage;
@@ -198,6 +207,7 @@
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
+				39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

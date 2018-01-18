@@ -14,5 +14,6 @@ struct Score {
     let awayTeam: String
     let homeScore: String
     let awayScore: String
+    let status: String
     
 }

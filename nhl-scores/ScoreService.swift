@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import SwiftDate
 
 struct ScoreService {
     
-    static func fetchScores(_ completion: @escaping (([Score]) -> Void)) {
-        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/schedule") else {
+    static func fetchScores(date: Date = Date(), completion: @escaping (([Score]) -> Void)) {
+        let dateQuery = "?startDate=\(date.year)-\(date.month)-\(date.day)&endDate=\(date.year)-\(date.month)-\(date.day)"
+        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/schedule\(dateQuery)") else {
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -43,7 +45,12 @@ struct ScoreService {
                         continue
                 }
                 
-                let score = Score(homeTeam: homeName, awayTeam: awayName, homeScore: "\(homeScore)", awayScore: "\(awayScore)")
+                guard let statusDict = game["status"] as? [String: Any],
+                    let status = statusDict["detailedState"] as? String else {
+                        continue
+                }
+                
+                let score = Score(homeTeam: homeName, awayTeam: awayName, homeScore: "\(homeScore)", awayScore: "\(awayScore)", status: status)
                 scores.append(score)
             }
             
