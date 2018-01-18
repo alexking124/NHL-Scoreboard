@@ -16,6 +16,8 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var homeTeamLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var awayLogo: UIImageView!
+    @IBOutlet weak var homeLogo: UIImageView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -33,11 +35,21 @@ class ScoreboardCell: UITableViewCell {
         setupViews()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        awayLogo.image = nil
+        homeLogo.image = nil
+    }
+    
     func bind(_ score: Score) {
-        homeTeamLabel.text = score.homeTeam
-        awayTeamLabel.text = score.awayTeam
+        homeTeamLabel.text = score.homeTeam.name
+        awayTeamLabel.text = score.awayTeam.name
         scoreLabel.text = score.awayScore + " - " + score.homeScore
         statusLabel.text = score.status
+        
+        homeLogo.image = score.homeTeam.logo
+        awayLogo.image = score.awayTeam.logo
     }
     
 }

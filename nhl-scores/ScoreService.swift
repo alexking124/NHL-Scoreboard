@@ -33,24 +33,33 @@ struct ScoreService {
             var scores = [Score]()
             for game in currentGames {
                 guard let teams = game["teams"] as? [String: Any],
-                let homeTeam = teams["home"] as? [String: Any],
-                    let awayTeam = teams["away"] as? [String: Any] else {
+                let homeTeamDict = teams["home"] as? [String: Any],
+                    let awayTeamDict = teams["away"] as? [String: Any] else {
                         continue
                 }
                 
-                guard let homeName = (homeTeam["team"] as? [String: Any])?["name"] as? String,
-                    let homeScore = homeTeam["score"] as? Int,
-                let awayName = (awayTeam["team"] as? [String: Any])?["name"] as? String,
-                    let awayScore = awayTeam["score"] as? Int else {
+                guard let homeName = (homeTeamDict["team"] as? [String: Any])?["name"] as? String,
+                    let homeScore = homeTeamDict["score"] as? Int,
+                    let homeID = (homeTeamDict["team"] as? [String: Any])?["id"] as? Int,
+                    let awayName = (awayTeamDict["team"] as? [String: Any])?["name"] as? String,
+                    let awayScore = awayTeamDict["score"] as? Int,
+                    let awayID = (awayTeamDict["team"] as? [String: Any])?["id"] as? Int else {
                         continue
                 }
+                
+                guard let homeTeamID = NHLTeamID(rawValue: homeID),
+                    let awayTeamID = NHLTeamID(rawValue: awayID) else {
+                        continue
+                }
+                let homeTeam = Team(id: homeTeamID, name: homeName)
+                let awayTeam = Team(id: awayTeamID, name: awayName)
                 
                 guard let statusDict = game["status"] as? [String: Any],
                     let status = statusDict["detailedState"] as? String else {
                         continue
                 }
                 
-                let score = Score(homeTeam: homeName, awayTeam: awayName, homeScore: "\(homeScore)", awayScore: "\(awayScore)", status: status)
+                let score = Score(homeTeam: homeTeam, awayTeam: awayTeam, homeScore: "\(homeScore)", awayScore: "\(awayScore)", status: status)
                 scores.append(score)
             }
             

@@ -10,8 +10,8 @@ import Foundation
 
 struct Score {
     
-    let homeTeam: String
-    let awayTeam: String
+    let homeTeam: Team
+    let awayTeam: Team
     let homeScore: String
     let awayScore: String
     let status: String

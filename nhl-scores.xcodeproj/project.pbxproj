@@ -21,6 +21,8 @@
 		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
 		39D3D48F20107A7B0077384E /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
+		39D3D49320108B3E0077384E /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D49220108B3E0077384E /* Team.swift */; };
+		39D3D49620108C0F0077384E /* Logos.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39D3D49520108C0F0077384E /* Logos.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,8 @@
 		3944704C200F2E9B008E402B /* ScoreboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreboardCell.xib; sourceTree = "<group>"; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
+		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		39D3D49520108C0F0077384E /* Logos.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Logos.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
 				3944703F200C2E4A008E402B /* Score.swift */,
 				39D3D490201083E80077384E /* ScoreboardPageViewController.swift */,
+				39D3D49220108B3E0077384E /* Team.swift */,
 			);
 			path = "nhl-scores";
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 		39447041200DA482008E402B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39D3D49420108C000077384E /* Resources */,
 				3944702E200C21DA008E402B /* Assets.xcassets */,
 				39447030200C21DA008E402B /* LaunchScreen.storyboard */,
 				39447033200C21DA008E402B /* Info.plist */,
@@ -126,6 +132,14 @@
 				39447046200DA71D008E402B /* TinyConstraints.framework */,
 			);
 			path = Carthage;
+			sourceTree = "<group>";
+		};
+		39D3D49420108C000077384E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				39D3D49520108C0F0077384E /* Logos.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +206,7 @@
 				39447043200DA49B008E402B /* Cartfile in Resources */,
 				39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */,
 				3944702F200C21DA008E402B /* Assets.xcassets in Resources */,
+				39D3D49620108C0F0077384E /* Logos.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +219,7 @@
 			files = (
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
+				39D3D49320108B3E0077384E /* Team.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,

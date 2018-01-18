@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,16 +22,16 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUP-GF-as3">
                         <rect key="frame" x="8" y="8" width="359" height="125.5"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NDo-fz-naP">
-                                <rect key="frame" x="162" y="44.5" width="36.5" height="37.5"/>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="500" verticalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="NDo-fz-naP">
+                                <rect key="frame" x="162" y="12" width="36.5" height="102.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 - 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84j-0u-bJC">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0 - 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84j-0u-bJC">
                                         <rect key="frame" x="0.0" y="0.0" width="36.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNn-8s-u3E" userLabel="Status Label">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Final" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNn-8s-u3E" userLabel="Status Label">
                                         <rect key="frame" x="0.0" y="21.5" width="36.5" height="16"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                         <nil key="textColor"/>
@@ -48,15 +49,24 @@
                                     <constraint firstItem="84j-0u-bJC" firstAttribute="top" secondItem="NDo-fz-naP" secondAttribute="top" id="ubE-uV-1AB"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWi-g7-uI8">
-                                <rect key="frame" x="210.5" y="53.5" width="43.5" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" verticalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="uVc-NC-6eC">
+                                <rect key="frame" x="8" y="8" width="108" height="108"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uVc-NC-6eC" secondAttribute="height" multiplier="1:1" id="b9l-qS-drG"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" verticalCompressionResistancePriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="FVK-iv-AJR">
+                                <rect key="frame" x="243" y="8" width="108" height="108"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sWi-g7-uI8">
+                                <rect key="frame" x="210.5" y="53.5" width="44.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Away" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DJ-rw-ooz">
-                                <rect key="frame" x="112" y="53" width="38" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="500" verticalHuggingPriority="500" text="Away" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DJ-rw-ooz">
+                                <rect key="frame" x="110.5" y="53" width="39.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -64,15 +74,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="NDo-fz-naP" firstAttribute="centerY" secondItem="dUP-GF-as3" secondAttribute="centerY" id="04W-zS-OQk"/>
+                            <constraint firstItem="uVc-NC-6eC" firstAttribute="centerY" secondItem="dUP-GF-as3" secondAttribute="centerY" id="3VW-xn-Dc1"/>
                             <constraint firstItem="NDo-fz-naP" firstAttribute="centerX" secondItem="dUP-GF-as3" secondAttribute="centerX" id="9xI-iU-BnG"/>
-                            <constraint firstItem="NDo-fz-naP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="top" constant="10" id="DHE-qV-2Kc"/>
+                            <constraint firstItem="NDo-fz-naP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="top" constant="12" id="DHE-qV-2Kc"/>
+                            <constraint firstItem="FVK-iv-AJR" firstAttribute="top" secondItem="dUP-GF-as3" secondAttribute="top" constant="8" id="EDk-sP-zKO"/>
                             <constraint firstItem="8DJ-rw-ooz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="leading" constant="12" id="FJt-fg-A2s"/>
                             <constraint firstItem="sWi-g7-uI8" firstAttribute="centerY" secondItem="dUP-GF-as3" secondAttribute="centerY" id="GPg-vZ-mx2"/>
-                            <constraint firstItem="8DJ-rw-ooz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="top" constant="10" id="IdR-5h-X0t"/>
-                            <constraint firstItem="sWi-g7-uI8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="top" constant="10" id="dvL-35-6O6"/>
+                            <constraint firstItem="8DJ-rw-ooz" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="top" constant="12" id="IdR-5h-X0t"/>
+                            <constraint firstItem="sWi-g7-uI8" firstAttribute="top" secondItem="dUP-GF-as3" secondAttribute="top" priority="500" constant="12" id="Trq-fc-mKL"/>
+                            <constraint firstItem="sWi-g7-uI8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dUP-GF-as3" secondAttribute="top" constant="12" id="dvL-35-6O6"/>
+                            <constraint firstAttribute="trailing" secondItem="FVK-iv-AJR" secondAttribute="trailing" constant="8" id="f6W-aT-NHa"/>
                             <constraint firstItem="sWi-g7-uI8" firstAttribute="leading" secondItem="NDo-fz-naP" secondAttribute="trailing" constant="12" id="iVl-rL-MnH"/>
+                            <constraint firstItem="uVc-NC-6eC" firstAttribute="leading" secondItem="dUP-GF-as3" secondAttribute="leading" constant="8" id="m0t-yx-EqR"/>
+                            <constraint firstItem="FVK-iv-AJR" firstAttribute="width" secondItem="FVK-iv-AJR" secondAttribute="height" multiplier="1:1" id="oij-u7-mnX"/>
+                            <constraint firstItem="NDo-fz-naP" firstAttribute="top" secondItem="dUP-GF-as3" secondAttribute="top" priority="500" constant="12" id="q2W-DY-hiR"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sWi-g7-uI8" secondAttribute="trailing" constant="12" id="rhw-bf-c7G"/>
+                            <constraint firstItem="uVc-NC-6eC" firstAttribute="top" secondItem="dUP-GF-as3" secondAttribute="top" constant="8" id="vUX-RK-hrl"/>
                             <constraint firstItem="8DJ-rw-ooz" firstAttribute="centerY" secondItem="dUP-GF-as3" secondAttribute="centerY" id="vjV-4P-ei6"/>
+                            <constraint firstItem="8DJ-rw-ooz" firstAttribute="top" secondItem="dUP-GF-as3" secondAttribute="top" priority="500" constant="12" id="vuU-Ud-HAy"/>
+                            <constraint firstItem="FVK-iv-AJR" firstAttribute="centerY" secondItem="dUP-GF-as3" secondAttribute="centerY" id="xfY-li-Eck"/>
                             <constraint firstItem="NDo-fz-naP" firstAttribute="leading" secondItem="8DJ-rw-ooz" secondAttribute="trailing" constant="12" id="zpy-7q-P6P"/>
                         </constraints>
                     </view>
@@ -86,8 +106,10 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="awayLogo" destination="uVc-NC-6eC" id="2gM-9C-TZZ"/>
                 <outlet property="awayTeamLabel" destination="8DJ-rw-ooz" id="yQH-7k-LTe"/>
                 <outlet property="containerView" destination="dUP-GF-as3" id="A0A-CN-2oa"/>
+                <outlet property="homeLogo" destination="FVK-iv-AJR" id="Vdr-pJ-L2z"/>
                 <outlet property="homeTeamLabel" destination="sWi-g7-uI8" id="i1w-Bg-PVY"/>
                 <outlet property="scoreLabel" destination="84j-0u-bJC" id="9rI-H5-4uu"/>
                 <outlet property="statusLabel" destination="NNn-8s-u3E" id="9nx-gI-fu0"/>
