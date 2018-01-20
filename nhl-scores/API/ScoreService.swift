@@ -12,7 +12,7 @@ import RealmSwift
 
 struct ScoreService {
     
-    static func fetchScores(date: Date = Date(), completion: @escaping (([Score]) -> Void)) {
+    static func fetchScores(date: Date = Date(), completion: @escaping (() -> Void)) {
         let dateQuery = "?startDate=\(date.year)-\(date.month)-\(date.day)&endDate=\(date.year)-\(date.month)-\(date.day)"
         guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/schedule\(dateQuery)") else {
             return
@@ -27,13 +27,25 @@ struct ScoreService {
             
             guard let dates = dictionary["dates"] as? [[String: Any]],
                 let currentDate = dates.first,
+                let dateString = currentDate["date"] as? String,
                 let currentGames = currentDate["games"] as? [[String: Any]] else {
+                    print("No games found")
+                    completion()
                     return
             }
             
-            var scores = [Score]()
-            for game in currentGames {
-                guard let teams = game["teams"] as? [String: Any],
+            var games = [Game]()
+            for gameJson in currentGames {
+                
+                guard let gameID = gameJson["gamePk"] as? Int,
+                    let gameDateString = gameJson["gameDate"] as? String else {
+                        print("Error reading json")
+                        continue
+                }
+                
+                let gameDate = DateInRegion(string: gameDateString, format: .iso8601(options: .withInternetDateTime))
+                
+                guard let teams = gameJson["teams"] as? [String: Any],
                 let homeTeamDict = teams["home"] as? [String: Any],
                     let awayTeamDict = teams["away"] as? [String: Any] else {
                         continue
@@ -48,33 +60,41 @@ struct ScoreService {
                         continue
                 }
                 
-//                guard let homeTeamID = NHLTeamID(rawValue: homeID),
-//                    let awayTeamID = NHLTeamID(rawValue: awayID) else {
-//                        continue
-//                }
-                let homeTeam = Team() //Team(id: homeTeamID, name: homeName)
-                homeTeam.rawId = homeID
-                homeTeam.teamName = homeName
-                
-                let awayTeam = Team() //Team(id: awayTeamID, name: awayName)
-                awayTeam.rawId = awayID
-                awayTeam.teamName = awayName
-                
-                let realm = try! Realm()
-                try! realm.write {
-                    realm.add([homeTeam, awayTeam], update: true)
-                }
-                
-                guard let statusDict = game["status"] as? [String: Any],
+                guard let statusDict = gameJson["status"] as? [String: Any],
                     let status = statusDict["detailedState"] as? String else {
                         continue
                 }
                 
-                let score = Score(homeTeam: homeTeam, awayTeam: awayTeam, homeScore: "\(homeScore)", awayScore: "\(awayScore)", status: status)
-                scores.append(score)
+                let score = Score()
+                score.homeScore = homeScore
+                score.awayScore = awayScore
+                
+                let homeTeam = Team()
+                homeTeam.rawId = homeID
+                homeTeam.teamName = homeName
+                
+                let awayTeam = Team()
+                awayTeam.rawId = awayID
+                awayTeam.teamName = awayName
+                
+                let game = Game()
+                game.homeTeam = homeTeam
+                game.awayTeam = awayTeam
+                game.gameID = gameID
+                game.gameTime = gameDate?.absoluteDate
+                game.rawGameStatus = status
+                game.gameDay = dateString
+                game.score = score
+                
+                games.append(game)
             }
             
-            completion(scores)
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(games, update: true)
+            }
+            
+            completion()
         }
         task.resume()
     }

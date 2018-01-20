@@ -7,13 +7,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Score {
+class Score: Object {
     
-    let homeTeam: Team
-    let awayTeam: Team
-    let homeScore: String
-    let awayScore: String
-    let status: String
+    @objc dynamic var homeScore: Int = 0
+    @objc dynamic var awayScore: Int = 0
     
 }

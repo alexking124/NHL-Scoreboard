@@ -42,14 +42,16 @@ class ScoreboardCell: UITableViewCell {
         homeLogo.image = nil
     }
     
-    func bind(_ score: Score) {
-        homeTeamLabel.text = score.homeTeam.teamName
-        awayTeamLabel.text = score.awayTeam.teamName
-        scoreLabel.text = score.awayScore + " - " + score.homeScore
-        statusLabel.text = score.status
+    func bind(_ game: Game) {
+        homeTeamLabel.text = game.homeTeam?.teamName
+        awayTeamLabel.text = game.awayTeam?.teamName
+        let homeScore = game.score?.homeScore ?? 0
+        let awayScore = game.score?.awayScore ?? 0
+        scoreLabel.text = "\(awayScore) - \(homeScore)"
+        statusLabel.text = game.rawGameStatus
         
-        homeLogo.image = score.homeTeam.logo
-        awayLogo.image = score.awayTeam.logo
+        homeLogo.image = game.homeTeam?.logo
+        awayLogo.image = game.awayTeam?.logo
     }
     
 }

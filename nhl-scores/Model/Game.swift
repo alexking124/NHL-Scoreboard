@@ -9,18 +9,26 @@
 import Foundation
 import RealmSwift
 
-enum GameStatus: Int {
-    case scheduled
-    case pregame
-    case live
-    case completed
+enum GameStatus: String {
+    case scheduled = "Scheduled"
+    case pregame = "Pregame"
+    case live = "Live"
+    case completed = "Final"
 }
 
 class Game: Object {
     
+    @objc dynamic var gameID: Int = 0
+    @objc dynamic var gameDay: String = ""
+    @objc dynamic var gameTime: Date? = nil
     @objc dynamic var homeTeam: Team?
     @objc dynamic var awayTeam: Team?
-    @objc dynamic var rawGameStatus: Int = 0
+    @objc dynamic var score: Score?
+    @objc dynamic var rawGameStatus: String = ""
+    
+    override static func primaryKey() -> String? {
+        return "gameID"
+    }
     
     var gameStatus: GameStatus {
         return GameStatus(rawValue: rawGameStatus) ?? .scheduled

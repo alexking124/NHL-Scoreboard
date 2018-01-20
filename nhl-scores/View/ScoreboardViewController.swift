@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ScoreboardViewController: UITableViewController {
     
     let date: Date
     
-    private var scores = [Score]()
+    var notificationToken: NotificationToken? = nil
+    private lazy var games: Results<Game> = {
+        let realm = try! Realm()
+        let games = realm.objects(Game.self).filter("gameDay = '\(date.string(custom: "yyyy-MM-dd"))'")
+        return games
+    }()
     
     init(date: Date) {
         self.date = date
@@ -41,7 +47,31 @@ class ScoreboardViewController: UITableViewController {
         refreshControl.addTarget(self, action: #selector(refreshScores), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
-        refreshScores()
+        notificationToken = games.observe { [weak self] (changes: RealmCollectionChange) in
+            guard let tableView = self?.tableView else { return }
+            switch changes {
+            case .initial:
+                // Results are now populated and can be accessed without blocking the UI
+                tableView.reloadData()
+            case .update(_, let deletions, let insertions, let modifications):
+                // Query results have changed, so apply them to the UITableView
+                tableView.beginUpdates()
+                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+                                     with: .automatic)
+                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+                                     with: .automatic)
+                tableView.endUpdates()
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                fatalError("\(error)")
+            }
+        }
+        
+        if games.count == 0 {
+            refreshScores()
+        }
     }
     
 }
@@ -49,14 +79,14 @@ class ScoreboardViewController: UITableViewController {
 extension ScoreboardViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scores.count
+        return games.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let scoreCell = tableView.dequeueReusableCell(withIdentifier: String(describing: ScoreboardCell.self), for: indexPath) as? ScoreboardCell else {
             fatalError("Unable to dequeue ScoreboardCell")
         }
-        scoreCell.bind(scores[indexPath.row])
+        scoreCell.bind(games[indexPath.row])
         return scoreCell
     }
     
@@ -67,11 +97,9 @@ private extension ScoreboardViewController {
     @objc
     func refreshScores() {
         tableView.refreshControl?.beginRefreshing()
-        ScoreService.fetchScores(date: date) { [weak self] scores in
-            self?.scores = scores
+        ScoreService.fetchScores(date: date) { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.refreshControl?.endRefreshing()
-                self?.tableView.reloadData()
             }
         }
     }
