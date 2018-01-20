@@ -28,6 +28,7 @@
 		39D3D49D201308660077384E /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D497201308580077384E /* RealmSwift.framework */; };
 		39D3D49E201308660077384E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D497201308580077384E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39D3D4A020130D1C0077384E /* TeamID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D49F20130D1C0077384E /* TeamID.swift */; };
+		39D3D4A220130E690077384E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A120130E690077384E /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +68,7 @@
 		39D3D497201308580077384E /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = SOURCE_ROOT; };
 		39D3D498201308580077384E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = SOURCE_ROOT; };
 		39D3D49F20130D1C0077384E /* TeamID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamID.swift; sourceTree = "<group>"; };
+		39D3D4A120130E690077384E /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,14 +108,10 @@
 			isa = PBXGroup;
 			children = (
 				39447027200C21DA008E402B /* AppDelegate.swift */,
-				39447039200C2244008E402B /* ScoreboardCell.swift */,
-				3944704C200F2E9B008E402B /* ScoreboardCell.xib */,
-				3944703B200C2288008E402B /* ScoreService.swift */,
-				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
-				3944703F200C2E4A008E402B /* Score.swift */,
-				39D3D490201083E80077384E /* ScoreboardPageViewController.swift */,
-				39D3D49220108B3E0077384E /* Team.swift */,
-				39D3D49F20130D1C0077384E /* TeamID.swift */,
+				39D3D4A32013106A0077384E /* API */,
+				39D3D4A4201310760077384E /* Model */,
+				39D3D4A6201310AF0077384E /* Utilities */,
+				39D3D4A5201310930077384E /* View */,
 			);
 			path = "nhl-scores";
 			sourceTree = "<group>";
@@ -155,6 +153,43 @@
 				39D3D49520108C0F0077384E /* Logos.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		39D3D4A32013106A0077384E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3944703B200C2288008E402B /* ScoreService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		39D3D4A4201310760077384E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3944703F200C2E4A008E402B /* Score.swift */,
+				39D3D49220108B3E0077384E /* Team.swift */,
+				39D3D4A120130E690077384E /* Game.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		39D3D4A5201310930077384E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39447039200C2244008E402B /* ScoreboardCell.swift */,
+				3944704C200F2E9B008E402B /* ScoreboardCell.xib */,
+				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
+				39D3D490201083E80077384E /* ScoreboardPageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		39D3D4A6201310AF0077384E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				39D3D49F20130D1C0077384E /* TeamID.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
+				39D3D4A220130E690077384E /* Game.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
 				39D3D49320108B3E0077384E /* Team.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,

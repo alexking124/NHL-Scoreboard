@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftDate
+import RealmSwift
 
 struct ScoreService {
     
@@ -58,6 +59,11 @@ struct ScoreService {
                 let awayTeam = Team() //Team(id: awayTeamID, name: awayName)
                 awayTeam.rawId = awayID
                 awayTeam.teamName = awayName
+                
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.add([homeTeam, awayTeam], update: true)
+                }
                 
                 guard let statusDict = game["status"] as? [String: Any],
                     let status = statusDict["detailedState"] as? String else {
