@@ -66,6 +66,7 @@ private extension ScoreboardViewController {
     
     @objc
     func refreshScores() {
+        tableView.refreshControl?.beginRefreshing()
         ScoreService.fetchScores(date: date) { [weak self] scores in
             self?.scores = scores
             DispatchQueue.main.async {

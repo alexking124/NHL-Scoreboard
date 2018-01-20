@@ -58,6 +58,9 @@ private extension ScoreboardCell {
     
     func setupViews() {
         containerView.layer.cornerRadius = 5
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        containerView.layer.shadowRadius = 2
+        containerView.layer.shadowOpacity = 0.3
     }
     
 }
