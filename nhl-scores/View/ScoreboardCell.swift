@@ -12,9 +12,11 @@ import SwiftDate
 
 class ScoreboardCell: UITableViewCell {
     
-    @IBOutlet weak var awayTeamLabel: UILabel!
+    @IBOutlet weak var awayTeamLocationLabel: UILabel!
+    @IBOutlet weak var homeTeamLocationLabel: UILabel!
+    @IBOutlet weak var awayTeamNameLabel: UILabel!
+    @IBOutlet weak var homeTeamNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var homeTeamLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var awayLogo: UIImageView!
@@ -44,8 +46,11 @@ class ScoreboardCell: UITableViewCell {
     }
     
     func bind(_ game: Game) {
-        homeTeamLabel.text = game.homeTeam?.teamName
-        awayTeamLabel.text = game.awayTeam?.teamName
+        homeTeamLocationLabel.text = game.homeTeam?.locationName
+        homeTeamNameLabel.text = game.homeTeam?.teamName
+        
+        awayTeamLocationLabel.text = game.awayTeam?.locationName
+        awayTeamNameLabel.text = game.awayTeam?.teamName
         
         if game.gameStatus == .scheduled {
             scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")

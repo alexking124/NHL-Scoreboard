@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let scoreboardPageViewController = ScoreboardPageViewController()
         let mainNavigation = UINavigationController(rootViewController: scoreboardPageViewController)
+        mainNavigation.addDebugGestures()
         
         TeamService.fetchTeams {
         }

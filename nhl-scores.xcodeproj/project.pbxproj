@@ -30,6 +30,7 @@
 		39D3D4A020130D1C0077384E /* TeamID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D49F20130D1C0077384E /* TeamID.swift */; };
 		39D3D4A220130E690077384E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A120130E690077384E /* Game.swift */; };
 		39D3D4A8201324400077384E /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A7201324400077384E /* TeamService.swift */; };
+		39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +72,8 @@
 		39D3D49F20130D1C0077384E /* TeamID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamID.swift; sourceTree = "<group>"; };
 		39D3D4A120130E690077384E /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		39D3D4A7201324400077384E /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
+		39D3D4A92013A62F0077384E /* FLEX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLEX.framework; path = Carthage/Build/iOS/FLEX.framework; sourceTree = SOURCE_ROOT; };
+		39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,7 @@
 			children = (
 				39447027200C21DA008E402B /* AppDelegate.swift */,
 				39D3D4A32013106A0077384E /* API */,
+				39D3D4AC2013A6850077384E /* Extension */,
 				39D3D4A4201310760077384E /* Model */,
 				39D3D4A6201310AF0077384E /* Utilities */,
 				39D3D4A5201310930077384E /* View */,
@@ -141,6 +145,7 @@
 		39447045200DA700008E402B /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
+				39D3D4A92013A62F0077384E /* FLEX.framework */,
 				39D3D498201308580077384E /* Realm.framework */,
 				39D3D497201308580077384E /* RealmSwift.framework */,
 				39D3D48C20107A6F0077384E /* SwiftDate.framework */,
@@ -195,6 +200,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		39D3D4AC2013A6850077384E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,6 +217,7 @@
 			buildPhases = (
 				39447020200C21D9008E402B /* Sources */,
 				39447021200C21D9008E402B /* Frameworks */,
+				39D3D4AB2013A6520077384E /* Copy Debug Frameworks */,
 				39447022200C21D9008E402B /* Resources */,
 				3944704B200DAB5E008E402B /* Embed Frameworks */,
 			);
@@ -265,6 +279,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		39D3D4AB2013A6520077384E /* Copy Debug Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/FLEX.framework",
+			);
+			name = "Copy Debug Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" == \"Debug\" ]; then\n    /usr/local/bin/carthage copy-frameworks\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		39447020200C21D9008E402B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,6 +307,7 @@
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
 				39D3D49320108B3E0077384E /* Team.swift in Sources */,
+				39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
@@ -407,7 +440,7 @@
 		39447037200C21DA008E402B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DUYQ44RPLQ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -416,7 +449,8 @@
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.aking.nhl-scores";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aking.nhl-scores.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

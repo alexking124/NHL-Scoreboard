@@ -65,7 +65,7 @@ extension ScoreboardPageViewController: UIPageViewControllerDelegate {
 private extension ScoreboardPageViewController {
     
     func setTitleFor(date: Date) {
-        title = "\(date.month)-\(date.day)-\(date.year)"
+        title = "\(date.weekdayName), \(date.shortMonthName). \(date.day)"
     }
     
 }

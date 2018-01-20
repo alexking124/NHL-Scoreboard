@@ -1,3 +1,4 @@
+github "Flipboard/FLEX" "2.4.0"
 github "malcommac/SwiftDate" "4.5.1"
 github "realm/realm-cocoa" "v3.1.0"
 github "roberthein/TinyConstraints" "2.0.0"

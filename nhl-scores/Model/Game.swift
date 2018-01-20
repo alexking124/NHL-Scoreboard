@@ -12,7 +12,7 @@ import RealmSwift
 enum GameStatus: String {
     case scheduled = "Scheduled"
     case pregame = "Pregame"
-    case live = "Live"
+    case live = "In Progress"
     case completed = "Final"
 }
 
