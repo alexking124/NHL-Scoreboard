@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 enum NHLTeamID: Int {
+    case nhl = 0
     case njd = 1
     case nyi = 2
     case nyr = 3
@@ -43,10 +45,15 @@ enum NHLTeamID: Int {
     case vgk = 54
 }
 
-struct Team {
+class Team: Object {
     
-    let id: NHLTeamID
-    let name: String
+    @objc dynamic var rawId: Int = 0
+    @objc dynamic var teamName: String = ""
+    @objc dynamic var locationName: String = ""
+    
+    var id: NHLTeamID {
+        return NHLTeamID(rawValue: rawId) ?? .nhl
+    }
     
     var logo: UIImage? {
         return UIImage(named: "\(id)")

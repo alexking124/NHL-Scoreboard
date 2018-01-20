@@ -43,8 +43,8 @@ class ScoreboardCell: UITableViewCell {
     }
     
     func bind(_ score: Score) {
-        homeTeamLabel.text = score.homeTeam.name
-        awayTeamLabel.text = score.awayTeam.name
+        homeTeamLabel.text = score.homeTeam.teamName
+        awayTeamLabel.text = score.awayTeam.teamName
         scoreLabel.text = score.awayScore + " - " + score.homeScore
         statusLabel.text = score.status
         

@@ -47,12 +47,17 @@ struct ScoreService {
                         continue
                 }
                 
-                guard let homeTeamID = NHLTeamID(rawValue: homeID),
-                    let awayTeamID = NHLTeamID(rawValue: awayID) else {
-                        continue
-                }
-                let homeTeam = Team(id: homeTeamID, name: homeName)
-                let awayTeam = Team(id: awayTeamID, name: awayName)
+//                guard let homeTeamID = NHLTeamID(rawValue: homeID),
+//                    let awayTeamID = NHLTeamID(rawValue: awayID) else {
+//                        continue
+//                }
+                let homeTeam = Team() //Team(id: homeTeamID, name: homeName)
+                homeTeam.rawId = homeID
+                homeTeam.teamName = homeName
+                
+                let awayTeam = Team() //Team(id: awayTeamID, name: awayName)
+                awayTeam.rawId = awayID
+                awayTeam.teamName = awayName
                 
                 guard let statusDict = game["status"] as? [String: Any],
                     let status = statusDict["detailedState"] as? String else {
