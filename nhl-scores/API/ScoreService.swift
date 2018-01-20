@@ -34,6 +34,7 @@ struct ScoreService {
                     return
             }
             
+            let realm = try! Realm()
             var games = [Game]()
             for gameJson in currentGames {
                 
@@ -51,10 +52,8 @@ struct ScoreService {
                         continue
                 }
                 
-                guard let homeName = (homeTeamDict["team"] as? [String: Any])?["name"] as? String,
-                    let homeScore = homeTeamDict["score"] as? Int,
+                guard let homeScore = homeTeamDict["score"] as? Int,
                     let homeID = (homeTeamDict["team"] as? [String: Any])?["id"] as? Int,
-                    let awayName = (awayTeamDict["team"] as? [String: Any])?["name"] as? String,
                     let awayScore = awayTeamDict["score"] as? Int,
                     let awayID = (awayTeamDict["team"] as? [String: Any])?["id"] as? Int else {
                         continue
@@ -69,13 +68,8 @@ struct ScoreService {
                 score.homeScore = homeScore
                 score.awayScore = awayScore
                 
-                let homeTeam = Team()
-                homeTeam.rawId = homeID
-                homeTeam.teamName = homeName
-                
-                let awayTeam = Team()
-                awayTeam.rawId = awayID
-                awayTeam.teamName = awayName
+                let homeTeam = realm.object(ofType: Team.self, forPrimaryKey: homeID)
+                let awayTeam = realm.object(ofType: Team.self, forPrimaryKey: awayID)
                 
                 let game = Game()
                 game.homeTeam = homeTeam
@@ -89,7 +83,6 @@ struct ScoreService {
                 games.append(game)
             }
             
-            let realm = try! Realm()
             try! realm.write {
                 realm.add(games, update: true)
             }

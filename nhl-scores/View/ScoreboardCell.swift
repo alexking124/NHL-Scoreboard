@@ -8,6 +8,7 @@
 
 import UIKit
 import TinyConstraints
+import SwiftDate
 
 class ScoreboardCell: UITableViewCell {
     
@@ -45,9 +46,17 @@ class ScoreboardCell: UITableViewCell {
     func bind(_ game: Game) {
         homeTeamLabel.text = game.homeTeam?.teamName
         awayTeamLabel.text = game.awayTeam?.teamName
-        let homeScore = game.score?.homeScore ?? 0
-        let awayScore = game.score?.awayScore ?? 0
-        scoreLabel.text = "\(awayScore) - \(homeScore)"
+        
+        if game.gameStatus == .scheduled {
+            scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
+            scoreLabel.font = scoreLabel.font.withSize(18)
+        } else {
+            let homeScore = game.score?.homeScore ?? 0
+            let awayScore = game.score?.awayScore ?? 0
+            scoreLabel.text = "\(awayScore) - \(homeScore)"
+            scoreLabel.font = scoreLabel.font.withSize(22)
+        }
+        
         statusLabel.text = game.rawGameStatus
         
         homeLogo.image = game.homeTeam?.logo

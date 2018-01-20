@@ -29,6 +29,7 @@
 		39D3D49E201308660077384E /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D497201308580077384E /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39D3D4A020130D1C0077384E /* TeamID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D49F20130D1C0077384E /* TeamID.swift */; };
 		39D3D4A220130E690077384E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A120130E690077384E /* Game.swift */; };
+		39D3D4A8201324400077384E /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A7201324400077384E /* TeamService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		39D3D498201308580077384E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = SOURCE_ROOT; };
 		39D3D49F20130D1C0077384E /* TeamID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamID.swift; sourceTree = "<group>"; };
 		39D3D4A120130E690077384E /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		39D3D4A7201324400077384E /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				3944703B200C2288008E402B /* ScoreService.swift */,
+				39D3D4A7201324400077384E /* TeamService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
+				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
 				39D3D49320108B3E0077384E /* Team.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,

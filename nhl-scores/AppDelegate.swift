@@ -20,6 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let scoreboardPageViewController = ScoreboardPageViewController()
         let mainNavigation = UINavigationController(rootViewController: scoreboardPageViewController)
         
+        TeamService.fetchTeams {
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = mainNavigation
         window?.makeKeyAndVisible()
