@@ -74,6 +74,9 @@ struct ScoreboardService {
                 } else {
                     game = Game()
                     game.gameID = gameID
+                    try? realm.write {
+                        realm.add(game)
+                    }
                 }
                 
                 try? realm.write {
