@@ -13,5 +13,7 @@ class Score: Object {
     
     @objc dynamic var homeScore: Int = 0
     @objc dynamic var awayScore: Int = 0
+    @objc dynamic var homeShots: Int = 0
+    @objc dynamic var awayShots: Int = 0
     
 }

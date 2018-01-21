@@ -35,7 +35,6 @@ struct ScoreboardService {
             }
             
             let realm = try! Realm()
-            var games = [Game]()
             for gameJson in currentGames {
                 
                 guard let gameID = gameJson["gamePk"] as? Int,
@@ -66,28 +65,30 @@ struct ScoreboardService {
                         continue
                 }
                 
-                let score = Score()
-                score.homeScore = homeScore
-                score.awayScore = awayScore
-                
                 let homeTeam = realm.object(ofType: Team.self, forPrimaryKey: homeID)
                 let awayTeam = realm.object(ofType: Team.self, forPrimaryKey: awayID)
                 
-                let game = Game()
-                game.homeTeam = homeTeam
-                game.awayTeam = awayTeam
-                game.gameID = gameID
-                game.gameTime = gameDate?.absoluteDate
-                game.rawGameStatus = status
-                game.gameDay = dateString
-                game.score = score
-                game.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0
+                let game: Game
+                if let existingGame = realm.object(ofType: Game.self, forPrimaryKey: gameID) {
+                    game = existingGame
+                } else {
+                    game = Game()
+                    game.gameID = gameID
+                }
                 
-                games.append(game)
-            }
-            
-            try! realm.write {
-                realm.add(games, update: true)
+                try? realm.write {
+                    game.homeTeam = homeTeam
+                    game.awayTeam = awayTeam
+                    game.gameTime = gameDate?.absoluteDate
+                    game.rawGameStatus = status
+                    game.gameDay = dateString
+                    game.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0
+                    
+                    let score = game.score ?? Score()
+                    score.homeScore = homeScore
+                    score.awayScore = awayScore
+                    game.score = score
+                }
             }
             
             completion()

@@ -47,6 +47,7 @@ class Game: Object {
     @objc dynamic var score: Score?
     @objc dynamic var rawGameStatus: String = ""
     @objc dynamic var sortStatus: Int = 0
+    @objc dynamic var clockString: String = ""
     
     override static func primaryKey() -> String? {
         return "gameID"

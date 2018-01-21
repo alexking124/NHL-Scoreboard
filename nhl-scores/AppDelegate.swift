@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var gameService = GameService()
     var gameFetchTimer: Timer?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -63,8 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     
     func setupGameFetchTimer() {
-        let timer = Timer(timeInterval: 15, repeats: true, block: { [weak self] _ in
-            self?.gameService.updateLiveGames()
+        let timer = Timer(timeInterval: 15, repeats: true, block: { _ in
+            GameService.updateLiveGames()
         })
         RunLoop.current.add(timer, forMode: .commonModes)
         gameFetchTimer = timer

@@ -11,40 +11,21 @@ import RealmSwift
 
 struct GameService {
     
-//    private var liveGamesNotificationToken: NotificationToken? = nil
-    
-    mutating func updateLiveGames() {
+    static func updateLiveGames() {
         let realm = try! Realm()
-        
-//        let liveGamesPredicate = NSPredicate(format: "gameDay = '\(Date().string(custom: "yyyy-MM-dd"))' AND gameTime < %@ AND NOT rawGameStatus = 'Final'", [Date()])
-//        let liveGames = realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))' AND gameTime < \(Date()) AND NOT rawGameStatus = 'Final'")
-        
         let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))'")).filter { (game) -> Bool in
-            if game.rawGameStatus == "Final" {
+            if game.gameStatus == .completed {
                 return false
             }
-            if let gameTime = game.gameTime, gameTime > Date(), gameTime.isInSameDayOf(date: Date()) {
+            if let gameTime = game.gameTime, gameTime < Date() {
                 return true
             }
-            
             return false
         }
         
         liveGames.forEach { (game) in
             GameService.fetchLiveStats(for: game.gameID)
         }
-        
-//        liveGamesNotificationToken = liveGames.observe({ (changes: RealmCollectionChange) in
-//            switch changes {
-//            case .error(let error):
-//                // An error occurred while opening the Realm file on the background worker thread
-//                fatalError("\(error)")
-//            default:
-//                for game in liveGames {
-//                    GameService.fetchLiveStats(for: game.gameID)
-//                }
-//            }
-//        })
     }
     
     static func fetchLiveStats(for gameID: Int) {
@@ -57,6 +38,39 @@ struct GameService {
                 let dictionary = json as? [String: Any] else {
                     print("Error reading json")
                     return
+            }
+            
+            guard let liveDataJson = dictionary["liveData"] as? [String: Any],
+                let linescoreJson = liveDataJson["linescore"] as? [String: Any],
+                let teamsJson = linescoreJson["teams"] as? [String: Any] else {
+                    return
+            }
+            
+            guard let periodString = linescoreJson["currentPeriodOrdinal"] as? String,
+                let timeString = linescoreJson["currentPeriodTimeRemaining"] as? String else {
+                    return
+            }
+            
+            guard let homeTeamJson = teamsJson["home"] as? [String: Any],
+                let homeScore = homeTeamJson["goals"] as? Int,
+                let homeShots = homeTeamJson["shotsOnGoal"] as? Int else {
+                    return
+            }
+            
+            guard let awayTeamJson = teamsJson["away"] as? [String: Any],
+                let awayScore = awayTeamJson["goals"] as? Int,
+                let awayShots = awayTeamJson["shotsOnGoal"] as? Int else {
+                    return
+            }
+            
+            let realm = try! Realm()
+            let game = realm.object(ofType: Game.self, forPrimaryKey: gameID)
+            try? realm.write {
+                game?.clockString = "\(timeString) \(periodString)"
+                game?.score?.homeScore = homeScore
+                game?.score?.awayScore = awayScore
+                game?.score?.homeShots = homeShots
+                game?.score?.awayShots = awayShots
             }
             
         }

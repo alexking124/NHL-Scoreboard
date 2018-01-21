@@ -8,6 +8,7 @@
 
 import UIKit
 import TinyConstraints
+import RealmSwift
 import SwiftDate
 
 class ScoreboardCell: UITableViewCell {
@@ -21,6 +22,8 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var awayLogo: UIImageView!
     @IBOutlet weak var homeLogo: UIImageView!
+    
+    var notificationToken: NotificationToken? = nil
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,33 +46,21 @@ class ScoreboardCell: UITableViewCell {
         
         awayLogo.image = nil
         homeLogo.image = nil
+        
+        notificationToken?.invalidate()
+        notificationToken = nil
     }
 
     func bindGame(_ gameID: Int) {
-        
+//        guard let realm = try? Realm(),
+//            let game = realm.object(ofType: Game.self, forPrimaryKey: gameId) else {
+//                return
+//        }
+//
     }
     
     func bind(_ game: Game) {
-        homeTeamLocationLabel.text = game.homeTeam?.locationName
-        homeTeamNameLabel.text = game.homeTeam?.teamName
-        
-        awayTeamLocationLabel.text = game.awayTeam?.locationName
-        awayTeamNameLabel.text = game.awayTeam?.teamName
-        
-        if game.gameStatus == .scheduled || game.gameStatus == .pregame {
-            scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
-            scoreLabel.font = scoreLabel.font.withSize(18)
-        } else {
-            let homeScore = game.score?.homeScore ?? 0
-            let awayScore = game.score?.awayScore ?? 0
-            scoreLabel.text = "\(awayScore) - \(homeScore)"
-            scoreLabel.font = scoreLabel.font.withSize(22)
-        }
-        
-        statusLabel.text = game.rawGameStatus
-        
-        homeLogo.image = game.homeTeam?.logo
-        awayLogo.image = game.awayTeam?.logo
+        updateLabels(game: game)
     }
     
 }
@@ -81,6 +72,30 @@ private extension ScoreboardCell {
         containerView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
         containerView.layer.shadowRadius = 2
         containerView.layer.shadowOpacity = 0.3
+    }
+    
+    func updateLabels(game: Game) {
+        homeTeamLocationLabel.text = game.homeTeam?.locationName
+        homeTeamNameLabel.text = game.homeTeam?.teamName
+        
+        awayTeamLocationLabel.text = game.awayTeam?.locationName
+        awayTeamNameLabel.text = game.awayTeam?.teamName
+        
+        if game.gameStatus == .scheduled || game.gameStatus == .pregame {
+            scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
+            scoreLabel.font = scoreLabel.font.withSize(18)
+            statusLabel.text = game.rawGameStatus
+        } else {
+            let homeScore = game.score?.homeScore ?? 0
+            let awayScore = game.score?.awayScore ?? 0
+            scoreLabel.text = "\(awayScore) - \(homeScore)"
+            scoreLabel.font = scoreLabel.font.withSize(22)
+            statusLabel.text = game.gameStatus == .completed ? game.rawGameStatus : game.clockString
+        }
+        
+        
+        homeLogo.image = game.homeTeam?.logo
+        awayLogo.image = game.awayTeam?.logo
     }
     
 }
