@@ -1,5 +1,5 @@
 //
-//  ScoreService.swift
+//  ScoreboardService.swift
 //  nhl-scores
 //
 //  Created by Alex King on 1/14/18.
@@ -10,9 +10,9 @@ import Foundation
 import SwiftDate
 import RealmSwift
 
-struct ScoreService {
+struct ScoreboardService {
     
-    static func fetchScores(date: Date = Date(), completion: @escaping (() -> Void)) {
+    static func fetchScoreboard(date: Date = Date(), completion: @escaping (() -> Void)) {
         let dateQuery = "?startDate=\(date.year)-\(date.month)-\(date.day)&endDate=\(date.year)-\(date.month)-\(date.day)"
         guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/schedule\(dateQuery)") else {
             return
@@ -60,7 +60,9 @@ struct ScoreService {
                 }
                 
                 guard let statusDict = gameJson["status"] as? [String: Any],
-                    let status = statusDict["detailedState"] as? String else {
+                    let status = statusDict["detailedState"] as? String,
+                    let codedGameState = statusDict["codedGameState"] as? String else {
+                        print("Failed to get game state")
                         continue
                 }
                 
@@ -79,6 +81,7 @@ struct ScoreService {
                 game.rawGameStatus = status
                 game.gameDay = dateString
                 game.score = score
+                game.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0
                 
                 games.append(game)
             }

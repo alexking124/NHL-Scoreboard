@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var gameService = GameService()
+    var gameFetchTimer: Timer?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -27,6 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = mainNavigation
         window?.makeKeyAndVisible()
+        
+        setupGameFetchTimer()
         
         return true
     }
@@ -54,5 +58,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+private extension AppDelegate {
+    
+    func setupGameFetchTimer() {
+        let timer = Timer(timeInterval: 15, repeats: true, block: { [weak self] _ in
+            self?.gameService.updateLiveGames()
+        })
+        RunLoop.current.add(timer, forMode: .commonModes)
+        gameFetchTimer = timer
+        timer.fire()
+    }
+    
 }
 

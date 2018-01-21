@@ -44,6 +44,10 @@ class ScoreboardCell: UITableViewCell {
         awayLogo.image = nil
         homeLogo.image = nil
     }
+
+    func bindGame(_ gameID: Int) {
+        
+    }
     
     func bind(_ game: Game) {
         homeTeamLocationLabel.text = game.homeTeam?.locationName
@@ -52,7 +56,7 @@ class ScoreboardCell: UITableViewCell {
         awayTeamLocationLabel.text = game.awayTeam?.locationName
         awayTeamNameLabel.text = game.awayTeam?.teamName
         
-        if game.gameStatus == .scheduled {
+        if game.gameStatus == .scheduled || game.gameStatus == .pregame {
             scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
             scoreLabel.font = scoreLabel.font.withSize(18)
         } else {

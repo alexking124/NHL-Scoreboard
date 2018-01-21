@@ -11,7 +11,7 @@
 		3944702F200C21DA008E402B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3944702E200C21DA008E402B /* Assets.xcassets */; };
 		39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39447030200C21DA008E402B /* LaunchScreen.storyboard */; };
 		3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447039200C2244008E402B /* ScoreboardCell.swift */; };
-		3944703C200C2288008E402B /* ScoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703B200C2288008E402B /* ScoreService.swift */; };
+		3944703C200C2288008E402B /* ScoreboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703B200C2288008E402B /* ScoreboardService.swift */; };
 		3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703D200C232E008E402B /* ScoreboardViewController.swift */; };
 		39447040200C2E4A008E402B /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3944703F200C2E4A008E402B /* Score.swift */; };
 		39447043200DA49B008E402B /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 39447042200DA49B008E402B /* Cartfile */; };
@@ -31,6 +31,7 @@
 		39D3D4A220130E690077384E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A120130E690077384E /* Game.swift */; };
 		39D3D4A8201324400077384E /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A7201324400077384E /* TeamService.swift */; };
 		39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */; };
+		39D3D4B02013DDAF0077384E /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AF2013DDAF0077384E /* GameService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,7 +58,7 @@
 		39447031200C21DA008E402B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		39447033200C21DA008E402B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39447039200C2244008E402B /* ScoreboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardCell.swift; sourceTree = "<group>"; };
-		3944703B200C2288008E402B /* ScoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreService.swift; sourceTree = "<group>"; };
+		3944703B200C2288008E402B /* ScoreboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardService.swift; sourceTree = "<group>"; };
 		3944703D200C232E008E402B /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
 		3944703F200C2E4A008E402B /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		39447042200DA49B008E402B /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
@@ -74,6 +75,7 @@
 		39D3D4A7201324400077384E /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		39D3D4A92013A62F0077384E /* FLEX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLEX.framework; path = Carthage/Build/iOS/FLEX.framework; sourceTree = SOURCE_ROOT; };
 		39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
+		39D3D4AF2013DDAF0077384E /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +167,9 @@
 		39D3D4A32013106A0077384E /* API */ = {
 			isa = PBXGroup;
 			children = (
-				3944703B200C2288008E402B /* ScoreService.swift */,
+				3944703B200C2288008E402B /* ScoreboardService.swift */,
 				39D3D4A7201324400077384E /* TeamService.swift */,
+				39D3D4AF2013DDAF0077384E /* GameService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -305,7 +308,8 @@
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
-				3944703C200C2288008E402B /* ScoreService.swift in Sources */,
+				39D3D4B02013DDAF0077384E /* GameService.swift in Sources */,
+				3944703C200C2288008E402B /* ScoreboardService.swift in Sources */,
 				39D3D49320108B3E0077384E /* Team.swift in Sources */,
 				39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,

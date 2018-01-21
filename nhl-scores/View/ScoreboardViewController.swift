@@ -16,7 +16,8 @@ class ScoreboardViewController: UITableViewController {
     var notificationToken: NotificationToken? = nil
     private lazy var games: Results<Game> = {
         let realm = try! Realm()
-        let games = realm.objects(Game.self).filter("gameDay = '\(date.string(custom: "yyyy-MM-dd"))'")
+        let statusSortDescriptor = SortDescriptor(keyPath: "sortStatus")
+        let games = realm.objects(Game.self).filter("gameDay = '\(date.string(custom: "yyyy-MM-dd"))'").sorted(by: [statusSortDescriptor])
         return games
     }()
     
@@ -54,14 +55,15 @@ class ScoreboardViewController: UITableViewController {
                 tableView.reloadData()
             case .update(_, let deletions, let insertions, let modifications):
                 // Query results have changed, so apply them to the UITableView
-                tableView.beginUpdates()
-                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
-                                     with: .automatic)
-                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
-                                     with: .automatic)
-                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
-                                     with: .automatic)
-                tableView.endUpdates()
+//                tableView.beginUpdates()
+//                tableView.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }),
+//                                     with: .automatic)
+//                tableView.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0)}),
+//                                     with: .automatic)
+//                tableView.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }),
+//                                     with: .automatic)
+//                tableView.endUpdates()
+                tableView.reloadData()
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
@@ -96,7 +98,7 @@ private extension ScoreboardViewController {
     @objc
     func refreshScores() {
         tableView.refreshControl?.beginRefreshing()
-        ScoreService.fetchScores(date: date) { [weak self] in
+        ScoreboardService.fetchScoreboard(date: date) { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.refreshControl?.endRefreshing()
             }

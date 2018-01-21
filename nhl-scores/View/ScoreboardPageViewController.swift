@@ -28,7 +28,7 @@ class ScoreboardPageViewController: UIPageViewController {
         setViewControllers([ScoreboardViewController(date: Date())], direction: .forward, animated: false, completion: nil)
         setTitleFor(date: Date())
     }
-    
+        
 }
 
 extension ScoreboardPageViewController: UIPageViewControllerDataSource {
