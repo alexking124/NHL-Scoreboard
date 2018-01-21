@@ -133,10 +133,12 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="awayLogo" destination="uVc-NC-6eC" id="2gM-9C-TZZ"/>
+                <outlet property="awayRecordLabel" destination="dNu-sB-zpL" id="ORY-dq-G4s"/>
                 <outlet property="awayTeamLocationLabel" destination="8DJ-rw-ooz" id="tAy-iC-Uoh"/>
                 <outlet property="awayTeamNameLabel" destination="bHK-RY-Ro6" id="Flr-Y7-2S8"/>
                 <outlet property="containerView" destination="dUP-GF-as3" id="A0A-CN-2oa"/>
                 <outlet property="homeLogo" destination="FVK-iv-AJR" id="Vdr-pJ-L2z"/>
+                <outlet property="homeRecordLabel" destination="0Ii-CU-n7N" id="Ph1-wK-Zpf"/>
                 <outlet property="homeTeamLocationLabel" destination="sWi-g7-uI8" id="za9-93-LEo"/>
                 <outlet property="homeTeamNameLabel" destination="ha7-Xn-d2B" id="JqX-hY-IVC"/>
                 <outlet property="scoreLabel" destination="84j-0u-bJC" id="9rI-H5-4uu"/>

@@ -22,6 +22,8 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var awayLogo: UIImageView!
     @IBOutlet weak var homeLogo: UIImageView!
+    @IBOutlet weak var awayRecordLabel: UILabel!
+    @IBOutlet weak var homeRecordLabel: UILabel!
     
     var notificationToken: NotificationToken? = nil
     
@@ -62,7 +64,6 @@ class ScoreboardCell: UITableViewCell {
     func bind(_ game: Game) {
         updateLabels(game: game)
     }
-    
 }
 
 private extension ScoreboardCell {
@@ -91,8 +92,9 @@ private extension ScoreboardCell {
             scoreLabel.text = "\(awayScore) - \(homeScore)"
             scoreLabel.font = scoreLabel.font.withSize(22)
             statusLabel.text = game.gameStatus == .completed ? game.rawGameStatus : game.clockString
+            homeRecordLabel.text = "SOG \(game.score?.homeShots ?? 0)"
+            awayRecordLabel.text = "SOG \(game.score?.awayShots ?? 0)"
         }
-        
         
         homeLogo.image = game.homeTeam?.logo
         awayLogo.image = game.awayTeam?.logo
