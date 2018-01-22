@@ -54,15 +54,24 @@ class ScoreboardCell: UITableViewCell {
     }
 
     func bindGame(_ gameID: Int) {
-//        guard let realm = try? Realm(),
-//            let game = realm.object(ofType: Game.self, forPrimaryKey: gameId) else {
-//                return
-//        }
-//
-    }
-    
-    func bind(_ game: Game) {
+        guard let realm = try? Realm(),
+            let game = realm.object(ofType: Game.self, forPrimaryKey: gameID) else {
+                return
+        }
+        
         updateLabels(game: game)
+        
+        notificationToken = game.observe { [weak self] (changes: ObjectChange) in
+            switch changes {
+            case .change(_):
+                self?.updateLabels(game: game)
+            case .deleted:
+                print("Error - game got deleted???")
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                assertionFailure("\(error)")
+            }
+        }
     }
 }
 
