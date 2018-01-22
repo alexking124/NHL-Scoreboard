@@ -32,4 +32,8 @@ class Team: Object {
         return UIImage(named: "\(id)")
     }
     
+    var recordString: String {
+        return "\(wins)-\(losses)-\(otLosses)"
+    }
+    
 }

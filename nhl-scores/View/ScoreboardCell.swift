@@ -86,6 +86,8 @@ private extension ScoreboardCell {
             scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
             scoreLabel.font = scoreLabel.font.withSize(18)
             statusLabel.text = game.rawGameStatus
+            homeRecordLabel.text = game.homeTeam?.recordString
+            awayRecordLabel.text = game.awayTeam?.recordString
         } else {
             let homeScore = game.score?.homeScore ?? 0
             let awayScore = game.score?.awayScore ?? 0
