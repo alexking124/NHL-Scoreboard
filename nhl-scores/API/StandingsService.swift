@@ -12,7 +12,7 @@ import RealmSwift
 struct StandingsService {
     
     static func refreshStandings(_ completion: @escaping (() -> Void)) {
-        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/teams") else {
+        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/standings/regularSeason") else {
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
