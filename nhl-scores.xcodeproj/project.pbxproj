@@ -32,6 +32,7 @@
 		39D3D4A8201324400077384E /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4A7201324400077384E /* TeamService.swift */; };
 		39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */; };
 		39D3D4B02013DDAF0077384E /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AF2013DDAF0077384E /* GameService.swift */; };
+		39D3D4B22015D0500077384E /* StandingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4B12015D0500077384E /* StandingsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -76,6 +77,7 @@
 		39D3D4A92013A62F0077384E /* FLEX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLEX.framework; path = Carthage/Build/iOS/FLEX.framework; sourceTree = SOURCE_ROOT; };
 		39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
 		39D3D4AF2013DDAF0077384E /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
+		39D3D4B12015D0500077384E /* StandingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				3944703B200C2288008E402B /* ScoreboardService.swift */,
 				39D3D4A7201324400077384E /* TeamService.swift */,
 				39D3D4AF2013DDAF0077384E /* GameService.swift */,
+				39D3D4B12015D0500077384E /* StandingsService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				39D3D49320108B3E0077384E /* Team.swift in Sources */,
 				39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,
+				39D3D4B22015D0500077384E /* StandingsService.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,

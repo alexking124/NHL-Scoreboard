@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainNavigation.addDebugGestures()
         
         TeamService.fetchTeams {
+            StandingsService.refreshStandings {
+            }
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)
