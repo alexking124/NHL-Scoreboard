@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        migrateRealm()
         
         let scoreboardPageViewController = ScoreboardPageViewController()
         let mainNavigation = UINavigationController(rootViewController: scoreboardPageViewController)
@@ -62,6 +65,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 private extension AppDelegate {
+    
+    func migrateRealm() {
+        let currentSchemaVersion: UInt64 = 1
+        let config = Realm.Configuration(schemaVersion: currentSchemaVersion,
+                                         migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < currentSchemaVersion) {
+                // Nothing to do!
+                // Realm will automatically detect new properties and removed properties
+                // And will update the schema on disk automatically
+            }
+        })
+        
+        Realm.Configuration.defaultConfiguration = config
+    }
     
     func setupGameFetchTimer() {
         invalidateTimer()

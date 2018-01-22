@@ -92,8 +92,8 @@ private extension ScoreboardCell {
             scoreLabel.text = "\(awayScore) - \(homeScore)"
             scoreLabel.font = scoreLabel.font.withSize(22)
             statusLabel.text = game.gameStatus == .completed ? game.rawGameStatus : game.clockString
-            homeRecordLabel.text = "SOG \(game.score?.homeShots ?? 0)"
-            awayRecordLabel.text = "SOG \(game.score?.awayShots ?? 0)"
+            homeRecordLabel.text = "\(game.score?.homeShots ?? 0) SOG"
+            awayRecordLabel.text = "\(game.score?.awayShots ?? 0) SOG"
         }
         
         homeLogo.image = game.homeTeam?.logo
