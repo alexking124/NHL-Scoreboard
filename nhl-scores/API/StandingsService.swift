@@ -27,6 +27,40 @@ struct StandingsService {
                 return
             }
             
+            let realm = try! Realm()
+            for divisionJson in divisionRecords {
+                
+                guard let divisionTeamsJson = divisionJson["teamRecords"] as? [[String: Any]] else {
+                    continue
+                }
+                
+                for teamRecordJson in divisionTeamsJson {
+                    guard let teamInfo = teamRecordJson["team"] as? [String: Any],
+                        let leagueRecord = teamRecordJson["leagueRecord"] as? [String: Any] else {
+                            continue
+                    }
+                    
+                    guard let teamID = teamInfo["id"] as? Int,
+                        let teamWins = leagueRecord["wins"] as? Int,
+                        let teamLosses = leagueRecord["losses"] as? Int,
+                        let teamOTLosses = leagueRecord["ot"] as? Int else {
+                            continue
+                    }
+                    
+                    guard let team = realm.object(ofType: Team.self, forPrimaryKey: teamID) else {
+                        print("No team found")
+                        continue
+                    }
+                    
+                    try? realm.write {
+                        team.wins = teamWins
+                        team.losses = teamLosses
+                        team.otLosses = teamOTLosses
+                    }
+                }
+                
+            }
+            
         }
         task.resume()
     }

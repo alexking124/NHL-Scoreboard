@@ -51,6 +51,14 @@ struct GameService {
                     return
             }
             
+            guard let gameDataJson = dictionary["gameData"] as? [String: Any],
+                let statusDict = gameDataJson["status"] as? [String: Any],
+                let status = statusDict["detailedState"] as? String,
+                let codedGameState = statusDict["codedGameState"] as? String else {
+                    print("Failed to get game state")
+                    return
+            }
+            
             guard let homeTeamJson = teamsJson["home"] as? [String: Any],
                 let homeScore = homeTeamJson["goals"] as? Int,
                 let homeShots = homeTeamJson["shotsOnGoal"] as? Int else {
@@ -66,6 +74,8 @@ struct GameService {
             let realm = try! Realm()
             let game = realm.object(ofType: Game.self, forPrimaryKey: gameID)
             try? realm.write {
+                game?.rawGameStatus = status
+                game?.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0
                 game?.clockString = "\(timeString) \(periodString)"
                 game?.score?.homeScore = homeScore
                 game?.score?.awayScore = awayScore
