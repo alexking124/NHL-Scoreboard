@@ -24,6 +24,7 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var homeLogo: UIImageView!
     @IBOutlet weak var awayRecordLabel: UILabel!
     @IBOutlet weak var homeRecordLabel: UILabel!
+    @IBOutlet weak var powerplayLabel: UILabel!
     
     var notificationToken: NotificationToken? = nil
     
@@ -96,7 +97,18 @@ private extension ScoreboardCell {
             scoreLabel.font = scoreLabel.font.withSize(18)
             statusLabel.text = game.rawGameStatus
             homeRecordLabel.text = game.homeTeam?.recordString
+            homeRecordLabel.backgroundColor = UIColor.clear
             awayRecordLabel.text = game.awayTeam?.recordString
+            awayRecordLabel.backgroundColor = UIColor.clear
+        } else if game.gameStatus == .critical {
+            if game.homeSkaterCount < 5 {
+                homeRecordLabel.backgroundColor = UIColor.red
+                homeRecordLabel.text = "POWERPLAY"
+            }
+            if game.awaySkaterCount < 5 {
+                awayRecordLabel.backgroundColor = UIColor.red
+                awayRecordLabel.text = "POWERPLAY"
+            }
         } else {
             let homeScore = game.score?.homeScore ?? 0
             let awayScore = game.score?.awayScore ?? 0

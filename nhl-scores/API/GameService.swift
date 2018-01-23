@@ -61,13 +61,15 @@ struct GameService {
             
             guard let homeTeamJson = teamsJson["home"] as? [String: Any],
                 let homeScore = homeTeamJson["goals"] as? Int,
-                let homeShots = homeTeamJson["shotsOnGoal"] as? Int else {
+                let homeShots = homeTeamJson["shotsOnGoal"] as? Int,
+                let homeSkaterCount = homeTeamJson["numSkaters"] as? Int else {
                     return
             }
             
             guard let awayTeamJson = teamsJson["away"] as? [String: Any],
                 let awayScore = awayTeamJson["goals"] as? Int,
-                let awayShots = awayTeamJson["shotsOnGoal"] as? Int else {
+                let awayShots = awayTeamJson["shotsOnGoal"] as? Int,
+                let awaySkaterCount = awayTeamJson["numSkaters"] as? Int else {
                     return
             }
             
@@ -81,11 +83,10 @@ struct GameService {
                 game?.score?.awayScore = awayScore
                 game?.score?.homeShots = homeShots
                 game?.score?.awayShots = awayShots
+                game?.homeSkaterCount = homeSkaterCount
+                game?.awaySkaterCount = awaySkaterCount
             }
-            
         }
         task.resume()
     }
-    
-    
 }
