@@ -114,7 +114,9 @@ private extension ScoreboardCell {
             let awayScore = game.score?.awayScore ?? 0
             scoreLabel.text = "\(awayScore) - \(homeScore)"
             scoreLabel.font = scoreLabel.font.withSize(22)
-            statusLabel.text = game.clockString.replacingOccurrences(of: " 3rd", with: "")
+            
+            statusLabel.text = (game.gameStatus == .completed) ? game.clockString.replacingOccurrences(of: " 3rd", with: "") : game.clockString
+            
             homeRecordLabel.text = "\(game.score?.homeShots ?? 0) SOG"
             awayRecordLabel.text = "\(game.score?.awayShots ?? 0) SOG"
         }
