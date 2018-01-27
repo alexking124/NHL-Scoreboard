@@ -18,6 +18,10 @@ extension UINavigationController {
             let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(showFlex))
             longPressRecognizer.minimumPressDuration = 1
             navigationBar.addGestureRecognizer(longPressRecognizer)
+            
+            let tripleTapGesture = UITapGestureRecognizer(target: self, action: #selector(showDebugMenu))
+            tripleTapGesture.numberOfTapsRequired = 3
+            navigationBar.addGestureRecognizer(tripleTapGesture)
         #endif
     }
     
@@ -25,6 +29,14 @@ extension UINavigationController {
     private func showFlex() {
         #if DEBUG
             FLEXManager.shared().showExplorer()
+        #endif
+    }
+    
+    @objc
+    private func showDebugMenu() {
+        #if DEBUG
+            let debugNavigation = UINavigationController(rootViewController: DebugMenuViewController())
+            present(debugNavigation, animated: true, completion: nil)
         #endif
     }
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39136D99201CF23C00E0384E /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D98201CF23C00E0384E /* StandingsViewController.swift */; };
+		39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */; };
 		39447028200C21DA008E402B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447027200C21DA008E402B /* AppDelegate.swift */; };
 		3944702F200C21DA008E402B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3944702E200C21DA008E402B /* Assets.xcassets */; };
 		39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39447030200C21DA008E402B /* LaunchScreen.storyboard */; };
@@ -53,6 +55,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		39136D98201CF23C00E0384E /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
+		39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuViewController.swift; sourceTree = "<group>"; };
 		39447024200C21D9008E402B /* nhl-scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nhl-scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39447027200C21DA008E402B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3944702E200C21DA008E402B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,6 +99,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39136D96201CF20200E0384E /* Scoreboard */ = {
+			isa = PBXGroup;
+			children = (
+				39447039200C2244008E402B /* ScoreboardCell.swift */,
+				3944704C200F2E9B008E402B /* ScoreboardCell.xib */,
+				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
+				39D3D490201083E80077384E /* ScoreboardPageViewController.swift */,
+			);
+			path = Scoreboard;
+			sourceTree = "<group>";
+		};
+		39136D97201CF20C00E0384E /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				39136D98201CF23C00E0384E /* StandingsViewController.swift */,
+			);
+			path = Standings;
+			sourceTree = "<group>";
+		};
+		39136D9A201CF42900E0384E /* Debug Menu */ = {
+			isa = PBXGroup;
+			children = (
+				39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */,
+			);
+			path = "Debug Menu";
+			sourceTree = "<group>";
+		};
 		3944701B200C21D9008E402B = {
 			isa = PBXGroup;
 			children = (
@@ -190,10 +221,9 @@
 		39D3D4A5201310930077384E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				39447039200C2244008E402B /* ScoreboardCell.swift */,
-				3944704C200F2E9B008E402B /* ScoreboardCell.xib */,
-				3944703D200C232E008E402B /* ScoreboardViewController.swift */,
-				39D3D490201083E80077384E /* ScoreboardPageViewController.swift */,
+				39136D9A201CF42900E0384E /* Debug Menu */,
+				39136D96201CF20200E0384E /* Scoreboard */,
+				39136D97201CF20C00E0384E /* Standings */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -308,10 +338,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */,
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
 				39D3D4B02013DDAF0077384E /* GameService.swift in Sources */,
+				39136D99201CF23C00E0384E /* StandingsViewController.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreboardService.swift in Sources */,
 				39D3D49320108B3E0077384E /* Team.swift in Sources */,
 				39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */,

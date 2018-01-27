@@ -65,6 +65,8 @@ class ScoreboardViewController: UITableViewController {
         
         if games.count == 0 {
             refreshScores()
+        } else {
+            GameService.updateFinalStats()
         }
     }
     
@@ -92,6 +94,7 @@ private extension ScoreboardViewController {
     func refreshScores() {
         tableView.refreshControl?.beginRefreshing()
         ScoreboardService.fetchScoreboard(date: date) { [weak self] in
+            GameService.updateFinalStats()
             DispatchQueue.main.async {
                 self?.tableView.refreshControl?.endRefreshing()
             }
