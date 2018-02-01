@@ -35,6 +35,7 @@
 		39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */; };
 		39D3D4B02013DDAF0077384E /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AF2013DDAF0077384E /* GameService.swift */; };
 		39D3D4B22015D0500077384E /* StandingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4B12015D0500077384E /* StandingsService.swift */; };
+		731A7FBA2023708A00D75BCB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A7FB92023708A00D75BCB /* Player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -82,6 +83,7 @@
 		39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
 		39D3D4AF2013DDAF0077384E /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		39D3D4B12015D0500077384E /* StandingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsService.swift; sourceTree = "<group>"; };
+		731A7FB92023708A00D75BCB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +176,7 @@
 			children = (
 				39447045200DA700008E402B /* Carthage */,
 			);
-			path = External;
+			name = External;
 			sourceTree = "<group>";
 		};
 		39447045200DA700008E402B /* Carthage */ = {
@@ -186,7 +188,7 @@
 				39D3D48C20107A6F0077384E /* SwiftDate.framework */,
 				39447046200DA71D008E402B /* TinyConstraints.framework */,
 			);
-			path = Carthage;
+			name = Carthage;
 			sourceTree = "<group>";
 		};
 		39D3D49420108C000077384E /* Resources */ = {
@@ -214,6 +216,7 @@
 				3944703F200C2E4A008E402B /* Score.swift */,
 				39D3D49220108B3E0077384E /* Team.swift */,
 				39D3D4A120130E690077384E /* Game.swift */,
+				731A7FB92023708A00D75BCB /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
+				731A7FBA2023708A00D75BCB /* Player.swift in Sources */,
 				39D3D4B02013DDAF0077384E /* GameService.swift in Sources */,
 				39136D99201CF23C00E0384E /* StandingsViewController.swift in Sources */,
 				3944703C200C2288008E402B /* ScoreboardService.swift in Sources */,
