@@ -50,6 +50,11 @@ class ScoreboardCell: UITableViewCell {
         awayLogo.image = nil
         homeLogo.image = nil
         
+        scoreLabel.text = "error"
+        
+        homeRecordLabel.backgroundColor = .clear
+        awayRecordLabel.backgroundColor = .clear
+        
         notificationToken?.invalidate()
         notificationToken = nil
     }
@@ -97,18 +102,9 @@ private extension ScoreboardCell {
             scoreLabel.font = scoreLabel.font.withSize(18)
             statusLabel.text = game.rawGameStatus
             homeRecordLabel.text = game.homeTeam?.recordString
-            homeRecordLabel.backgroundColor = UIColor.clear
+            homeRecordLabel.backgroundColor = .clear
             awayRecordLabel.text = game.awayTeam?.recordString
-            awayRecordLabel.backgroundColor = UIColor.clear
-        } else if game.gameStatus == .critical {
-            if game.homeSkaterCount < 5 {
-                homeRecordLabel.backgroundColor = UIColor.red
-                homeRecordLabel.text = "POWERPLAY"
-            }
-            if game.awaySkaterCount < 5 {
-                awayRecordLabel.backgroundColor = UIColor.red
-                awayRecordLabel.text = "POWERPLAY"
-            }
+            awayRecordLabel.backgroundColor = .clear
         } else {
             let homeScore = game.score?.homeScore ?? 0
             let awayScore = game.score?.awayScore ?? 0
@@ -119,6 +115,17 @@ private extension ScoreboardCell {
             
             homeRecordLabel.text = "\(game.score?.homeShots ?? 0) SOG"
             awayRecordLabel.text = "\(game.score?.awayShots ?? 0) SOG"
+        }
+        
+        if game.gameStatus == .critical {
+            if game.homeSkaterCount < 5 {
+                homeRecordLabel.backgroundColor = UIColor.red
+                homeRecordLabel.text = "POWERPLAY"
+            }
+            if game.awaySkaterCount < 5 {
+                awayRecordLabel.backgroundColor = UIColor.red
+                awayRecordLabel.text = "POWERPLAY"
+            }
         }
         
         homeLogo.image = game.homeTeam?.logo
