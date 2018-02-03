@@ -38,6 +38,13 @@ struct TeamService {
                         continue
                 }
                 
+                guard let divisionJson = teamJson["division"] as? [String: Any],
+                    let division = divisionJson["name"] as? String,
+                    let conferenceJson = teamJson["conference"] as? [String: Any],
+                    let conference = conferenceJson["name"] as? String else {
+                        continue
+                }
+                
                 let team: Team
                 if let existingTeam = realm.object(ofType: Team.self, forPrimaryKey: teamID) {
                     team = existingTeam
@@ -53,6 +60,9 @@ struct TeamService {
                     team.teamName = teamName
                     team.locationName = teamLocation
                     team.abbreviation = abbreviation
+                    
+                    team.division = division
+                    team.conference = conference
                 }
             }
             

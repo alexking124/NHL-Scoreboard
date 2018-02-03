@@ -36,7 +36,8 @@ struct StandingsService {
                 
                 for teamRecordJson in divisionTeamsJson {
                     guard let teamInfo = teamRecordJson["team"] as? [String: Any],
-                        let leagueRecord = teamRecordJson["leagueRecord"] as? [String: Any] else {
+                        let leagueRecord = teamRecordJson["leagueRecord"] as? [String: Any],
+                        let streakJson = teamRecordJson["streak"] as? [String: Any] else {
                             continue
                     }
                     
@@ -47,17 +48,46 @@ struct StandingsService {
                             continue
                     }
                     
+                    guard let goalsAgainst = teamRecordJson["goalsAgainst"] as? Int,
+                        let goalsScored = teamRecordJson["goalsScored"] as? Int,
+                        let points = teamRecordJson["points"] as? Int,
+                        let divisionRank = teamRecordJson["divisionRank"] as? String,
+                        let conferenceRank = teamRecordJson["conferenceRank"] as? String,
+                        let leagueRank = teamRecordJson["leagueRank"] as? String,
+                        let wildCardRank = teamRecordJson["wildCardRank"] as? String,
+                        let row = teamRecordJson["row"] as? Int,
+                        let gamesPlayed = teamRecordJson["gamesPlayed"] as? Int else {
+                            continue
+                    }
+                    
+                    
+                    guard let streak = streakJson["streakCode"] as? String else {
+                        continue
+                    }
+                    
                     guard let team = realm.object(ofType: Team.self, forPrimaryKey: teamID) else {
                         print("No team found")
                         continue
                     }
                     
-                    let record = Record()
-                    record.wins = teamWins
-                    record.losses = teamLosses
-                    record.otLosses = teamOTLosses
-                    
+                    let record = team.record ?? Record()
                     try? realm.write {
+                        record.wins = teamWins
+                        record.losses = teamLosses
+                        record.otLosses = teamOTLosses
+                        
+                        record.goalsAgainst = goalsAgainst
+                        record.goalsFor = goalsScored
+                        record.points = points
+                        record.divisionRank = Int(divisionRank) ?? 0
+                        record.conferenceRank = Int(conferenceRank) ?? 0
+                        record.leagueRank = Int(leagueRank) ?? 0
+                        record.wildCardRank = Int(wildCardRank) ?? 0
+                        record.row = row
+                        record.gamesPlayed = gamesPlayed
+                        
+                        record.streak = streak
+                    
                         team.record = record
                     }
                 }
