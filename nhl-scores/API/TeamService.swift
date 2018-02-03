@@ -30,7 +30,6 @@ struct TeamService {
             }
             
             let realm = try! Realm()
-            var teams = [Team]()
             for teamJson in teamsArray {
                 guard let teamID = teamJson["id"] as? Int,
                     let teamName = teamJson["teamName"] as? String,
@@ -50,16 +49,11 @@ struct TeamService {
                     }
                 }
                 
-                team.rawId = teamID
-                team.teamName = teamName
-                team.locationName = teamLocation
-                team.abbreviation = abbreviation
-                
-                teams.append(team)
-            }
-            
-            try! realm.write {
-                realm.add(teams, update: true)
+                try? realm.write {
+                    team.teamName = teamName
+                    team.locationName = teamLocation
+                    team.abbreviation = abbreviation
+                }
             }
             
             completion()

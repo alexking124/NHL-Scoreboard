@@ -11,6 +11,7 @@
 		39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */; };
 		39136D9E20261F5B00E0384E /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9D20261F5B00E0384E /* Record.swift */; };
 		39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9F20262B3F00E0384E /* UIColorExt.swift */; };
+		39136DA42026392000E0384E /* StandingsHeaderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136DA32026392000E0384E /* StandingsHeaderViews.swift */; };
 		39447028200C21DA008E402B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447027200C21DA008E402B /* AppDelegate.swift */; };
 		3944702F200C21DA008E402B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3944702E200C21DA008E402B /* Assets.xcassets */; };
 		39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39447030200C21DA008E402B /* LaunchScreen.storyboard */; };
@@ -62,6 +63,7 @@
 		39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuViewController.swift; sourceTree = "<group>"; };
 		39136D9D20261F5B00E0384E /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		39136D9F20262B3F00E0384E /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		39136DA32026392000E0384E /* StandingsHeaderViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsHeaderViews.swift; sourceTree = "<group>"; };
 		39447024200C21D9008E402B /* nhl-scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nhl-scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39447027200C21DA008E402B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3944702E200C21DA008E402B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				39136D98201CF23C00E0384E /* StandingsViewController.swift */,
+				39136DA32026392000E0384E /* StandingsHeaderViews.swift */,
 			);
 			path = Standings;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39136DA42026392000E0384E /* StandingsHeaderViews.swift in Sources */,
 				39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */,
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,

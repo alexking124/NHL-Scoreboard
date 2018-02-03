@@ -14,7 +14,10 @@ class StandingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Standings"
+        
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(StandingsConferenceHeaderView.self, forHeaderFooterViewReuseIdentifier: "ConferenceHeader")
     }
     
 }
@@ -52,24 +55,39 @@ extension StandingsViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = .blue
+        headerView.backgroundColor = .lightGray
         switch section {
         case 0: fallthrough
         case 4:
-            headerView.height(40) // Conference Headers
+            guard let conferenceHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ConferenceHeader") as? StandingsConferenceHeaderView else { // Conference Headers
+                return UIView()
+            }
+            conferenceHeader.conference = (section == 0) ? .eastern : .western
+            return conferenceHeader
         case 1: fallthrough
         case 2: fallthrough
         case 5: fallthrough
-        case 6:
-            headerView.height(18) // Division Leaders
-        case 3:
-            headerView.height(18) // Eastern Conference Wild Card
-        case 7:
-            headerView.height(18) // Western Conference Wild Card
+//        case 6:
+////            headerView.height(18) // Division Leaders
+//        case 3:
+////            headerView.height(18) // Eastern Conference Wild Card
+//        case 7:
+////            headerView.height(18) // Western Conference Wild Card
         default:
-            headerView.height(0)
+            break
+//            headerView.height(0)
         }
         return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0: fallthrough
+        case 4:
+            return 40 // Conference Headers
+        default:
+            return 20
+        }
     }
     
 }
