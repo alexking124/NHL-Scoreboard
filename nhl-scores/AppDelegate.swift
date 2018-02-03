@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let scoreboardPageViewController = ScoreboardPageViewController()
         let mainNavigation = UINavigationController(rootViewController: scoreboardPageViewController)
+        mainNavigation.navigationBar.tintColor = .darkGray
         mainNavigation.addDebugGestures()
         
         TeamService.fetchTeams {

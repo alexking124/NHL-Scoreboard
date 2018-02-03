@@ -27,6 +27,19 @@ class ScoreboardPageViewController: UIPageViewController {
         delegate = self
         setViewControllers([ScoreboardViewController(date: Date())], direction: .forward, animated: false, completion: nil)
         setTitleFor(date: Date())
+        
+        let standingsButton = UIButton()
+        standingsButton.setImage(UIImage(named: "Standings-Icon"), for: .normal)
+        standingsButton.tintColor = .darkGray
+        standingsButton.width(44)
+        standingsButton.height(44)
+        
+        standingsButton.addTarget(self, action: #selector(standingsButtonTapped), for: .touchUpInside)
+        standingsButton.tintColor = .darkGray
+        standingsButton.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        let standingsBarButton = UIBarButtonItem(customView: standingsButton)
+        navigationItem.rightBarButtonItem = standingsBarButton
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
 }
@@ -63,6 +76,12 @@ extension ScoreboardPageViewController: UIPageViewControllerDelegate {
 }
 
 private extension ScoreboardPageViewController {
+    
+    @objc
+    func standingsButtonTapped() {
+        let standingsController = StandingsViewController()
+        navigationController?.pushViewController(standingsController, animated: true)
+    }
     
     func setTitleFor(date: Date) {
         title = "\(date.weekdayName), \(date.shortMonthName). \(date.day)"

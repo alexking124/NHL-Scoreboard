@@ -10,6 +10,7 @@
 		39136D99201CF23C00E0384E /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D98201CF23C00E0384E /* StandingsViewController.swift */; };
 		39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */; };
 		39136D9E20261F5B00E0384E /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9D20261F5B00E0384E /* Record.swift */; };
+		39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9F20262B3F00E0384E /* UIColorExt.swift */; };
 		39447028200C21DA008E402B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39447027200C21DA008E402B /* AppDelegate.swift */; };
 		3944702F200C21DA008E402B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3944702E200C21DA008E402B /* Assets.xcassets */; };
 		39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39447030200C21DA008E402B /* LaunchScreen.storyboard */; };
@@ -60,6 +61,7 @@
 		39136D98201CF23C00E0384E /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
 		39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuViewController.swift; sourceTree = "<group>"; };
 		39136D9D20261F5B00E0384E /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		39136D9F20262B3F00E0384E /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		39447024200C21D9008E402B /* nhl-scores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nhl-scores.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39447027200C21DA008E402B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3944702E200C21DA008E402B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */,
+				39136D9F20262B3F00E0384E /* UIColorExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,
 				39D3D4B22015D0500077384E /* StandingsService.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
+				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 				39136D9E20261F5B00E0384E /* Record.swift in Sources */,
