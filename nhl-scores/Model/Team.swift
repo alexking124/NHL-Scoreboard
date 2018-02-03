@@ -15,10 +15,12 @@ class Team: Object {
     @objc dynamic var rawId: Int = 0
     @objc dynamic var teamName: String = ""
     @objc dynamic var locationName: String = ""
+    @objc dynamic var abbreviation: String = ""
     
-    @objc dynamic var wins: Int = 0
-    @objc dynamic var losses: Int = 0
-    @objc dynamic var otLosses: Int = 0
+    @objc dynamic var conference: String = ""
+    @objc dynamic var division: String = ""
+    
+    @objc dynamic var record: Record?
     
     override static func primaryKey() -> String? {
         return "rawId"
@@ -30,10 +32,6 @@ class Team: Object {
     
     var logo: UIImage? {
         return UIImage(named: "\(id)")
-    }
-    
-    var recordString: String {
-        return "\(wins)-\(losses)-\(otLosses)"
     }
     
 }

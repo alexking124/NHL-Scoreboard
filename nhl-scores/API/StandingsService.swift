@@ -12,7 +12,7 @@ import RealmSwift
 struct StandingsService {
     
     static func refreshStandings(_ completion: @escaping (() -> Void)) {
-        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/standings/regularSeason") else {
+        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/standings/wildCardWithLeaders") else {
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -52,10 +52,13 @@ struct StandingsService {
                         continue
                     }
                     
+                    let record = Record()
+                    record.wins = teamWins
+                    record.losses = teamLosses
+                    record.otLosses = teamOTLosses
+                    
                     try? realm.write {
-                        team.wins = teamWins
-                        team.losses = teamLosses
-                        team.otLosses = teamOTLosses
+                        team.record = record
                     }
                 }
                 

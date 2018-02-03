@@ -101,9 +101,9 @@ private extension ScoreboardCell {
             scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
             scoreLabel.font = scoreLabel.font.withSize(18)
             statusLabel.text = game.rawGameStatus
-            homeRecordLabel.text = game.homeTeam?.recordString
+            homeRecordLabel.text = game.homeTeam?.record?.recordString ?? ""
             homeRecordLabel.backgroundColor = .clear
-            awayRecordLabel.text = game.awayTeam?.recordString
+            awayRecordLabel.text = game.awayTeam?.record?.recordString ?? ""
             awayRecordLabel.backgroundColor = .clear
         } else {
             let homeScore = game.score?.homeScore ?? 0
