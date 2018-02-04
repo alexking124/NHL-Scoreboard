@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class StandingsViewController: UITableViewController {
     
@@ -21,6 +22,44 @@ class StandingsViewController: UITableViewController {
         case central = 5
         case pacific = 6
         case westernWildCard = 7
+        
+        var teams: Results<Team> {
+            let realm = try! Realm()
+            return realm.objects(Team.self).filter(predicate).sorted(byKeyPath: sortKeyPath)
+        }
+        
+        private var predicate: NSPredicate {
+            switch self {
+            case .atlantic:
+                return NSPredicate(format: "division = 'Atlantic' AND record.divisionRank <= 3")
+            case .metropolitan:
+                return NSPredicate(format: "division = 'Metropolitan' AND record.divisionRank <= 3")
+            case .central:
+                return NSPredicate(format: "division = 'Central' AND record.divisionRank <= 3")
+            case .pacific:
+                return NSPredicate(format: "division = 'Pacific' AND record.divisionRank <= 3")
+            case .easternWildCard:
+                return NSPredicate(format: "conference = 'Eastern' AND record.wildCardRank > 0")
+            case .westernWildCard:
+                return NSPredicate(format: "conference = 'Western' AND record.wildCardRank > 0")
+            default:
+                assertionFailure("No predicate needed")
+                return NSPredicate()
+            }
+        }
+        
+        private var sortKeyPath: String {
+            switch self {
+            case .atlantic: fallthrough
+            case .metropolitan: fallthrough
+            case .central: fallthrough
+            case .pacific:
+                return "record.divisionRank"
+            default:
+                return "record.wildCardRank"
+            }
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -30,6 +69,7 @@ class StandingsViewController: UITableViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "StandingsCell")
         tableView.register(StandingsConferenceHeaderView.self, forHeaderFooterViewReuseIdentifier: "ConferenceHeader")
+        tableView.allowsSelection = false
     }
     
 }
@@ -41,21 +81,13 @@ extension StandingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: fallthrough
-        case 4:
+        let sectionType = WildCardSection(rawValue: section) ?? .unknown
+        switch sectionType {
+        case .eastern: fallthrough
+        case .western:
             return 0 // Conference Headers
-        case 1: fallthrough
-        case 2: fallthrough
-        case 5: fallthrough
-        case 6:
-            return 3 // Division Leaders
-        case 3:
-            return 10 // Eastern Conference Wild Card
-        case 7:
-            return 9 // Western Conference Wild Card
         default:
-            return 0
+            return sectionType.teams.count
         }
     }
     
@@ -63,15 +95,16 @@ extension StandingsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StandingsCell", for: indexPath)
         
         let sectionType = WildCardSection(rawValue: indexPath.section) ?? .unknown
+        let team = sectionType.teams[indexPath.row]
         switch sectionType {
         case .atlantic: fallthrough
         case .metropolitan: fallthrough
         case .central: fallthrough
-        case .pacific:
-            cell.textLabel?.text = String("\(indexPath.section) - \(indexPath.row)")
+        case .pacific: fallthrough
         case .easternWildCard: fallthrough
         case .westernWildCard:
-            cell.textLabel?.text = "Wild Card"
+            cell.textLabel?.text = String("\(team.abbreviation) - \(team.record?.points ?? 0)")
+            cell.imageView?.image = team.logo
         default:
             assertionFailure("Invalid section")
             return UITableViewCell()
