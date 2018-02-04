@@ -120,11 +120,11 @@ private extension ScoreboardCell {
         if game.gameStatus == .critical {
             if game.homeSkaterCount < 5 {
                 homeRecordLabel.backgroundColor = UIColor.red
-                homeRecordLabel.text = "POWERPLAY"
+                homeRecordLabel.text = "POWER PLAY"
             }
             if game.awaySkaterCount < 5 {
                 awayRecordLabel.backgroundColor = UIColor.red
-                awayRecordLabel.text = "POWERPLAY"
+                awayRecordLabel.text = "POWER PLAY"
             }
         }
         

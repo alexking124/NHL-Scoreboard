@@ -72,6 +72,14 @@ class StandingsViewController: UITableViewController {
         tableView.allowsSelection = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        StandingsService.refreshStandings { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
 }
 
 extension StandingsViewController {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390F92ED202787100099DE94 /* StandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F92EC202787100099DE94 /* StandingsCell.swift */; };
+		390F92EF2027874E0099DE94 /* StandingsStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F92EE2027874E0099DE94 /* StandingsStatsView.swift */; };
+		390F92F2202788F30099DE94 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F92F1202788F30099DE94 /* EnumCollection.swift */; };
 		39136D99201CF23C00E0384E /* StandingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D98201CF23C00E0384E /* StandingsViewController.swift */; };
 		39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */; };
 		39136D9E20261F5B00E0384E /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39136D9D20261F5B00E0384E /* Record.swift */; };
@@ -59,6 +62,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		390F92EC202787100099DE94 /* StandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCell.swift; sourceTree = "<group>"; };
+		390F92EE2027874E0099DE94 /* StandingsStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsStatsView.swift; sourceTree = "<group>"; };
+		390F92F1202788F30099DE94 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		39136D98201CF23C00E0384E /* StandingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsViewController.swift; sourceTree = "<group>"; };
 		39136D9B201CF44D00E0384E /* DebugMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMenuViewController.swift; sourceTree = "<group>"; };
 		39136D9D20261F5B00E0384E /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
@@ -107,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		390F92F0202788D80099DE94 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				39D3D4AC2013A6850077384E /* Extension */,
+				390F92F1202788F30099DE94 /* EnumCollection.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		39136D96201CF20200E0384E /* Scoreboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +138,8 @@
 			children = (
 				39136D98201CF23C00E0384E /* StandingsViewController.swift */,
 				39136DA32026392000E0384E /* StandingsHeaderViews.swift */,
+				390F92EC202787100099DE94 /* StandingsCell.swift */,
+				390F92EE2027874E0099DE94 /* StandingsStatsView.swift */,
 			);
 			path = Standings;
 			sourceTree = "<group>";
@@ -158,7 +175,7 @@
 			children = (
 				39447027200C21DA008E402B /* AppDelegate.swift */,
 				39D3D4A32013106A0077384E /* API */,
-				39D3D4AC2013A6850077384E /* Extension */,
+				390F92F0202788D80099DE94 /* Common */,
 				39D3D4A4201310760077384E /* Model */,
 				39D3D4A6201310AF0077384E /* Utilities */,
 				39D3D4A5201310930077384E /* View */,
@@ -354,6 +371,7 @@
 				39136D9C201CF44D00E0384E /* DebugMenuViewController.swift in Sources */,
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
+				390F92F2202788F30099DE94 /* EnumCollection.swift in Sources */,
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
 				731A7FBA2023708A00D75BCB /* Player.swift in Sources */,
 				39D3D4B02013DDAF0077384E /* GameService.swift in Sources */,
@@ -363,6 +381,8 @@
 				39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,
 				39D3D4B22015D0500077384E /* StandingsService.swift in Sources */,
+				390F92ED202787100099DE94 /* StandingsCell.swift in Sources */,
+				390F92EF2027874E0099DE94 /* StandingsStatsView.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
