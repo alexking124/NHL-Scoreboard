@@ -32,6 +32,8 @@ class StandingsCell: UITableViewCell {
         return scrollView
     }()
     
+    private lazy var dividerView = VerticalLineView()
+    
     private let statsView = StandingsStatsView()
     
     var contentOffsetChanged: (UITableViewCell, CGFloat) -> Void = { _, _ in }
@@ -73,13 +75,18 @@ private extension StandingsCell {
         contentView.addSubview(logoImageView)
         logoImageView.centerY(to: contentView)
         logoImageView.left(to: contentView, offset: 8)
-        logoImageView.width(35)
-        logoImageView.height(35)
+        logoImageView.width(33)
+        logoImageView.height(33)
         
         contentView.addSubview(teamNameLabel)
         teamNameLabel.centerY(to: contentView)
         teamNameLabel.leftToRight(of: logoImageView, offset: 4)
-        teamNameLabel.width(60)
+        teamNameLabel.width(45)
+        
+        contentView.addSubview(dividerView)
+        dividerView.centerY(to: contentView)
+        dividerView.height(to: contentView, offset: -12)
+        dividerView.leftToRight(of: teamNameLabel)
         
         contentView.addSubview(statsScrollView)
         statsScrollView.leftToRight(of: teamNameLabel)

@@ -53,7 +53,6 @@ class StandingsConferenceHeaderView: UITableViewHeaderFooterView {
         conferenceLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(conferenceLabel)
         conferenceLabel.left(to: contentView, offset: 12)
-//        conferenceLabel.bottom(to: contentView, offset: -4)
         conferenceLabel.centerY(to: contentView)
     }
     
@@ -61,4 +60,62 @@ class StandingsConferenceHeaderView: UITableViewHeaderFooterView {
         contentView.backgroundColor = conference.color
         conferenceLabel.text = "\(conference.rawValue) Conference"
     }
+}
+
+class StandingsStatsHeaderView: UITableViewHeaderFooterView {
+    
+    private lazy var divisionNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var statsScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    private let statsView = StandingsStatsView()
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+        setupViews()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupViews() {
+        let colorBackground = UIView()
+        colorBackground.backgroundColor = UIColor(hexString: "#bfbfbf")
+        backgroundView = colorBackground
+        
+        contentView.addSubview(divisionNameLabel)
+        divisionNameLabel.centerY(to: contentView)
+        divisionNameLabel.left(to: contentView, offset: 8)
+        divisionNameLabel.width(80)
+        
+        contentView.addSubview(statsScrollView)
+        statsScrollView.leftToRight(of: divisionNameLabel)
+        statsScrollView.top(to: contentView)
+        statsScrollView.bottom(to: contentView)
+        statsScrollView.right(to: contentView)
+        statsScrollView.height(44, priority: .high)
+        
+        statsScrollView.addSubview(statsView)
+        statsView.edges(to: statsScrollView)
+        statsView.height(to: statsScrollView)
+        
+        statsView.setupAsHeader()
+    }
+    
+    func setDivision(_ division: String) {
+        divisionNameLabel.text = division
+    }
+    
 }

@@ -11,15 +11,19 @@ import UIKit
 
 class StandingsStatsView: UIStackView {
     
-    private enum Stats: EnumCollection {
-        case points
-        case gamesPlayed
-        case wins
-        case losses
-        case otLosses
-        case row
-        case goalDifferential
-        case streak
+    private enum Constants {
+        static let itemWidth: CGFloat = 38
+    }
+    
+    private enum Stats: String, EnumCollection {
+        case points = "PTS"
+        case gamesPlayed = "GP"
+        case wins = "W"
+        case losses = "L"
+        case otLosses = "OTL"
+        case row = "ROW"
+        case goalDifferential = "+/-"
+        case streak = "STRK"
         
         func value(team: Team) -> String {
             switch self {
@@ -48,7 +52,6 @@ class StandingsStatsView: UIStackView {
         axis = .horizontal
         alignment = .center
         distribution = .equalCentering
-        spacing = 4
         translatesAutoresizingMaskIntoConstraints = false
         setContentHuggingPriority(.defaultLow, for: .vertical)
     }
@@ -66,7 +69,21 @@ class StandingsStatsView: UIStackView {
         Stats.allValues.forEach { stat in
             let label = makeStatsLabel()
             label.text = stat.value(team: team)
-            label.width(35)
+            label.width(Constants.itemWidth)
+            addArrangedSubview(label)
+        }
+    }
+    
+    func setupAsHeader() {
+        arrangedSubviews.forEach {
+            $0.removeFromSuperview()
+        }
+        
+        Stats.allValues.forEach { stat in
+            let label = makeStatsLabel()
+            label.font = UIFont.systemFont(ofSize: 12)
+            label.text = stat.rawValue
+            label.width(Constants.itemWidth)
             addArrangedSubview(label)
         }
     }

@@ -26,6 +26,8 @@
 		39447047200DA71D008E402B /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; };
 		3944704A200DAB5E008E402B /* TinyConstraints.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3944704C200F2E9B008E402B /* ScoreboardCell.xib */; };
+		3983CBC7202F78E100147386 /* UIScreenExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBC6202F78E100147386 /* UIScreenExt.swift */; };
+		3983CBCB202F7AD700147386 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCA202F7AD700147386 /* LineView.swift */; };
 		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
 		39D3D48F20107A7B0077384E /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
@@ -82,6 +84,8 @@
 		39447042200DA49B008E402B /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		39447046200DA71D008E402B /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = SOURCE_ROOT; };
 		3944704C200F2E9B008E402B /* ScoreboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreboardCell.xib; sourceTree = "<group>"; };
+		3983CBC6202F78E100147386 /* UIScreenExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
+		3983CBCA202F7AD700147386 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 			children = (
 				39D3D4AC2013A6850077384E /* Extension */,
 				390F92F1202788F30099DE94 /* EnumCollection.swift */,
+				3983CBCA202F7AD700147386 /* LineView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 			children = (
 				39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */,
 				39136D9F20262B3F00E0384E /* UIColorExt.swift */,
+				3983CBC6202F78E100147386 /* UIScreenExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -381,11 +387,13 @@
 				39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */,
 				39D3D4A020130D1C0077384E /* TeamID.swift in Sources */,
 				39D3D4B22015D0500077384E /* StandingsService.swift in Sources */,
+				3983CBC7202F78E100147386 /* UIScreenExt.swift in Sources */,
 				390F92ED202787100099DE94 /* StandingsCell.swift in Sources */,
 				390F92EF2027874E0099DE94 /* StandingsStatsView.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
+				3983CBCB202F7AD700147386 /* LineView.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 				39136D9E20261F5B00E0384E /* Record.swift in Sources */,
 				39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */,

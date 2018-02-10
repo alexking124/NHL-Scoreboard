@@ -23,6 +23,18 @@ class StandingsViewController: UITableViewController {
         case pacific = 6
         case westernWildCard = 7
         
+        var title: String {
+            switch self {
+            case .atlantic: return "Atlantic"
+            case .metropolitan: return "Metropolitan"
+            case .central: return "Central"
+            case .pacific: return "Pacific"
+            case .easternWildCard, .westernWildCard: return "Wild Card"
+            default:
+                return "unknown"
+            }
+        }
+        
         var teams: Results<Team> {
             let realm = try! Realm()
             return realm.objects(Team.self).filter(predicate).sorted(byKeyPath: sortKeyPath)
@@ -70,7 +82,10 @@ class StandingsViewController: UITableViewController {
         
         tableView.register(StandingsCell.self, forCellReuseIdentifier: "StandingsCell")
         tableView.register(StandingsConferenceHeaderView.self, forHeaderFooterViewReuseIdentifier: "ConferenceHeader")
+        tableView.register(StandingsStatsHeaderView.self, forHeaderFooterViewReuseIdentifier: "DivisionHeader")
         tableView.allowsSelection = false
+        tableView.separatorInset = .zero
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +134,7 @@ extension StandingsViewController {
             standingsCell.setTeam(team)
             standingsCell.setContentOffset(cellContentOffset)
             standingsCell.contentOffsetChanged = { [weak self] cell, offset in
+                self?.cellContentOffset = offset
                 self?.tableView.visibleCells.forEach { tableCell in
                     guard cell != tableCell,
                         let standingsCell = tableCell as? StandingsCell else {
@@ -135,8 +151,7 @@ extension StandingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .lightGray
+        let sectionType = WildCardSection(rawValue: section) ?? .unknown
         switch section {
         case 0: fallthrough
         case 4:
@@ -150,11 +165,16 @@ extension StandingsViewController {
         case 5: fallthrough
         case 6: fallthrough
         case 3: fallthrough
-        case 7: fallthrough
+        case 7:
+            guard let divisionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DivisionHeader") as? StandingsStatsHeaderView else { // Division Headers
+                return UIView()
+            }
+            divisionHeader.setDivision(sectionType.title)
+            return divisionHeader
         default:
             break
         }
-        return headerView
+        return UIView()
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
