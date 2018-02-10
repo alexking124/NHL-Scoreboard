@@ -59,15 +59,16 @@ class StandingsViewController: UITableViewController {
                 return "record.wildCardRank"
             }
         }
-        
     }
+    
+    private var cellContentOffset: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Standings"
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "StandingsCell")
+        tableView.register(StandingsCell.self, forCellReuseIdentifier: "StandingsCell")
         tableView.register(StandingsConferenceHeaderView.self, forHeaderFooterViewReuseIdentifier: "ConferenceHeader")
         tableView.allowsSelection = false
     }
@@ -102,6 +103,10 @@ extension StandingsViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "StandingsCell", for: indexPath)
         
+        guard let standingsCell = cell as? StandingsCell else {
+            return cell
+        }
+        
         let sectionType = WildCardSection(rawValue: indexPath.section) ?? .unknown
         let team = sectionType.teams[indexPath.row]
         switch sectionType {
@@ -111,13 +116,22 @@ extension StandingsViewController {
         case .pacific: fallthrough
         case .easternWildCard: fallthrough
         case .westernWildCard:
-            cell.textLabel?.text = String("\(team.abbreviation) - \(team.record?.points ?? 0)")
-            cell.imageView?.image = team.logo
+            standingsCell.setTeam(team)
+            standingsCell.setContentOffset(cellContentOffset)
+            standingsCell.contentOffsetChanged = { [weak self] cell, offset in
+                self?.tableView.visibleCells.forEach { tableCell in
+                    guard cell != tableCell,
+                        let standingsCell = tableCell as? StandingsCell else {
+                            return
+                    }
+                    standingsCell.setContentOffset(offset)
+                }
+            }
         default:
             assertionFailure("Invalid section")
             return UITableViewCell()
         }
-        return cell
+        return standingsCell
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

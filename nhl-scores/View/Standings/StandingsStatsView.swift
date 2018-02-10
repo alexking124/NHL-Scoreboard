@@ -28,22 +28,37 @@ class StandingsStatsView: UIStackView {
             case .gamesPlayed:
                 return "\(team.record?.gamesPlayed ?? 0)"
             case .wins:
-                return "\(team.record?.gamesPlayed ?? 0)"
+                return "\(team.record?.wins ?? 0)"
             case .losses:
-                return "\(team.record?.gamesPlayed ?? 0)"
+                return "\(team.record?.losses ?? 0)"
             case .otLosses:
-                return "\(team.record?.gamesPlayed ?? 0)"
+                return "\(team.record?.otLosses ?? 0)"
             case .row:
-                return "\(team.record?.gamesPlayed ?? 0)"
+                return "\(team.record?.row ?? 0)"
             case .goalDifferential:
-                return "\(team.record?.gamesPlayed ?? 0)"
+                return "\((team.record?.goalsFor ?? 0) - (team.record?.goalsAgainst ?? 0))"
             case .streak:
-                return "\(team.record?.gamesPlayed ?? 0)"
+                return "\(team.record?.streak ?? "")"
             }
         }
     }
     
-    func setupWith(team: Team) {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        axis = .horizontal
+        alignment = .center
+        distribution = .equalCentering
+        spacing = 4
+        translatesAutoresizingMaskIntoConstraints = false
+        setContentHuggingPriority(.defaultLow, for: .vertical)
+    }
+    
+    @available(*, unavailable)
+    required init(coder: NSCoder) {
+        fatalError("init(coder) hasn't been implemented")
+    }
+    
+    func setTeam(_ team: Team) {
         arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
@@ -51,12 +66,16 @@ class StandingsStatsView: UIStackView {
         Stats.allValues.forEach { stat in
             let label = makeStatsLabel()
             label.text = stat.value(team: team)
+            label.width(35)
             addArrangedSubview(label)
         }
     }
     
     private func makeStatsLabel() -> UILabel {
         let label = UILabel()
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.setContentHuggingPriority(.defaultLow, for: .vertical)
         return label
     }
     
