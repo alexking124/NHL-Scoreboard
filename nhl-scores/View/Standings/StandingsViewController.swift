@@ -12,7 +12,7 @@ import RealmSwift
 
 class StandingsViewController: UITableViewController {
     
-    private enum WildCardSection: Int {
+    private enum WildCardSection: Int, EnumCollection {
         case unknown = -1
         case eastern = 0
         case atlantic = 1
@@ -22,6 +22,10 @@ class StandingsViewController: UITableViewController {
         case central = 5
         case pacific = 6
         case westernWildCard = 7
+        
+        static var count: Int {
+            return WildCardSection.allValues.count - 1
+        }
         
         var title: String {
             switch self {
@@ -62,10 +66,7 @@ class StandingsViewController: UITableViewController {
         
         private var sortKeyPath: String {
             switch self {
-            case .atlantic: fallthrough
-            case .metropolitan: fallthrough
-            case .central: fallthrough
-            case .pacific:
+            case .atlantic, .metropolitan, .central, .pacific:
                 return "record.divisionRank"
             default:
                 return "record.wildCardRank"
@@ -101,15 +102,17 @@ class StandingsViewController: UITableViewController {
 extension StandingsViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        return WildCardSection.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = WildCardSection(rawValue: section) ?? .unknown
         switch sectionType {
-        case .eastern: fallthrough
-        case .western:
+        case .eastern, .western:
             return 0 // Conference Headers
+        case .unknown:
+            assertionFailure("Unknown section type")
+            return 0
         default:
             return sectionType.teams.count
         }
@@ -125,12 +128,7 @@ extension StandingsViewController {
         let sectionType = WildCardSection(rawValue: indexPath.section) ?? .unknown
         let team = sectionType.teams[indexPath.row]
         switch sectionType {
-        case .atlantic: fallthrough
-        case .metropolitan: fallthrough
-        case .central: fallthrough
-        case .pacific: fallthrough
-        case .easternWildCard: fallthrough
-        case .westernWildCard:
+        case .atlantic, .metropolitan, .central, .pacific, .easternWildCard, .westernWildCard:
             standingsCell.setTeam(team)
             standingsCell.setContentOffset(cellContentOffset)
             standingsCell.contentOffsetChanged = { [weak self] cell, offset in
@@ -152,20 +150,14 @@ extension StandingsViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionType = WildCardSection(rawValue: section) ?? .unknown
-        switch section {
-        case 0: fallthrough
-        case 4:
+        switch sectionType {
+        case .eastern, .western:
             guard let conferenceHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ConferenceHeader") as? StandingsConferenceHeaderView else { // Conference Headers
                 return UIView()
             }
             conferenceHeader.conference = (section == 0) ? .eastern : .western
             return conferenceHeader
-        case 1: fallthrough
-        case 2: fallthrough
-        case 5: fallthrough
-        case 6: fallthrough
-        case 3: fallthrough
-        case 7:
+        case .atlantic, .metropolitan, .easternWildCard, .central, .pacific, .westernWildCard:
             guard let divisionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DivisionHeader") as? StandingsStatsHeaderView else { // Division Headers
                 return UIView()
             }
@@ -178,12 +170,14 @@ extension StandingsViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0: fallthrough
-        case 4:
+        let sectionType = WildCardSection(rawValue: section) ?? .unknown
+        switch sectionType {
+        case .eastern, .western:
             return 40 // Conference Headers
-        default:
+        case .atlantic, .metropolitan, .easternWildCard, .central, .pacific, .westernWildCard:
             return 20
+        default:
+            return 0
         }
     }
     
