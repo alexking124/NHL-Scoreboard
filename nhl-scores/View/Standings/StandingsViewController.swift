@@ -86,7 +86,6 @@ class StandingsViewController: UITableViewController {
         tableView.register(StandingsStatsHeaderView.self, forHeaderFooterViewReuseIdentifier: "DivisionHeader")
         tableView.allowsSelection = false
         tableView.separatorInset = .zero
-        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
