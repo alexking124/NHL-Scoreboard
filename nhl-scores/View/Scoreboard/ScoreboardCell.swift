@@ -24,7 +24,10 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var homeLogo: UIImageView!
     @IBOutlet weak var awayRecordLabel: UILabel!
     @IBOutlet weak var homeRecordLabel: UILabel!
-    @IBOutlet weak var powerplayLabel: UILabel!
+    @IBOutlet weak var powerPlayStatusLabel: UILabel!
+    @IBOutlet weak var powerPlayTimeLabel: UILabel!
+    @IBOutlet weak var awayPowerPlayLabel: UILabel!
+    @IBOutlet weak var homePowerPlayLabel: UILabel!
     
     var notificationToken: NotificationToken? = nil
     
@@ -117,15 +120,23 @@ private extension ScoreboardCell {
             awayRecordLabel.text = "\(game.score?.awayShots ?? 0) SOG"
         }
         
-        if game.gameStatus == .critical {
-            if game.homeSkaterCount < 5 {
-                homeRecordLabel.backgroundColor = UIColor.red
-                homeRecordLabel.text = "POWER PLAY"
+        awayPowerPlayLabel.isHidden = true
+        homePowerPlayLabel.isHidden = true
+        powerPlayStatusLabel.isHidden = true
+        powerPlayTimeLabel.isHidden = true
+        if game.hasPowerPlay, game.gameStatus != .completed {
+            if game.homeSkaterCount < game.awaySkaterCount {
+                awayPowerPlayLabel.isHidden = false
             }
-            if game.awaySkaterCount < 5 {
-                awayRecordLabel.backgroundColor = UIColor.red
-                awayRecordLabel.text = "POWER PLAY"
+            if game.awaySkaterCount < game.homeSkaterCount {
+                homePowerPlayLabel.isHidden = false
             }
+            let ppMinutes = game.powerPlayTimeRemaining.seconds.in(.minute) ?? 0
+            let ppSeconds = String(format: "%02d", game.powerPlayTimeRemaining - (ppMinutes.minutes.in(.second) ?? 0))
+            powerPlayTimeLabel.text = "\(ppMinutes):\(ppSeconds)"
+            powerPlayStatusLabel.text = game.powerPlayStatus
+            powerPlayTimeLabel.isHidden = false
+            powerPlayStatusLabel.isHidden = false
         }
         
         homeLogo.image = game.homeTeam?.logo

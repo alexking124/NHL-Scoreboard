@@ -51,6 +51,10 @@ class Game: Object {
     @objc dynamic var homeSkaterCount: Int = 0
     @objc dynamic var awaySkaterCount: Int = 0
     
+    @objc dynamic var hasPowerPlay: Bool = false
+    @objc dynamic var powerPlayTimeRemaining: Int = 0
+    @objc dynamic var powerPlayStatus: String = ""
+    
     @objc dynamic var finalLiveStatsFetched: Bool = false
     
     override static func primaryKey() -> String? {

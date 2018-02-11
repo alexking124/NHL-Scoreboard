@@ -28,6 +28,7 @@
 		3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3944704C200F2E9B008E402B /* ScoreboardCell.xib */; };
 		3983CBC7202F78E100147386 /* UIScreenExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBC6202F78E100147386 /* UIScreenExt.swift */; };
 		3983CBCB202F7AD700147386 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCA202F7AD700147386 /* LineView.swift */; };
+		3983CBCD202FD71B00147386 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCC202FD71B00147386 /* Event.swift */; };
 		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
 		39D3D48F20107A7B0077384E /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
@@ -86,6 +87,7 @@
 		3944704C200F2E9B008E402B /* ScoreboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreboardCell.xib; sourceTree = "<group>"; };
 		3983CBC6202F78E100147386 /* UIScreenExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
 		3983CBCA202F7AD700147386 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
+		3983CBCC202FD71B00147386 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				39D3D4A120130E690077384E /* Game.swift */,
 				731A7FB92023708A00D75BCB /* Player.swift */,
 				39136D9D20261F5B00E0384E /* Record.swift */,
+				3983CBCC202FD71B00147386 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 				39136D9E20261F5B00E0384E /* Record.swift in Sources */,
 				39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */,
+				3983CBCD202FD71B00147386 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

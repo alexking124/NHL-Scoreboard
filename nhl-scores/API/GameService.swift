@@ -87,6 +87,13 @@ struct GameService {
                     return
             }
             
+            guard let powerPlayString = linescoreJson["powerPlayStrength"] as? String,
+                let powerPlayInfo = linescoreJson["powerPlayInfo"] as? [String: Any],
+                let inPowerPlay = powerPlayInfo["inSituation"] as? Bool,
+                let powerPlayTime = powerPlayInfo["situationTimeRemaining"] as? Int else {
+                    return
+            }
+            
             let realm = try! Realm()
             let game = realm.object(ofType: Game.self, forPrimaryKey: gameID)
             try? realm.write {
@@ -100,6 +107,9 @@ struct GameService {
                 game?.score?.awayShots = awayShots
                 game?.homeSkaterCount = homeSkaterCount
                 game?.awaySkaterCount = awaySkaterCount
+                game?.powerPlayStatus = powerPlayString
+                game?.powerPlayTimeRemaining = powerPlayTime
+                game?.hasPowerPlay = inPowerPlay
             }
         }
         task.resume()
