@@ -16,9 +16,9 @@ fileprivate enum Constants {
 
 class HorizontalLineView: UIView {
     
-    init() {
+    init(viewHeight: CGFloat = UIScreen.scalePointSize) {
         super.init(frame: .zero)
-        height(UIScreen.scalePointSize)
+        height(viewHeight)
         backgroundColor = Constants.defaultBackgroundColor
         setContentHuggingPriority(.required, for: .vertical)
         setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -35,9 +35,9 @@ class HorizontalLineView: UIView {
 
 class VerticalLineView: UIView {
     
-    init() {
+    init(viewWidth: CGFloat = UIScreen.scalePointSize) {
         super.init(frame: .zero)
-        width(UIScreen.scalePointSize)
+        width(viewWidth)
         backgroundColor = Constants.defaultBackgroundColor
         setContentHuggingPriority(.required, for: .horizontal)
         setContentHuggingPriority(.defaultLow, for: .vertical)

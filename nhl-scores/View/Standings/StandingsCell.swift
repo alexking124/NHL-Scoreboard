@@ -31,6 +31,12 @@ class StandingsCell: UITableViewCell {
         scrollView.delegate = self
         return scrollView
     }()
+
+    private lazy var wildcardDividerView: UIView = {
+        let view = HorizontalLineView(viewHeight: 2)
+        view.backgroundColor = .darkGray
+        return view
+    }()
     
     private lazy var dividerView = VerticalLineView()
     
@@ -50,9 +56,16 @@ class StandingsCell: UITableViewCell {
     }
     
     func setTeam(_ team: Team) {
+        wildcardDividerView.removeFromSuperview()
         logoImageView.image = team.logo
         teamNameLabel.text = team.abbreviation
         statsView.setTeam(team)
+        if team.record?.wildCardRank == 2 {
+            addSubview(wildcardDividerView)
+            wildcardDividerView.bottom(to: self)
+            wildcardDividerView.left(to: self)
+            wildcardDividerView.right(to: self)
+        }
     }
     
     func setContentOffset(_ offset: CGFloat) {

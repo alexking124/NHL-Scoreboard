@@ -70,6 +70,15 @@ class StandingsStatsView: UIStackView {
             let label = makeStatsLabel()
             label.text = stat.value(team: team)
             label.width(Constants.itemWidth)
+            if stat == .goalDifferential,
+                let differential = Int(stat.value(team: team)) {
+                if differential > 0 {
+                    label.text = "+\(differential)"
+                    label.textColor = UIColor(hexString: "0EA334")
+                } else if differential < 0 {
+                    label.textColor = .red
+                }
+            }
             addArrangedSubview(label)
         }
     }
@@ -90,6 +99,7 @@ class StandingsStatsView: UIStackView {
     
     private func makeStatsLabel() -> UILabel {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.setContentHuggingPriority(.defaultLow, for: .vertical)

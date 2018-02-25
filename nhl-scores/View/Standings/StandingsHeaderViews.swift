@@ -79,6 +79,8 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
     }()
     
     private let statsView = StandingsStatsView()
+
+    var statsViewScrollOffsetChanged: (CGFloat) -> Void = { _ in }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -98,7 +100,7 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
         contentView.addSubview(divisionNameLabel)
         divisionNameLabel.centerY(to: contentView)
         divisionNameLabel.left(to: contentView, offset: 8)
-        divisionNameLabel.width(80)
+        divisionNameLabel.width(82)
         
         contentView.addSubview(statsScrollView)
         statsScrollView.leftToRight(of: divisionNameLabel)
