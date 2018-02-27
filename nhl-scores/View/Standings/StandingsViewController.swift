@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import ReactiveSwift
 
 class StandingsViewController: UITableViewController {
     
@@ -74,7 +75,7 @@ class StandingsViewController: UITableViewController {
         }
     }
     
-    private var cellContentOffset: CGFloat = 0
+    private var cellContentOffset: MutableProperty<CGFloat> = MutableProperty(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,9 +130,9 @@ extension StandingsViewController {
         switch sectionType {
         case .atlantic, .metropolitan, .central, .pacific, .easternWildCard, .westernWildCard:
             standingsCell.setTeam(team)
-            standingsCell.setContentOffset(cellContentOffset)
+            standingsCell.setContentOffset(cellContentOffset.value)
             standingsCell.contentOffsetChanged = { [weak self] cell, offset in
-                self?.cellContentOffset = offset
+                self?.cellContentOffset.value = offset
                 self?.tableView.visibleCells.forEach { tableCell in
                     guard cell != tableCell,
                         let standingsCell = tableCell as? StandingsCell else {
@@ -160,6 +161,7 @@ extension StandingsViewController {
             guard let divisionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "DivisionHeader") as? StandingsStatsHeaderView else { // Division Headers
                 return UIView()
             }
+            divisionHeader.statsScrollViewContentOffset <~ cellContentOffset
             divisionHeader.setDivision(sectionType.title)
             return divisionHeader
         default:

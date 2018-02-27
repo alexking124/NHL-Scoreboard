@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ReactiveSwift
 
 enum Conference: String {
     case western = "Western"
@@ -80,7 +81,7 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
     
     private let statsView = StandingsStatsView()
 
-    var statsViewScrollOffsetChanged: (CGFloat) -> Void = { _ in }
+    var statsScrollViewContentOffset: MutableProperty<CGFloat> = MutableProperty(0)
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -114,6 +115,10 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
         statsView.height(to: statsScrollView)
         
         statsView.setupAsHeader()
+        
+        statsScrollViewContentOffset.signal.observeValues { [weak self] offset in
+            self?.statsScrollView.contentOffset = CGPoint(x: offset, y: 0)
+        }
     }
     
     func setDivision(_ division: String) {
