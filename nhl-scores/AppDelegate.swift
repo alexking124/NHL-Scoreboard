@@ -26,16 +26,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainNavigation.navigationBar.tintColor = .darkGray
         mainNavigation.addDebugGestures()
         
-        TeamService.fetchTeams {
+        TeamService.fetchTeams { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+            
             StandingsService.refreshStandings {
             }
+            
+            DispatchQueue.main.async {
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                self.window?.rootViewController = mainNavigation
+                self.window?.makeKeyAndVisible()
+                
+                self.setupGameFetchTimer()
+            }
         }
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = mainNavigation
-        window?.makeKeyAndVisible()
-        
-        setupGameFetchTimer()
         
         return true
     }
