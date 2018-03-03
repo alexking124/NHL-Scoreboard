@@ -75,10 +75,15 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
     private let statsView = StandingsStatsView()
 
     var statsScrollViewContentOffset: MutableProperty<CGPoint> = MutableProperty(.zero)
+    var contentOffsetChanged: (CGPoint) -> Void = { _ in }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
+        statsView.contentOffset.observeValues { [weak self] point in
+            guard let `self` = self else { return }
+            self.contentOffsetChanged(point)
+        }
     }
     
     @available(*, unavailable)
@@ -106,7 +111,10 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
         statsView.setupAsHeader()
         
         statsScrollViewContentOffset.signal.observeValues { [weak self] offset in
-            self?.statsView.scrollView.contentOffset = offset
+            guard let `self` = self else { return }
+            if !self.statsView.scrollView.isTracking {
+                self.statsView.scrollView.contentOffset = offset
+            }
         }
     }
     
