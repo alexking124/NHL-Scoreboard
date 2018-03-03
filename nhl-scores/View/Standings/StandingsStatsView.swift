@@ -47,6 +47,21 @@ class StandingsStatsView: UIStackView {
         }
     }
     
+    private lazy var statLabels: [UILabel] = {
+        var labels = [UILabel]()
+        Stats.allValues.forEach { stat in
+            let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: 15)
+            label.textAlignment = .center
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.setContentHuggingPriority(.defaultLow, for: .vertical)
+            label.text = stat.rawValue
+            label.width(Constants.itemWidth)
+            labels.append(label)
+        }
+        return labels
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         axis = .horizontal
@@ -67,9 +82,11 @@ class StandingsStatsView: UIStackView {
         }
         
         Stats.allValues.forEach { stat in
-            let label = makeStatsLabel()
+            guard let index = Stats.allValues.index(of: stat) else {
+                return
+            }
+            let label = statLabels[index]
             label.text = stat.value(team: team)
-            label.width(Constants.itemWidth)
             if stat == .goalDifferential,
                 let differential = Int(stat.value(team: team)) {
                 if differential > 0 {
@@ -89,21 +106,13 @@ class StandingsStatsView: UIStackView {
         }
         
         Stats.allValues.forEach { stat in
-            let label = makeStatsLabel()
+            guard let index = Stats.allValues.index(of: stat) else {
+                return
+            }
+            let label = statLabels[index]
             label.font = UIFont.systemFont(ofSize: 12)
-            label.text = stat.rawValue
-            label.width(Constants.itemWidth)
             addArrangedSubview(label)
         }
-    }
-    
-    private func makeStatsLabel() -> UILabel {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 15)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.setContentHuggingPriority(.defaultLow, for: .vertical)
-        return label
     }
     
 }
