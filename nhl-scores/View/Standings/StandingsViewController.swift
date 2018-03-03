@@ -75,7 +75,7 @@ class StandingsViewController: UITableViewController {
         }
     }
     
-    private var cellContentOffset: MutableProperty<CGFloat> = MutableProperty(0)
+    private var cellContentOffset: MutableProperty<CGPoint> = MutableProperty(.zero)
     
     override func viewDidLoad() {
         super.viewDidLoad()

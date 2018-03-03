@@ -42,7 +42,7 @@ class StandingsCell: UITableViewCell {
     
     private let statsView = StandingsStatsView()
     
-    var contentOffsetChanged: (UITableViewCell, CGFloat) -> Void = { _, _ in }
+    var contentOffsetChanged: (UITableViewCell, CGPoint) -> Void = { _, _ in }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -68,8 +68,8 @@ class StandingsCell: UITableViewCell {
         }
     }
     
-    func setContentOffset(_ offset: CGFloat) {
-        statsScrollView.contentOffset = CGPoint(x: offset, y: 0)
+    func setContentOffset(_ offset: CGPoint) {
+        statsScrollView.contentOffset = offset
     }
     
 }
@@ -77,7 +77,7 @@ class StandingsCell: UITableViewCell {
 extension StandingsCell: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentOffsetChanged(self, scrollView.contentOffset.x)
+        contentOffsetChanged(self, scrollView.contentOffset)
     }
     
 }
