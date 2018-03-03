@@ -22,25 +22,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         migrateRealm()
         
         let scoreboardPageViewController = ScoreboardPageViewController()
-        let mainNavigation = UINavigationController(rootViewController: scoreboardPageViewController)
-        mainNavigation.navigationBar.tintColor = .darkGray
-        mainNavigation.addDebugGestures()
-        
-        TeamService.fetchTeams { [weak self] in
-            guard let `self` = self else {
-                return
-            }
-            
+        let rootNavigation = RootNavigationController(rootViewController: scoreboardPageViewController)
+        rootNavigation.navigationBar.tintColor = .darkGray
+        rootNavigation.addDebugGestures()
+
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.rootViewController = rootNavigation
+        self.window?.makeKeyAndVisible()
+
+        let teamsExistAction: (() -> Void) = {
+            rootNavigation.hideLaunchImage()
             StandingsService.refreshStandings {
             }
-            
-            DispatchQueue.main.async {
-                self.window = UIWindow(frame: UIScreen.main.bounds)
-                self.window?.rootViewController = mainNavigation
-                self.window?.makeKeyAndVisible()
-                
-                self.setupGameFetchTimer()
+            self.setupGameFetchTimer()
+
+        }
+
+        let realm = try! Realm()
+        let teamsFetched = realm.objects(Team.self).count != 0
+
+        if !teamsFetched {
+            TeamService.fetchTeams {
+                DispatchQueue.main.async {
+                    teamsExistAction()
+                }
             }
+        } else {
+            teamsExistAction()
         }
         
         return true
