@@ -24,14 +24,6 @@ class StandingsCell: UITableViewCell {
         return label
     }()
     
-    private lazy var statsScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.delegate = self
-        return scrollView
-    }()
-
     private lazy var wildcardDividerView: UIView = {
         let view = HorizontalLineView(viewHeight: 2)
         view.backgroundColor = .darkGray
@@ -47,6 +39,12 @@ class StandingsCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        
+        statsView.contentOffset.observeValues { [weak self] point in
+            guard let `self` = self else { return }
+            self.contentOffsetChanged(self, point)
+        }
+        
         setupViews()
     }
     
@@ -69,15 +67,7 @@ class StandingsCell: UITableViewCell {
     }
     
     func setContentOffset(_ offset: CGPoint) {
-        statsScrollView.contentOffset = offset
-    }
-    
-}
-
-extension StandingsCell: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        contentOffsetChanged(self, scrollView.contentOffset)
+        statsView.scrollView.contentOffset = offset
     }
     
 }
@@ -101,16 +91,12 @@ private extension StandingsCell {
         dividerView.height(to: contentView, offset: -12)
         dividerView.leftToRight(of: teamNameLabel)
         
-        contentView.addSubview(statsScrollView)
-        statsScrollView.leftToRight(of: teamNameLabel)
-        statsScrollView.top(to: contentView)
-        statsScrollView.bottom(to: contentView)
-        statsScrollView.right(to: contentView)
-        statsScrollView.height(44, priority: .high)
-        
-        statsScrollView.addSubview(statsView)
-        statsView.edges(to: statsScrollView)
-        statsView.height(to: statsScrollView)
+        contentView.addSubview(statsView)
+        statsView.leftToRight(of: teamNameLabel)
+        statsView.top(to: contentView)
+        statsView.bottom(to: contentView)
+        statsView.right(to: contentView)
+        statsView.height(44, priority: .high)
     }
     
 }

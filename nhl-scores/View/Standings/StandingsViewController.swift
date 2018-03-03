@@ -162,6 +162,9 @@ extension StandingsViewController {
                 return UIView()
             }
             divisionHeader.statsScrollViewContentOffset <~ cellContentOffset
+            divisionHeader.statsScrollViewContentOffset.signal.observeValues { [weak self] point in
+                self?.cellContentOffset.value = point
+            }
             divisionHeader.setDivision(sectionType.title)
             return divisionHeader
         default:

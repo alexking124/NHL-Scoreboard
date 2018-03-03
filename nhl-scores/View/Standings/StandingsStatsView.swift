@@ -8,8 +8,11 @@
 
 import Foundation
 import UIKit
+import TinyConstraints
+import ReactiveSwift
+import Result
 
-class StandingsStatsView: UIStackView {
+class StandingsStatsView: UIView {
     
     private enum Constants {
         static let itemWidth: CGFloat = 38
@@ -47,6 +50,24 @@ class StandingsStatsView: UIStackView {
         }
     }
     
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.delegate = self
+        return scrollView
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .equalCentering
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        return stackView
+    }()
+    
     private lazy var statLabels: [UILabel] = {
         var labels = [UILabel]()
         Stats.allValues.forEach { stat in
@@ -62,13 +83,14 @@ class StandingsStatsView: UIStackView {
         return labels
     }()
     
+    let contentOffset: Signal<CGPoint, NoError>
+    private let contentOffsetObserver: Signal<CGPoint, NoError>.Observer
+    
     override init(frame: CGRect) {
+        (contentOffset, contentOffsetObserver) = Signal<CGPoint, NoError>.pipe()
         super.init(frame: frame)
-        axis = .horizontal
-        alignment = .center
-        distribution = .equalCentering
         translatesAutoresizingMaskIntoConstraints = false
-        setContentHuggingPriority(.defaultLow, for: .vertical)
+        setupViews()
     }
     
     @available(*, unavailable)
@@ -77,7 +99,7 @@ class StandingsStatsView: UIStackView {
     }
     
     func setTeam(_ team: Team) {
-        arrangedSubviews.forEach {
+        stackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
         
@@ -96,12 +118,12 @@ class StandingsStatsView: UIStackView {
                     label.textColor = .red
                 }
             }
-            addArrangedSubview(label)
+            stackView.addArrangedSubview(label)
         }
     }
     
     func setupAsHeader() {
-        arrangedSubviews.forEach {
+        stackView.arrangedSubviews.forEach {
             $0.removeFromSuperview()
         }
         
@@ -111,8 +133,28 @@ class StandingsStatsView: UIStackView {
             }
             let label = statLabels[index]
             label.font = UIFont.systemFont(ofSize: 12)
-            addArrangedSubview(label)
+            stackView.addArrangedSubview(label)
         }
+    }
+}
+
+private extension StandingsStatsView {
+    
+    func setupViews() {
+        addSubview(scrollView)
+        scrollView.edges(to: self)
+        
+        scrollView.addSubview(stackView)
+        stackView.edges(to: scrollView, insets: EdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
+        stackView.height(to: scrollView)
+    }
+    
+}
+
+extension StandingsStatsView: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentOffsetObserver.send(value: scrollView.contentOffset)
     }
     
 }

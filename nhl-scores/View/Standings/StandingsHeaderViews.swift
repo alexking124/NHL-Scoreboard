@@ -72,13 +72,6 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
         return label
     }()
     
-    private lazy var statsScrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        return scrollView
-    }()
-    
     private let statsView = StandingsStatsView()
 
     var statsScrollViewContentOffset: MutableProperty<CGPoint> = MutableProperty(.zero)
@@ -103,21 +96,17 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
         divisionNameLabel.left(to: contentView, offset: 8)
         divisionNameLabel.width(82)
         
-        contentView.addSubview(statsScrollView)
-        statsScrollView.leftToRight(of: divisionNameLabel)
-        statsScrollView.top(to: contentView)
-        statsScrollView.bottom(to: contentView)
-        statsScrollView.right(to: contentView)
-        statsScrollView.height(44, priority: .high)
-        
-        statsScrollView.addSubview(statsView)
-        statsView.edges(to: statsScrollView)
-        statsView.height(to: statsScrollView)
+        contentView.addSubview(statsView)
+        statsView.leftToRight(of: divisionNameLabel)
+        statsView.top(to: contentView)
+        statsView.bottom(to: contentView)
+        statsView.right(to: contentView)
+        statsView.height(44, priority: .high)
         
         statsView.setupAsHeader()
         
         statsScrollViewContentOffset.signal.observeValues { [weak self] offset in
-            self?.statsScrollView.contentOffset = offset
+            self?.statsView.scrollView.contentOffset = offset
         }
     }
     
