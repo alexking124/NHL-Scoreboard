@@ -34,7 +34,7 @@ class StandingsCell: UITableViewCell {
     
     private let statsView = StandingsStatsView()
     
-    var contentOffsetChanged: (UITableViewCell, CGPoint) -> Void = { _, _ in }
+    var contentOffsetChanged: (CGPoint) -> Void = { _ in }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -42,7 +42,7 @@ class StandingsCell: UITableViewCell {
         
         statsView.contentOffset.observeValues { [weak self] point in
             guard let `self` = self else { return }
-            self.contentOffsetChanged(self, point)
+            self.contentOffsetChanged(point)
         }
         
         setupViews()
@@ -67,7 +67,9 @@ class StandingsCell: UITableViewCell {
     }
     
     func setContentOffset(_ offset: CGPoint) {
-        statsView.scrollView.contentOffset = offset
+        if !statsView.scrollView.isTracking {
+            statsView.scrollView.contentOffset = offset
+        }
     }
     
 }

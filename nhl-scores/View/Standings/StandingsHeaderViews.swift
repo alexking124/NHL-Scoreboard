@@ -75,15 +75,11 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
     private let statsView = StandingsStatsView()
 
     var statsScrollViewContentOffset: MutableProperty<CGPoint> = MutableProperty(.zero)
-    var contentOffsetChanged: (CGPoint) -> Void = { _ in }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
-        statsView.contentOffset.observeValues { [weak self] point in
-            guard let `self` = self else { return }
-            self.contentOffsetChanged(point)
-        }
+        statsView.isUserInteractionEnabled = false
     }
     
     @available(*, unavailable)

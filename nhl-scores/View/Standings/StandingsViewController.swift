@@ -131,11 +131,10 @@ extension StandingsViewController {
         case .atlantic, .metropolitan, .central, .pacific, .easternWildCard, .westernWildCard:
             standingsCell.setTeam(team)
             standingsCell.setContentOffset(cellContentOffset.value)
-            standingsCell.contentOffsetChanged = { [weak self] cell, offset in
+            standingsCell.contentOffsetChanged = { [weak self] offset in
                 self?.cellContentOffset.value = offset
                 self?.tableView.visibleCells.forEach { tableCell in
-                    guard cell != tableCell,
-                        let standingsCell = tableCell as? StandingsCell else {
+                    guard let standingsCell = tableCell as? StandingsCell else {
                             return
                     }
                     standingsCell.setContentOffset(offset)
@@ -162,15 +161,6 @@ extension StandingsViewController {
                 return UIView()
             }
             divisionHeader.statsScrollViewContentOffset <~ cellContentOffset
-            divisionHeader.contentOffsetChanged = { [weak self] offset in
-                self?.cellContentOffset.value = offset
-                self?.tableView.visibleCells.forEach { tableCell in
-                    guard let standingsCell = tableCell as? StandingsCell else {
-                            return
-                    }
-                    standingsCell.setContentOffset(offset)
-                }
-            }
             divisionHeader.setDivision(sectionType.title)
             return divisionHeader
         default:

@@ -145,7 +145,7 @@ private extension StandingsStatsView {
         scrollView.edges(to: self)
         
         scrollView.addSubview(stackView)
-        stackView.edges(to: scrollView, insets: EdgeInsets(top: 0, left: 5, bottom: 0, right: 5))
+        stackView.edges(to: scrollView, insets: EdgeInsets(top: 0, left: 0, bottom: 0, right: -5))
         stackView.height(to: scrollView)
     }
     
