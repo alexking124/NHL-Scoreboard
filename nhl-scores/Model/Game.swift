@@ -55,6 +55,8 @@ class Game: Object {
     @objc dynamic var powerPlayTimeRemaining: Int = 0
     @objc dynamic var powerPlayStatus: String = ""
     
+    let gameEvents = List<Event>()
+    
     @objc dynamic var finalLiveStatsFetched: Bool = false
     
     override static func primaryKey() -> String? {

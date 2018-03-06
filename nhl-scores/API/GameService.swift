@@ -56,6 +56,7 @@ struct GameService {
             
             guard let liveDataJson = dictionary["liveData"] as? [String: Any],
                 let linescoreJson = liveDataJson["linescore"] as? [String: Any],
+                let playsJson = liveDataJson["plays"] as? [String: Any],
                 let teamsJson = linescoreJson["teams"] as? [String: Any] else {
                     return
             }
@@ -94,6 +95,8 @@ struct GameService {
                     return
             }
             
+            let events = GameService.parseEvents(json: playsJson, gameID: gameID)
+            
             let realm = try! Realm()
             let game = realm.object(ofType: Game.self, forPrimaryKey: gameID)
             try? realm.write {
@@ -110,8 +113,56 @@ struct GameService {
                 game?.powerPlayStatus = powerPlayString
                 game?.powerPlayTimeRemaining = powerPlayTime
                 game?.hasPowerPlay = inPowerPlay
+                
+                game?.gameEvents.removeAll()
+                game?.gameEvents.append(objectsIn: events)
             }
         }
         task.resume()
+    }
+    
+    static func parseEvents(json eventsJson: [String: Any], gameID: Int) -> [Event] {
+        var events: [Event] = []
+        
+        guard let scoringPlayIndices = eventsJson["scoringPlays"] as? [Int],
+            let allPlaysJson = eventsJson["allPlays"] as? [[String: Any]] else {
+                return events
+        }
+        
+        let realm = try! Realm()
+        scoringPlayIndices.forEach { scoreIndex in
+            let goalJson = allPlaysJson[scoreIndex]
+            
+            guard let playersJson = goalJson["players"] as? [[String: Any]],
+                let resultJson = goalJson["result"] as? [String: Any],
+                let aboutJson = goalJson["about"] as? [String: Any] else {
+                    return
+            }
+            
+            guard let strengthJson = resultJson["strength"] as? [String: String],
+                let goalsJson = aboutJson["goals"] as? [String: Int] else {
+                    return
+            }
+            
+            let eventID = String(gameID) + String(format: "%04d", scoreIndex)
+            let event: Event
+            if let existingEvent = realm.object(ofType: Event.self, forPrimaryKey: eventID) {
+                event = existingEvent
+            } else {
+                event = Event()
+                event.eventID = eventID
+                try? realm.write {
+                    realm.add(event)
+                }
+            }
+            
+            playersJson.forEach { playerJson in
+                
+            }
+            
+            events.append(event)
+        }
+        
+        return events
     }
 }

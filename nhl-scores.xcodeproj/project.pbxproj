@@ -37,6 +37,7 @@
 		399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BE4F5204B0C3C00311580 /* ReactiveExt.swift */; };
 		399BE4F9204B115900311580 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 399BE4F7204B114400311580 /* ReactiveCocoa.framework */; };
 		399BE4FA204B115900311580 /* ReactiveCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 399BE4F7204B114400311580 /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		399BE4FD204CB7B800311580 /* GoalScoredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BE4FC204CB7B800311580 /* GoalScoredView.swift */; };
 		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
 		39D3D48F20107A7B0077384E /* SwiftDate.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
@@ -105,6 +106,7 @@
 		3983CBD12045423700147386 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		399BE4F5204B0C3C00311580 /* ReactiveExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveExt.swift; sourceTree = "<group>"; };
 		399BE4F7204B114400311580 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		399BE4FC204CB7B800311580 /* GoalScoredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalScoredView.swift; sourceTree = "<group>"; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -250,6 +252,14 @@
 			name = Carthage;
 			sourceTree = "<group>";
 		};
+		399BE4FB204CB79A00311580 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				399BE4FC204CB7B800311580 /* GoalScoredView.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		39D3D49420108C000077384E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +295,7 @@
 		39D3D4A5201310930077384E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				399BE4FB204CB79A00311580 /* Game */,
 				39136D9A201CF42900E0384E /* Debug Menu */,
 				39136D96201CF20200E0384E /* Scoreboard */,
 				39136D97201CF20C00E0384E /* Standings */,
@@ -435,6 +446,7 @@
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */,
 				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
+				399BE4FD204CB7B800311580 /* GoalScoredView.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3983CBCB202F7AD700147386 /* LineView.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
