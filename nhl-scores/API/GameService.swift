@@ -135,7 +135,8 @@ struct GameService {
             
             guard let playersJson = goalJson["players"] as? [[String: Any]],
                 let resultJson = goalJson["result"] as? [String: Any],
-                let aboutJson = goalJson["about"] as? [String: Any] else {
+                let aboutJson = goalJson["about"] as? [String: Any],
+                let teamJson = goalJson["team"] as? [String: Any] else {
                     return
             }
             
@@ -143,6 +144,12 @@ struct GameService {
                 let goalsJson = aboutJson["goals"] as? [String: Int] else {
                     return
             }
+            
+            let homeGoals = goalsJson["home"] ?? 0
+            let awayGoals = goalsJson["away"] ?? 0
+            let strengthCode = strengthJson["code"] ?? ""
+            
+            let eventType = resultJson["eventTypeId"] as? String ?? ""
             
             let eventID = String(gameID) + String(format: "%04d", scoreIndex)
             let event: Event
@@ -156,8 +163,21 @@ struct GameService {
                 }
             }
             
-            playersJson.forEach { playerJson in
-                
+//            playersJson.forEach { playerJson in
+//                
+//            }
+            
+            try? realm.write {
+                event.homeScore = homeGoals
+                event.awayScore = awayGoals
+                event.strengthCode = strengthCode
+                event.rawType = eventType
+                event.secondaryType = resultJson["secondaryType"] as? String ?? ""
+                event.emptyNet = resultJson["emptyNet"] as? Bool ?? false
+                event.period = aboutJson["period"] as? Int ?? 0
+                event.periodString = aboutJson["ordinalNum"] as? String ?? ""
+                event.periodTimeRemaining = aboutJson["periodTime"] as? String ?? ""
+                event.teamId = teamJson["id"] as? Int ?? -1
             }
             
             events.append(event)
