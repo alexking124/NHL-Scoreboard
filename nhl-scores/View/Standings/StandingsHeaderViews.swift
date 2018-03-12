@@ -102,7 +102,7 @@ class StandingsStatsHeaderView: UITableViewHeaderFooterView {
         statsView.top(to: contentView)
         statsView.bottom(to: contentView)
         statsView.right(to: contentView)
-        statsView.height(44, priority: .high)
+        statsView.height(44, priority: .defaultHigh)
         
         statsView.setupAsHeader()
         

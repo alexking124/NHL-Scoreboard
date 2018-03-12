@@ -77,7 +77,7 @@ private extension GoalScoredView {
     
     func setupViews() {
         addSubview(contentView)
-        let contentInsets = EdgeInsets(top: 4, left: 4, bottom: -4, right: -4)
+        let contentInsets = TinyEdgeInsets(top: 4, left: 4, bottom: -4, right: -4)
         contentView.edges(to: self, insets: contentInsets)
         
         contentView.addSubview(playerImageView)
