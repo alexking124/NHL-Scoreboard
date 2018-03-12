@@ -18,6 +18,9 @@ class GoalScoredView: UIView {
         let realm = try! Realm()
         return realm.object(ofType: Event.self, forPrimaryKey: self.eventID) ?? Event()
     }
+    var scorer: EventPlayer? {
+        return event.players.first { $0.playerType == "Scorer" }
+    }
     
     init(eventID: String) {
         self.eventID = eventID
@@ -39,11 +42,21 @@ class GoalScoredView: UIView {
         return view
     }()
     
+    private lazy var playerImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        if let imageURL = scorer?.imageURL {
+            imageView.imageFromServerURL(imageURL.absoluteString)
+        }
+        return imageView
+    }()
+    
     private lazy var goalScorerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 14)
-        label.text = event.players.first { $0.playerType == "Scorer" }?.playerName
+        label.text = scorer?.playerName
         return label
     }()
     
@@ -51,7 +64,10 @@ class GoalScoredView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12)
-        label.text = event.players.first { $0.playerType == "Assist" }?.playerName
+        let assistPlayers = event.players.filter {
+            $0.playerType == "Assist"
+        }
+        label.text = assistPlayers.map { $0.playerName }.joined(separator: ", ")
         return label
     }()
     
@@ -64,9 +80,16 @@ private extension GoalScoredView {
         let contentInsets = EdgeInsets(top: 4, left: 4, bottom: -4, right: -4)
         contentView.edges(to: self, insets: contentInsets)
         
+        contentView.addSubview(playerImageView)
+        playerImageView.top(to: contentView, offset: 2)
+        playerImageView.left(to: contentView, offset: 4)
+        playerImageView.centerY(to: contentView)
+        playerImageView.width(to: contentView, heightAnchor)
+        playerImageView.height(40)
+        
         contentView.addSubview(goalScorerLabel)
         goalScorerLabel.top(to: contentView, offset: 2)
-        goalScorerLabel.left(to: contentView, offset: 4)
+        goalScorerLabel.leftToRight(of: playerImageView, offset: 4)
         goalScorerLabel.right(to: contentView, offset: 4, relation: .equalOrLess)
         
         contentView.addSubview(assistLabel)
