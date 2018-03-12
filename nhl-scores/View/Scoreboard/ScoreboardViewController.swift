@@ -88,6 +88,18 @@ extension ScoreboardViewController {
     
 }
 
+extension ScoreboardViewController {
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let gameID = games[indexPath.row].gameID
+        let gameDetailsViewController = GameDetailsViewController(gameID: gameID)
+        self.navigationController?.pushViewController(gameDetailsViewController, animated: true)
+    }
+    
+}
+
 private extension ScoreboardViewController {
     
     @objc

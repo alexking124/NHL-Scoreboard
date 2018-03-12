@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 private extension AppDelegate {
     
     func migrateRealm() {
-        let currentSchemaVersion: UInt64 = 6
+        let currentSchemaVersion: UInt64 = 8
         let config = Realm.Configuration(schemaVersion: currentSchemaVersion,
                                          migrationBlock: { migration, oldSchemaVersion in
             if (oldSchemaVersion < currentSchemaVersion) {

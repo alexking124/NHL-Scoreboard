@@ -26,10 +26,19 @@ enum EventType: String, EnumCollection {
 
 class EventPlayer: Object {
     
+    @objc dynamic var eventPlayerId: String = ""
     @objc dynamic var playerId: Int = 0
     @objc dynamic var playerName: String = ""
     @objc dynamic var playerType: String = ""
     @objc dynamic var seasonTotal: Int = 0
+    
+    override static func primaryKey() -> String? {
+        return "eventPlayerId"
+    }
+    
+    var imageURL: URL? {
+        return URL(string: "https://nhl.bamcontent.com/images/headshots/current/168x168/\(playerId).jpg")
+    }
     
 }
 

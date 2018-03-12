@@ -163,9 +163,24 @@ struct GameService {
                 }
             }
             
-//            playersJson.forEach { playerJson in
-//                
-//            }
+            var players = [EventPlayer]()
+            playersJson.forEach { playerJson in
+                guard let playerDetailJson = playerJson["player"] as? [String: Any],
+                    let playerId = playerDetailJson["id"] as? Int else {
+                        return
+                }
+                
+                let player = EventPlayer()
+                player.playerName = playerDetailJson["fullName"] as? String ?? ""
+                player.playerType = playerJson["playerType"] as? String ?? ""
+                player.seasonTotal = playerJson["seasonTotal"] as? Int ?? 0
+                player.eventPlayerId = eventID + String(playerId)
+                player.playerId = playerId
+                try? realm.write {
+                    realm.add(player, update: true)
+                }
+                players.append(player)
+            }
             
             try? realm.write {
                 event.homeScore = homeGoals
@@ -178,6 +193,8 @@ struct GameService {
                 event.periodString = aboutJson["ordinalNum"] as? String ?? ""
                 event.periodTimeRemaining = aboutJson["periodTime"] as? String ?? ""
                 event.teamId = teamJson["id"] as? Int ?? -1
+                event.players.removeAll()
+                event.players.append(objectsIn: players)
             }
             
             events.append(event)
