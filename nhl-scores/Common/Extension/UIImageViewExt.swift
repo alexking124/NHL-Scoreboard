@@ -8,20 +8,18 @@
 
 import Foundation
 import UIKit
+import Haneke
 
 extension UIImageView {
+    
+    private static let cache = Cache<UIImage>(name: "playerImageCache")
+    
     public func imageFromServerURL(_ urlString: String) {
         guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
-            if error != nil {
-                return
+        UIImageView.cache.fetch(URL: url).onSuccess { [weak self] image in
+            DispatchQueue.main.async {
+                self?.image = image
             }
-            DispatchQueue.main.async(execute: {
-                guard let data = data else { return }
-                let image = UIImage(data: data)
-                self.image = image
-            })
-            
-        }).resume()
+        }
     }
 }
