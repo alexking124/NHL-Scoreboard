@@ -55,15 +55,17 @@ class GoalScoredView: UIView {
     private lazy var goalScorerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 14)
-        label.text = scorer?.playerName
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        let playerName = scorer?.playerName ?? ""
+        let goalTotal = scorer?.seasonTotal ?? 0
+        label.text = "\(playerName) (\(goalTotal))"
         return label
     }()
     
     private lazy var assistLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = UIFont.systemFont(ofSize: 11, weight: .light)
         let assistPlayers = event.players.filter {
             $0.playerType == "Assist"
         }
@@ -96,7 +98,7 @@ private extension GoalScoredView {
         assistLabel.topToBottom(of: goalScorerLabel)
         assistLabel.left(to: goalScorerLabel)
         assistLabel.right(to: contentView, offset: 4, relation: .equalOrLess)
-        assistLabel.bottom(to: contentView, offset: -2)
+        assistLabel.bottom(to: contentView, offset: -2, relation: .equalOrLess)
     }
     
 }
