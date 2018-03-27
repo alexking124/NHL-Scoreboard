@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        UIApplication.shared.setMinimumBackgroundFetchInterval(3600)
+        
         migrateRealm()
         
         let scoreboardPageViewController = ScoreboardPageViewController()
@@ -78,6 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        GameService.updateLiveGames().startWithCompleted {
+            completionHandler(.newData)
+        }
+    }
 
 }
 
@@ -100,7 +107,7 @@ private extension AppDelegate {
     func setupGameFetchTimer() {
         invalidateTimer()
         let timer = Timer(timeInterval: 15, repeats: true, block: { _ in
-            GameService.updateLiveGames()
+            GameService.updateLiveGames().start()
         })
         RunLoop.current.add(timer, forMode: .commonModes)
         gameFetchTimer = timer
