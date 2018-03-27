@@ -14,13 +14,14 @@ import RealmSwift
 class GoalScoredView: UIView {
     
     let eventID: String
-    var event: Event {
+    lazy var event: Event = {
         let realm = try! Realm()
         return realm.object(ofType: Event.self, forPrimaryKey: self.eventID) ?? Event()
-    }
-    var scorer: EventPlayer? {
+    }()
+    
+    lazy var scorer: EventPlayer? = {
         return event.players.first { $0.playerType == "Scorer" }
-    }
+    }()
     
     init(eventID: String) {
         self.eventID = eventID
@@ -73,6 +74,36 @@ class GoalScoredView: UIView {
         return label
     }()
     
+    private lazy var additionalStatsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        stackView.spacing = 10
+        return stackView
+    }()
+    
+    private lazy var goalTimeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        label.text = "\(event.periodTimeRemaining) \(event.periodString)"
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var scoreLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        label.text = "\(event.awayScore) - \(event.homeScore)"
+        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.textAlignment = .center
+        return label
+    }()
+    
 }
 
 private extension GoalScoredView {
@@ -98,7 +129,15 @@ private extension GoalScoredView {
         assistLabel.topToBottom(of: goalScorerLabel)
         assistLabel.left(to: goalScorerLabel)
         assistLabel.right(to: contentView, offset: 4, relation: .equalOrLess)
-        assistLabel.bottom(to: contentView, offset: -2, relation: .equalOrLess)
+        
+        contentView.addSubview(additionalStatsStackView)
+        additionalStatsStackView.topToBottom(of: assistLabel, offset: 5)
+        additionalStatsStackView.left(to: assistLabel)
+        additionalStatsStackView.right(to: contentView, offset: -4)
+        additionalStatsStackView.bottom(to: contentView)
+        
+        additionalStatsStackView.addArrangedSubview(scoreLabel)
+        additionalStatsStackView.addArrangedSubview(goalTimeLabel)
     }
     
 }
