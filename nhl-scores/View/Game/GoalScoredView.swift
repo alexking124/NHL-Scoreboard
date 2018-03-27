@@ -70,7 +70,8 @@ class GoalScoredView: UIView {
         let assistPlayers = event.players.filter {
             $0.playerType == "Assist"
         }
-        label.text = assistPlayers.map { $0.playerName }.joined(separator: ", ")
+        let assistString = assistPlayers.map({ $0.playerName }).joined(separator: ", ")
+        label.text = assistString.count == 0 ? "Unassisted" : assistString
         return label
     }()
     
@@ -89,7 +90,6 @@ class GoalScoredView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 11, weight: .light)
         label.text = "\(event.periodTimeRemaining) \(event.periodString)"
-        label.setContentHuggingPriority(.required, for: .horizontal)
         label.textAlignment = .center
         return label
     }()
@@ -99,7 +99,15 @@ class GoalScoredView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 11, weight: .light)
         label.text = "\(event.awayScore) - \(event.homeScore)"
-        label.setContentHuggingPriority(.required, for: .horizontal)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var goalTypeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        label.text = event.secondaryType
         label.textAlignment = .center
         return label
     }()
@@ -118,7 +126,7 @@ private extension GoalScoredView {
         playerImageView.left(to: contentView, offset: 4)
         playerImageView.centerY(to: contentView)
         playerImageView.width(to: contentView, heightAnchor)
-        playerImageView.height(40)
+        playerImageView.height(45)
         
         contentView.addSubview(goalScorerLabel)
         goalScorerLabel.top(to: contentView, offset: 2)
@@ -131,13 +139,14 @@ private extension GoalScoredView {
         assistLabel.right(to: contentView, offset: 4, relation: .equalOrLess)
         
         contentView.addSubview(additionalStatsStackView)
-        additionalStatsStackView.topToBottom(of: assistLabel, offset: 5)
+        additionalStatsStackView.topToBottom(of: assistLabel, offset: 2, relation: .equalOrGreater)
         additionalStatsStackView.left(to: assistLabel)
         additionalStatsStackView.right(to: contentView, offset: -4)
         additionalStatsStackView.bottom(to: contentView)
         
         additionalStatsStackView.addArrangedSubview(scoreLabel)
         additionalStatsStackView.addArrangedSubview(goalTimeLabel)
+        additionalStatsStackView.addArrangedSubview(goalTypeLabel)
     }
     
 }
