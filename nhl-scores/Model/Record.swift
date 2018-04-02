@@ -27,6 +27,7 @@ class Record: Object {
     @objc dynamic var conferenceRank: Int = 0
     @objc dynamic var divisionRank: Int = 0
     @objc dynamic var wildCardRank: Int = 0
+    @objc dynamic var clinchStatus: String? = nil
     
     var recordString: String {
         return "\(wins)-\(losses)-\(otLosses)"

@@ -60,6 +60,12 @@ struct StandingsService {
                             continue
                     }
                     
+                    let clinchStatus: String?
+                    if let clinchIndicator = teamRecordJson["clinchIndicator"] as? String {
+                        clinchStatus = clinchIndicator
+                    } else {
+                        clinchStatus = nil
+                    }
                     
                     guard let streak = streakJson["streakCode"] as? String else {
                         continue
@@ -85,6 +91,7 @@ struct StandingsService {
                         record.wildCardRank = Int(wildCardRank) ?? 0
                         record.row = row
                         record.gamesPlayed = gamesPlayed
+                        record.clinchStatus = clinchStatus
                         
                         record.streak = streak
                     

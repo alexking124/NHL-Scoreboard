@@ -20,9 +20,19 @@ class StandingsCell: UITableViewCell {
     
     private lazy var teamNameLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var clinchStatusLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var textContainer = UIView()
     
     private lazy var wildcardDividerView: UIView = {
         let view = HorizontalLineView(viewHeight: 2)
@@ -57,6 +67,7 @@ class StandingsCell: UITableViewCell {
         wildcardDividerView.removeFromSuperview()
         logoImageView.image = team.logo
         teamNameLabel.text = team.abbreviation
+        clinchStatusLabel.text = team.record?.clinchStatus
         statsView.setTeam(team)
         if team.record?.wildCardRank == 2 {
             addSubview(wildcardDividerView)
@@ -83,18 +94,28 @@ private extension StandingsCell {
         logoImageView.width(33)
         logoImageView.height(33)
         
-        contentView.addSubview(teamNameLabel)
-        teamNameLabel.centerY(to: contentView)
-        teamNameLabel.leftToRight(of: logoImageView, offset: 4)
-        teamNameLabel.width(45)
+        contentView.addSubview(textContainer)
+        textContainer.centerY(to: contentView)
+        textContainer.leftToRight(of: logoImageView, offset: 4)
+        textContainer.width(45)
+        
+        textContainer.addSubview(teamNameLabel)
+        teamNameLabel.topToSuperview()
+        teamNameLabel.leftToSuperview()
+        teamNameLabel.bottomToSuperview()
+        
+        textContainer.addSubview(clinchStatusLabel)
+        clinchStatusLabel.topToSuperview(offset: -3)
+        clinchStatusLabel.leftToRight(of: teamNameLabel)
+        clinchStatusLabel.rightToSuperview(relation: .equalOrLess)
         
         contentView.addSubview(dividerView)
         dividerView.centerY(to: contentView)
         dividerView.height(to: contentView, offset: -12)
-        dividerView.leftToRight(of: teamNameLabel)
+        dividerView.leftToRight(of: textContainer)
         
         contentView.addSubview(statsView)
-        statsView.leftToRight(of: teamNameLabel)
+        statsView.leftToRight(of: dividerView)
         statsView.top(to: contentView)
         statsView.bottom(to: contentView)
         statsView.right(to: contentView)
