@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		390F01632071BCA400E5863E /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F01622071BCA400E5863E /* AsynchronousOperation.swift */; };
 		390F92ED202787100099DE94 /* StandingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F92EC202787100099DE94 /* StandingsCell.swift */; };
 		390F92EF2027874E0099DE94 /* StandingsStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F92EE2027874E0099DE94 /* StandingsStatsView.swift */; };
 		390F92F2202788F30099DE94 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390F92F1202788F30099DE94 /* EnumCollection.swift */; };
@@ -84,6 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		390F01622071BCA400E5863E /* AsynchronousOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		390F92EC202787100099DE94 /* StandingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsCell.swift; sourceTree = "<group>"; };
 		390F92EE2027874E0099DE94 /* StandingsStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsStatsView.swift; sourceTree = "<group>"; };
 		390F92F1202788F30099DE94 /* EnumCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
@@ -107,14 +109,14 @@
 		3983CBC6202F78E100147386 /* UIScreenExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
 		3983CBCA202F7AD700147386 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3983CBCC202FD71B00147386 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		3983CBCE2045383300147386 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
-		3983CBD12045423700147386 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		3983CBCE2045383300147386 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = SOURCE_ROOT; };
+		3983CBD12045423700147386 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = SOURCE_ROOT; };
 		399BE4F5204B0C3C00311580 /* ReactiveExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveExt.swift; sourceTree = "<group>"; };
-		399BE4F7204B114400311580 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = "<group>"; };
+		399BE4F7204B114400311580 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = SOURCE_ROOT; };
 		399BE4FC204CB7B800311580 /* GoalScoredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalScoredView.swift; sourceTree = "<group>"; };
 		39A34E622054BFAB00CA2B14 /* GameDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
 		39A34E642056128300CA2B14 /* UIImageViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExt.swift; sourceTree = "<group>"; };
-		39A34E6620562E9100CA2B14 /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
+		39A34E6620562E9100CA2B14 /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = Carthage/Build/iOS/Haneke.framework; sourceTree = SOURCE_ROOT; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -242,8 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				39447045200DA700008E402B /* Carthage */,
+				390F01622071BCA400E5863E /* AsynchronousOperation.swift */,
 			);
-			name = External;
+			path = External;
 			sourceTree = "<group>";
 		};
 		39447045200DA700008E402B /* Carthage */ = {
@@ -260,7 +263,8 @@
 				39447046200DA71D008E402B /* TinyConstraints.framework */,
 			);
 			name = Carthage;
-			sourceTree = "<group>";
+			path = Carthage/Build/iOS;
+			sourceTree = SOURCE_ROOT;
 		};
 		399BE4FB204CB79A00311580 /* Game */ = {
 			isa = PBXGroup;
@@ -460,6 +464,7 @@
 				39D3D4B22015D0500077384E /* StandingsService.swift in Sources */,
 				3983CBC7202F78E100147386 /* UIScreenExt.swift in Sources */,
 				390F92ED202787100099DE94 /* StandingsCell.swift in Sources */,
+				390F01632071BCA400E5863E /* AsynchronousOperation.swift in Sources */,
 				390F92EF2027874E0099DE94 /* StandingsStatsView.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */,

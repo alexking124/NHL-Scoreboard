@@ -13,6 +13,38 @@ import Result
 
 struct GameService {
     
+    static let shared = GameService()
+    
+    private let gameUpdateQueue: OperationQueue = {
+        let queue = OperationQueue()
+        queue.maxConcurrentOperationCount = 3
+        return queue
+    }()
+    
+    func beginUpdatingLiveGames() {
+        todaysLiveGames.forEach { game in
+            addGameToUpdateQueue(game.gameID)
+        }
+    }
+    
+    func stopUpdatingLiveGames() {
+        gameUpdateQueue.cancelAllOperations()
+    }
+    
+    private var todaysLiveGames: [Game] {
+        let realm = try! Realm()
+        let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))'")).filter { (game) -> Bool in
+            if game.gameStatus == .completed {
+                return false
+            }
+            if let gameTime = game.gameTime, gameTime < Date() {
+                return true
+            }
+            return false
+        }
+        return liveGames
+    }
+    
     static func updateLiveGames() -> SignalProducer<[Void], NoError> {
         let realm = try! Realm()
         let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))'")).filter { (game) -> Bool in
@@ -218,4 +250,35 @@ struct GameService {
         
         return events
     }
+}
+
+private extension GameService {
+    
+    func addGameToUpdateQueue(_ gameID: Int) {
+        let updateOperation = GameUpdateOperation(gameID: gameID)
+        updateOperation.completionBlock = {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+                self.addGameToUpdateQueue(gameID)
+            })
+        }
+        gameUpdateQueue.addOperation(updateOperation)
+    }
+    
+}
+
+class GameUpdateOperation: AsynchronousOperation {
+    
+    let gameID: Int
+    
+    init(gameID: Int) {
+        self.gameID = gameID
+        super.init()
+    }
+    
+    override func execute() {
+        GameService.fetchLiveStats(for: gameID).startWithCompleted { [weak self] in
+            self?.finish()
+        }
+    }
+    
 }
