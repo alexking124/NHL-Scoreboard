@@ -11,6 +11,14 @@ import RealmSwift
 import ReactiveSwift
 import Result
 
+typealias GameUpdateSignal = Signal<Void, NoError>
+
+enum GameUpdateStatus {
+    case started(dataTask: URLSessionDataTask)
+    case finished
+    case cancelled
+}
+
 struct GameService {
     
     static let shared = GameService()
@@ -45,7 +53,7 @@ struct GameService {
         return liveGames
     }
     
-    static func updateLiveGames() -> SignalProducer<[Void], NoError> {
+    static func updateLiveGames() -> SignalProducer<[GameUpdateStatus], NoError> {
         let realm = try! Realm()
         let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))'")).filter { (game) -> Bool in
             if game.gameStatus == .completed {
@@ -57,7 +65,7 @@ struct GameService {
             return false
         }
         
-        var updateSignals = [SignalProducer<Void, NoError>]()
+        var updateSignals = [SignalProducer<GameUpdateStatus, NoError>]()
         liveGames.forEach { game in
             updateSignals.append(GameService.fetchLiveStats(for: game.gameID))
         }
@@ -78,8 +86,8 @@ struct GameService {
         }
     }
     
-    static func fetchLiveStats(for gameID: Int) -> SignalProducer<Void, NoError> {
-        return SignalProducer<Void, NoError> {  observer, _ in
+    static func fetchLiveStats(for gameID: Int) -> SignalProducer<GameUpdateStatus, NoError> {
+        return SignalProducer<GameUpdateStatus, NoError> {  observer, _ in
             guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/game/\(gameID)/feed/live") else {
                 observer.sendCompleted()
                 return
@@ -162,10 +170,11 @@ struct GameService {
                     game?.gameEvents.removeAll()
                     game?.gameEvents.append(objectsIn: events)
                 }
-                observer.send(value: ())
+                observer.send(value: .finished)
                 observer.sendCompleted()
             }
             task.resume()
+            observer.send(value: .started(dataTask: task))
         }
     }
     
@@ -257,6 +266,13 @@ private extension GameService {
     func addGameToUpdateQueue(_ gameID: Int) {
         let updateOperation = GameUpdateOperation(gameID: gameID)
         updateOperation.completionBlock = {
+            if updateOperation.isCancelled { return }
+            
+            if let game = try? Realm().object(ofType: Game.self, forPrimaryKey: gameID),
+                game?.gameStatus == .completed {
+                return
+            }
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
                 self.addGameToUpdateQueue(gameID)
             })
@@ -269,14 +285,28 @@ private extension GameService {
 class GameUpdateOperation: AsynchronousOperation {
     
     let gameID: Int
+    private let producer: SignalProducer<GameUpdateStatus, NoError>
+    private var dataTask: URLSessionDataTask?
     
     init(gameID: Int) {
         self.gameID = gameID
+        producer = GameService.fetchLiveStats(for: gameID)
         super.init()
     }
     
     override func execute() {
-        GameService.fetchLiveStats(for: gameID).startWithCompleted { [weak self] in
+        let twoSecondTimer = SignalProducer.timer(interval: .seconds(1), on: QueueScheduler.main).startWithValues { _ in
+            if self.isCancelled {
+                self.dataTask?.cancel()
+            }
+        }
+        
+        producer.on(value: { status in
+            if case let .started(dataTask) = status {
+                self.dataTask = dataTask
+            }
+        }).startWithCompleted { [weak self] in
+            twoSecondTimer.dispose()
             self?.finish()
         }
     }
