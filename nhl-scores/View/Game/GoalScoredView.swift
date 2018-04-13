@@ -125,7 +125,7 @@ private extension GoalScoredView {
         playerImageView.top(to: contentView, offset: 2)
         playerImageView.left(to: contentView, offset: 4)
         playerImageView.centerY(to: contentView)
-        playerImageView.width(to: contentView, heightAnchor)
+        playerImageView.width(to: playerImageView, heightAnchor)
         playerImageView.height(45)
         
         contentView.addSubview(goalScorerLabel)

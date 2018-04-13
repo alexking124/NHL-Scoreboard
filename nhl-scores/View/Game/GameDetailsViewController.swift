@@ -14,10 +14,10 @@ import RealmSwift
 class GameDetailsViewController: UIViewController {
     
     let gameID: Int
-    var game: Game {
+    lazy var game: Game = {
         let realm = try! Realm()
         return realm.object(ofType: Game.self, forPrimaryKey: self.gameID) ?? Game()
-    }
+    }()
     
     init(gameID: Int) {
         self.gameID = gameID
@@ -28,6 +28,15 @@ class GameDetailsViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    private lazy var scrollView = UIScrollView()
+    
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     private lazy var goalsStackView: UIStackView = {
         let stackView = UIStackView()
@@ -42,7 +51,7 @@ class GameDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = String(format: "%@ @ %@", game.awayTeam?.abbreviation ?? "", game.homeTeam?.abbreviation ?? "")
         view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         setupViews()
     }
@@ -52,10 +61,15 @@ class GameDetailsViewController: UIViewController {
 private extension GameDetailsViewController {
     
     func setupViews() {
-        view.addSubview(goalsStackView)
-        goalsStackView.top(to: view, view.safeAreaLayoutGuide.topAnchor, offset: 8)
-        goalsStackView.left(to: view)
-        goalsStackView.right(to: view)
+        view.addSubview(scrollView)
+        scrollView.edgesToSuperview()
+        
+        scrollView.addSubview(contentStackView)
+        contentStackView.edgesToSuperview()
+        contentStackView.width(to: scrollView)
+        
+        contentStackView.addArrangedSubview(goalsStackView)
+        contentStackView.addArrangedSubview(SeriesMatchupView())
     }
     
 }
