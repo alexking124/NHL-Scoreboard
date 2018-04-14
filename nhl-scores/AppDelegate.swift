@@ -39,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             rootNavigation.hideLaunchImage()
             StandingsService.refreshStandings {
             }
-            GameService.shared.beginUpdatingLiveGames()
-
         }
 
         let realm = try! Realm()
