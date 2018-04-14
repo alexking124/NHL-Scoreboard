@@ -72,9 +72,9 @@ struct GameService {
         return SignalProducer.combineLatest(updateSignals)
     }
     
-    static func updateFinalStats() {
+    static func updateFinalStats(onDate date: Date = Date()) {
         let realm = try! Realm()
-        let finalGames = Array(realm.objects(Game.self).filter("finalLiveStatsFetched = false")).filter { (game) -> Bool in
+        let finalGames = Array(realm.objects(Game.self).filter("finalLiveStatsVersion < %@ AND gameDay = '\(date.string(custom: "yyyy-MM-dd"))'", Game.liveStatsVersion)).filter { (game) -> Bool in
             if game.gameStatus != .completed {
                 return false
             }
@@ -154,7 +154,9 @@ struct GameService {
                 let game = realm.object(ofType: Game.self, forPrimaryKey: gameID)
                 try? realm.write {
                     game?.rawGameStatus = status
-                    game?.finalLiveStatsFetched = status == GameStatus.completed.rawValue
+                    if status == GameStatus.completed.rawValue {
+                        game?.finalLiveStatsVersion = Game.liveStatsVersion
+                    }
                     game?.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0
                     game?.clockString = "\(timeString) \(periodString)"
                     game?.score?.homeScore = homeScore

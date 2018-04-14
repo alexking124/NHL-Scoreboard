@@ -37,7 +37,7 @@ class SeriesMatchupView: UIView {
         return label
     }()
     
-    private let horizontalLine = HorizontalLineView(viewHeight: 1)
+    private let horizontalLine = HorizontalLineView()
     
     private lazy var seriesStandingsLabel: UILabel = {
         let label = UILabel()

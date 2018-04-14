@@ -63,10 +63,15 @@ class ScoreboardViewController: UITableViewController {
             }
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if games.count == 0 {
             refreshScores()
         } else {
-            GameService.updateFinalStats()
+            GameService.updateFinalStats(onDate: date)
         }
     }
     
@@ -106,9 +111,10 @@ private extension ScoreboardViewController {
     func refreshScores() {
         tableView.refreshControl?.beginRefreshing()
         ScoreboardService.fetchScoreboard(date: date) { [weak self] in
-            GameService.updateFinalStats()
+            guard let strongSelf = self else { return }
+            GameService.updateFinalStats(onDate: strongSelf.date)
             DispatchQueue.main.async {
-                self?.tableView.refreshControl?.endRefreshing()
+                strongSelf.tableView.refreshControl?.endRefreshing()
             }
         }
     }

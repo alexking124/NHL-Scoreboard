@@ -34,10 +34,13 @@ enum GameStatus: String {
     case pregame = "Pre-Game"
     case live = "In Progress"
     case critical = "In Progress - Critical"
+    case gameOver = "Game Over"
     case completed = "Final"
 }
 
 class Game: Object {
+    
+    static let liveStatsVersion = 1
     
     @objc dynamic var gameID: Int = 0
     @objc dynamic var gameDay: String = ""
@@ -55,9 +58,14 @@ class Game: Object {
     @objc dynamic var powerPlayTimeRemaining: Int = 0
     @objc dynamic var powerPlayStatus: String = ""
     
+    // Playoffs
+    
+    @objc dynamic var seriesStandings: String = ""
+    @objc dynamic var gameNumber: Int = 0
+    
     let gameEvents = List<Event>()
     
-    @objc dynamic var finalLiveStatsFetched: Bool = false
+    @objc dynamic var finalLiveStatsVersion: Int = 0
     
     override static func primaryKey() -> String? {
         return "gameID"
