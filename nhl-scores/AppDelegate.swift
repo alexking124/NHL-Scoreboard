@@ -8,18 +8,21 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAnalytics
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var gameFetchTimer: Timer?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
         
-        UIApplication.shared.setMinimumBackgroundFetchInterval(3600)
+        UIApplication.shared.setMinimumBackgroundFetchInterval(600)
         
         migrateRealm()
         
@@ -103,21 +106,6 @@ private extension AppDelegate {
         
         Realm.Configuration.defaultConfiguration = config
     }
-    
-//    func setupGameFetchTimer() {
-//        invalidateTimer()
-//        let timer = Timer(timeInterval: 15, repeats: true, block: { _ in
-//            GameService.updateLiveGames().start()
-//        })
-//        RunLoop.current.add(timer, forMode: .commonModes)
-//        gameFetchTimer = timer
-//        timer.fire()
-//    }
-//
-//    func invalidateTimer() {
-//        gameFetchTimer?.invalidate()
-//        gameFetchTimer = nil
-//    }
     
 }
 
