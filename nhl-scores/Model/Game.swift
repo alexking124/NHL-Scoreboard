@@ -61,7 +61,7 @@ class Game: Object {
     // Playoffs
     
     @objc dynamic var seriesStandings: String = ""
-    @objc dynamic var gameNumber: Int = 0
+    @objc dynamic var seriesGameNumber: Int = 0
     
     let gameEvents = List<Event>()
     

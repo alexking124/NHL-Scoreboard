@@ -33,7 +33,6 @@ class SeriesMatchupView: UIView {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Game 1"
         return label
     }()
     
@@ -44,10 +43,13 @@ class SeriesMatchupView: UIView {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "SJS leads 1-0"
         return label
     }()
     
+    func bind(game: Game) {
+        seriesStandingsLabel.text = game.seriesStandings
+        gameNumberLabel.text = "Game \(game.seriesGameNumber)"
+    }
 }
 
 private extension SeriesMatchupView {

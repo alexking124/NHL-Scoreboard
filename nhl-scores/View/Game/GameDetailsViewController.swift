@@ -69,7 +69,9 @@ private extension GameDetailsViewController {
         contentStackView.width(to: scrollView)
         
         contentStackView.addArrangedSubview(goalsStackView)
-        contentStackView.addArrangedSubview(SeriesMatchupView())
+        let seriesMatchupView = SeriesMatchupView()
+        contentStackView.addArrangedSubview(seriesMatchupView)
+        seriesMatchupView.bind(game: game)
     }
     
 }

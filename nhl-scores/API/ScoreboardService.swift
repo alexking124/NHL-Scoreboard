@@ -14,7 +14,7 @@ struct ScoreboardService {
     
     static func fetchScoreboard(date: Date = Date(), completion: @escaping (() -> Void)) {
         let dateQuery = "?startDate=\(date.year)-\(date.month)-\(date.day)&endDate=\(date.year)-\(date.month)-\(date.day)"
-        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/schedule\(dateQuery)") else {
+        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/schedule\(dateQuery)&expand=schedule.game.seriesSummary") else {
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -65,6 +65,13 @@ struct ScoreboardService {
                         continue
                 }
                 
+                var seriesStandings: String?
+                var seriesGameNumber: Int?
+                if let seriesSummaryJson = gameJson["seriesSummary"] as? [String: Any] {
+                    seriesStandings = seriesSummaryJson["seriesStatusShort"] as? String
+                    seriesGameNumber = seriesSummaryJson["gameNumber"] as? Int
+                }
+                
                 let homeTeam = realm.object(ofType: Team.self, forPrimaryKey: homeID)
                 let awayTeam = realm.object(ofType: Team.self, forPrimaryKey: awayID)
                 
@@ -86,6 +93,9 @@ struct ScoreboardService {
                     game.rawGameStatus = status
                     game.gameDay = dateString
                     game.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0
+                    
+                    seriesStandings.map { game.seriesStandings = $0 }
+                    seriesGameNumber.map { game.seriesGameNumber = $0 }
                     
                     let score = game.score ?? Score()
                     score.homeScore = homeScore
