@@ -109,11 +109,8 @@ struct GameService {
                         return
                 }
                 
-                guard let periodString = linescoreJson["currentPeriodOrdinal"] as? String,
-                    let timeString = linescoreJson["currentPeriodTimeRemaining"] as? String else {
-                        observer.sendCompleted()
-                        return
-                }
+                let periodString = linescoreJson["currentPeriodOrdinal"] as? String ?? ""
+                let timeString = linescoreJson["currentPeriodTimeRemaining"] as? String ?? "00:00"
                 
                 guard let gameDataJson = dictionary["gameData"] as? [String: Any],
                     let statusDict = gameDataJson["status"] as? [String: Any],
@@ -140,13 +137,10 @@ struct GameService {
                         return
                 }
                 
-                guard let powerPlayString = linescoreJson["powerPlayStrength"] as? String,
-                    let powerPlayInfo = linescoreJson["powerPlayInfo"] as? [String: Any],
-                    let inPowerPlay = powerPlayInfo["inSituation"] as? Bool,
-                    let powerPlayTime = powerPlayInfo["situationTimeRemaining"] as? Int else {
-                        observer.sendCompleted()
-                        return
-                }
+                let powerPlayString = linescoreJson["powerPlayStrength"] as? String ?? ""
+                let powerPlayInfo = linescoreJson["powerPlayInfo"] as? [String: Any]
+                let inPowerPlay = powerPlayInfo?["inSituation"] as? Bool ?? false
+                let powerPlayTime = powerPlayInfo?["situationTimeRemaining"] as? Int ?? 0
                 
                 let events = GameService.parseEvents(json: playsJson, gameID: gameID)
                 
