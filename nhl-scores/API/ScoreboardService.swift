@@ -35,6 +35,7 @@ struct ScoreboardService {
             }
             
             let realm = try! Realm()
+            var fetchedGameIDs = [Int]()
             for gameJson in currentGames {
                 
                 guard let gameID = gameJson["gamePk"] as? Int,
@@ -101,6 +102,16 @@ struct ScoreboardService {
                     score.homeScore = homeScore
                     score.awayScore = awayScore
                     game.score = score
+                }
+                
+                fetchedGameIDs.append(gameID)
+            }
+            
+            let existingGames = Array(realm.objects(Game.self).filter("gameDay = '\(dateString)'"))
+            let staleGames = existingGames.filter { !fetchedGameIDs.contains($0.gameID) }
+            if staleGames.count > 0 {
+                try? realm.write {
+                    staleGames.forEach { realm.delete($0) }
                 }
             }
             

@@ -53,8 +53,8 @@ class ScoreboardViewController: UITableViewController {
             switch changes {
             case .initial:
                 tableView.reloadData()
-            case .update(_, _, let insertions, _):
-                if insertions.count > 0 {
+            case .update(_, let deletions, let insertions, _):
+                if insertions.count > 0 || deletions.count > 0 {
                     tableView.reloadData()
                 }
             case .error(let error):
