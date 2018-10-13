@@ -29,7 +29,8 @@ class GameDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var notificationToken: NotificationToken? = nil
+    private var notificationToken: NotificationToken?
+    private var gameUpdateTimer: Timer?
     
     private lazy var scrollView = UIScrollView()
     
@@ -64,6 +65,8 @@ class GameDetailsViewController: UIViewController {
                 assertionFailure("\(error)")
             }
         }
+        
+        GameService.fetchLiveStats(for: gameID).start()
         
         bindData()
     }

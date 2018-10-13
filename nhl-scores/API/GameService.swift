@@ -67,7 +67,7 @@ struct GameService {
         
         var updateSignals = [SignalProducer<GameUpdateStatus, NoError>]()
         liveGames.forEach { game in
-            updateSignals.append(GameService.fetchLiveStats(for: game.gameID))
+            updateSignals.append(GameService.fetchLinescore(for: game.gameID))
         }
         return SignalProducer.combineLatest(updateSignals)
     }
@@ -83,6 +83,72 @@ struct GameService {
         
         finalGames.forEach { (game) in
             GameService.fetchLiveStats(for: game.gameID).start()
+        }
+    }
+    
+    static func fetchLinescore(for gameID: Int) -> SignalProducer<GameUpdateStatus, NoError> {
+        return SignalProducer<GameUpdateStatus, NoError> {  observer, _ in
+            guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/game/\(gameID)/linescore") else {
+                observer.sendCompleted()
+                return
+            }
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let data = data,
+                    let json = try? JSONSerialization.jsonObject(with: data, options: []),
+                    let linescoreJSON = json as? [String: Any] else {
+                        print("Error reading json")
+                        observer.sendCompleted()
+                        return
+                }
+                
+                guard let teamsJson = linescoreJSON["teams"] as? [String: Any] else {
+                        observer.sendCompleted()
+                        return
+                }
+                
+                let periodString = linescoreJSON["currentPeriodOrdinal"] as? String ?? ""
+                let timeString = linescoreJSON["currentPeriodTimeRemaining"] as? String ?? "00:00"
+                
+                guard let homeTeamJson = teamsJson["home"] as? [String: Any],
+                    let homeScore = homeTeamJson["goals"] as? Int,
+                    let homeShots = homeTeamJson["shotsOnGoal"] as? Int,
+                    let homeSkaterCount = homeTeamJson["numSkaters"] as? Int else {
+                        observer.sendCompleted()
+                        return
+                }
+                
+                guard let awayTeamJson = teamsJson["away"] as? [String: Any],
+                    let awayScore = awayTeamJson["goals"] as? Int,
+                    let awayShots = awayTeamJson["shotsOnGoal"] as? Int,
+                    let awaySkaterCount = awayTeamJson["numSkaters"] as? Int else {
+                        observer.sendCompleted()
+                        return
+                }
+                
+                let powerPlayString = linescoreJSON["powerPlayStrength"] as? String ?? ""
+                let powerPlayInfo = linescoreJSON["powerPlayInfo"] as? [String: Any]
+                let inPowerPlay = powerPlayInfo?["inSituation"] as? Bool ?? false
+                let powerPlayTime = powerPlayInfo?["situationTimeRemaining"] as? Int ?? 0
+                
+                let realm = try! Realm()
+                let game = realm.object(ofType: Game.self, forPrimaryKey: gameID)
+                try? realm.write {
+                    game?.clockString = "\(timeString) \(periodString)"
+                    game?.score?.homeScore = homeScore
+                    game?.score?.awayScore = awayScore
+                    game?.score?.homeShots = homeShots
+                    game?.score?.awayShots = awayShots
+                    game?.homeSkaterCount = homeSkaterCount
+                    game?.awaySkaterCount = awaySkaterCount
+                    game?.powerPlayStatus = powerPlayString
+                    game?.powerPlayTimeRemaining = powerPlayTime
+                    game?.hasPowerPlay = inPowerPlay
+                }
+                observer.send(value: .finished)
+                observer.sendCompleted()
+            }
+            task.resume()
+            observer.send(value: .started(dataTask: task))
         }
     }
     
@@ -286,7 +352,7 @@ class GameUpdateOperation: AsynchronousOperation {
     
     init(gameID: Int) {
         self.gameID = gameID
-        producer = GameService.fetchLiveStats(for: gameID)
+        producer = GameService.fetchLinescore(for: gameID)
         super.init()
     }
     
