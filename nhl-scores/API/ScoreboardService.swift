@@ -30,6 +30,7 @@ struct ScoreboardService {
                 let dateString = currentDate["date"] as? String,
                 let currentGames = currentDate["games"] as? [[String: Any]] else {
                     print("No games found")
+                    ScoreboardService.pruneGames(gameDay: date.string(custom: "yyyy-MM-dd"), fetchedGameIDs: [])
                     completion()
                     return
             }
@@ -107,17 +108,23 @@ struct ScoreboardService {
                 fetchedGameIDs.append(gameID)
             }
             
-            let existingGames = Array(realm.objects(Game.self).filter("gameDay = '\(dateString)'"))
-            let staleGames = existingGames.filter { !fetchedGameIDs.contains($0.gameID) }
-            if staleGames.count > 0 {
-                try? realm.write {
-                    staleGames.forEach { realm.delete($0) }
-                }
-            }
+            ScoreboardService.pruneGames(gameDay: dateString, fetchedGameIDs: fetchedGameIDs)
             
             completion()
         }
         task.resume()
+    }
+    
+    private static func pruneGames(gameDay: String, fetchedGameIDs: [Int]) {
+        guard let realm = try? Realm() else { return }
+        
+        let existingGames = Array(realm.objects(Game.self).filter("gameDay = '\(gameDay)'"))
+        let staleGames = existingGames.filter { !fetchedGameIDs.contains($0.gameID) }
+        if staleGames.count > 0 {
+            try? realm.write {
+                staleGames.forEach { realm.delete($0) }
+            }
+        }
     }
     
 }

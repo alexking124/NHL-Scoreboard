@@ -587,7 +587,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/External/Firebase/Crashlytics/Fabric.framework/run\" 6e7cac788a5545a44b30b12dad999b818ea42aca 130a341a6b39bce19fba933572bf6392b373c61956d8358e0c4c1dadc131a968";
+			shellScript = "\"${PROJECT_DIR}/External/Firebase/Crashlytics/Fabric.framework/run\" 6e7cac788a5545a44b30b12dad999b818ea42aca 130a341a6b39bce19fba933572bf6392b373c61956d8358e0c4c1dadc131a968\n";
 		};
 		39D3D4AB2013A6520077384E /* Copy Debug Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
