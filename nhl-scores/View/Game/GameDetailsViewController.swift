@@ -29,6 +29,8 @@ class GameDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var notificationToken: NotificationToken? = nil
+    
     private lazy var scrollView = UIScrollView()
     
     private lazy var contentStackView: UIStackView = {
@@ -42,10 +44,6 @@ class GameDetailsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        game.gameEvents.forEach { event in
-            let goalView = GoalScoredView(eventID: event.eventID)
-            stackView.addArrangedSubview(goalView)
-        }
         return stackView
     }()
     
@@ -54,6 +52,20 @@ class GameDetailsViewController: UIViewController {
         title = String(format: "%@ @ %@", game.awayTeam?.abbreviation ?? "", game.homeTeam?.abbreviation ?? "")
         view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         setupViews()
+        
+        notificationToken = game.observe { [weak self] (changes: ObjectChange) in
+            switch changes {
+            case .change(_):
+                self?.bindData()
+            case .deleted:
+                print("Error - game got deleted???")
+            case .error(let error):
+                // An error occurred while opening the Realm file on the background worker thread
+                assertionFailure("\(error)")
+            }
+        }
+        
+        bindData()
     }
     
 }
@@ -69,6 +81,14 @@ private extension GameDetailsViewController {
         contentStackView.width(to: scrollView)
         
         contentStackView.addArrangedSubview(goalsStackView)
+    }
+    
+    func bindData() {
+        goalsStackView.arrangedSubviews.forEach { goalsStackView.removeArrangedSubview($0) }
+        game.gameEvents.forEach { event in
+            let goalView = GoalScoredView(eventID: event.eventID)
+            goalsStackView.addArrangedSubview(goalView)
+        }
     }
     
 }
