@@ -13,7 +13,7 @@ import ReactiveSwift
 
 class StandingsViewController: UITableViewController {
     
-    private enum WildCardSection: Int, EnumCollection {
+    private enum WildCardSection: Int, CaseIterable {
         case unknown = -1
         case eastern = 0
         case atlantic = 1
@@ -25,7 +25,7 @@ class StandingsViewController: UITableViewController {
         case westernWildCard = 7
         
         static var count: Int {
-            return WildCardSection.allValues.count - 1
+            return WildCardSection.allCases.count - 1
         }
         
         var title: String {

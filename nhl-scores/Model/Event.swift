@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-enum EventType: String, EnumCollection {
+enum EventType: String, CaseIterable {
     case unknown = "UNKNOWN"
     case goal = "GOAL"
     case faceoof = "FACEOFF"

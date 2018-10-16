@@ -18,7 +18,7 @@ class StandingsStatsView: UIView {
         static let itemWidth: CGFloat = 38
     }
     
-    private enum Stats: String, EnumCollection {
+    private enum Stats: String, CaseIterable {
         case points = "PTS"
         case gamesPlayed = "GP"
         case wins = "W"
@@ -70,7 +70,7 @@ class StandingsStatsView: UIView {
     
     private lazy var statLabels: [UILabel] = {
         var labels = [UILabel]()
-        Stats.allValues.forEach { stat in
+        Stats.allCases.forEach { stat in
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: 15)
             label.textAlignment = .center
@@ -103,10 +103,7 @@ class StandingsStatsView: UIView {
             $0.removeFromSuperview()
         }
         
-        Stats.allValues.forEach { stat in
-            guard let index = Stats.allValues.index(of: stat) else {
-                return
-            }
+        Stats.allCases.enumerated().forEach { index, stat in
             let label = statLabels[index]
             label.text = stat.value(team: team)
             if stat == .goalDifferential,
@@ -127,10 +124,7 @@ class StandingsStatsView: UIView {
             $0.removeFromSuperview()
         }
         
-        Stats.allValues.forEach { stat in
-            guard let index = Stats.allValues.index(of: stat) else {
-                return
-            }
+        Stats.allCases.enumerated().forEach { index, stat in
             let label = statLabels[index]
             label.font = UIFont.systemFont(ofSize: 12)
             stackView.addArrangedSubview(label)
