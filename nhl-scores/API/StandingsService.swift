@@ -36,8 +36,7 @@ struct StandingsService {
                 
                 for teamRecordJson in divisionTeamsJson {
                     guard let teamInfo = teamRecordJson["team"] as? [String: Any],
-                        let leagueRecord = teamRecordJson["leagueRecord"] as? [String: Any],
-                        let streakJson = teamRecordJson["streak"] as? [String: Any] else {
+                        let leagueRecord = teamRecordJson["leagueRecord"] as? [String: Any] else {
                             continue
                     }
                     
@@ -67,9 +66,8 @@ struct StandingsService {
                         clinchStatus = nil
                     }
                     
-                    guard let streak = streakJson["streakCode"] as? String else {
-                        continue
-                    }
+                    let streakJson = teamRecordJson["streak"] as? [String: Any]
+                    let streak = streakJson?["streakCode"] as? String
                     
                     guard let team = realm.object(ofType: Team.self, forPrimaryKey: teamID) else {
                         print("No team found")
@@ -93,7 +91,7 @@ struct StandingsService {
                         record.gamesPlayed = gamesPlayed
                         record.clinchStatus = clinchStatus
                         
-                        record.streak = streak
+                        record.streak = streak ?? ""
                     
                         team.record = record
                     }
