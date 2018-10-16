@@ -113,6 +113,8 @@ class StandingsStatsView: UIView {
                     label.textColor = UIColor(hexString: "0EA334")
                 } else if differential < 0 {
                     label.textColor = .red
+                } else {
+                    label.textColor = .black
                 }
             }
             stackView.addArrangedSubview(label)
