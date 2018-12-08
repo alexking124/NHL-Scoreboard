@@ -31,7 +31,6 @@
 		3983CBCD202FD71B00147386 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCC202FD71B00147386 /* Event.swift */; };
 		3983CBCF2045383300147386 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBCE2045383300147386 /* ReactiveSwift.framework */; };
 		3983CBD02045383C00147386 /* ReactiveSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBCE2045383300147386 /* ReactiveSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3983CBD22045423700147386 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBD12045423700147386 /* Result.framework */; };
 		3983CBD32045424300147386 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBD12045423700147386 /* Result.framework */; };
 		3983CBD42045424300147386 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBD12045423700147386 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BE4F5204B0C3C00311580 /* ReactiveExt.swift */; };
@@ -216,7 +215,6 @@
 				39A83AD320826A1C00D59317 /* FirebaseABTesting.framework in Frameworks */,
 				3983CBCF2045383300147386 /* ReactiveSwift.framework in Frameworks */,
 				39A83AD820826D4300D59317 /* Crashlytics.framework in Frameworks */,
-				3983CBD22045423700147386 /* Result.framework in Frameworks */,
 				39A83AAE2082692000D59317 /* FirebaseCoreDiagnostics.framework in Frameworks */,
 				39A83AD120826A1C00D59317 /* FirebaseRemoteConfig.framework in Frameworks */,
 				39A83AD220826A1C00D59317 /* Protobuf.framework in Frameworks */,
@@ -523,7 +521,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Alex King";
 				TargetAttributes = {
 					39447023200C21D9008E402B = {
@@ -671,6 +669,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -678,6 +677,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -728,6 +728,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -735,6 +736,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -770,6 +772,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = DUYQ44RPLQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
