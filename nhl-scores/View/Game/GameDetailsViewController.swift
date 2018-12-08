@@ -50,7 +50,8 @@ class GameDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = String(format: "%@ @ %@", game.awayTeam?.abbreviation ?? "", game.homeTeam?.abbreviation ?? "")
+        navigationItem.titleView = GameDetailsTitleView(homeLogo: game.homeTeam?.logo, awayLogo: game.awayTeam?.logo)
+        
         view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         setupViews()
         

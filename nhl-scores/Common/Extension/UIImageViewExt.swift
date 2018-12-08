@@ -22,4 +22,9 @@ extension UIImageView {
             }
         }
     }
+    
+    public convenience init(contentMode: ContentMode) {
+        self.init(frame: .zero)
+        self.contentMode = contentMode
+    }
 }
