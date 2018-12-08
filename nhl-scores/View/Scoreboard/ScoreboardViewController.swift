@@ -37,7 +37,7 @@ class ScoreboardViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
