@@ -63,6 +63,18 @@ class GoalScoredView: UIView {
         return label
     }()
     
+    private lazy var attributesStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = 5
+        if let attribute = GoalAttributeView.GoalType(rawValue: event.strengthCode) {
+            stackView.addArrangedSubview(GoalAttributeView(type: attribute))
+        }
+        if event.emptyNet {
+            stackView.addArrangedSubview(GoalAttributeView(type: .emptyNet))
+        }
+        return stackView
+    }()
+    
     private lazy var assistLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -131,7 +143,11 @@ private extension GoalScoredView {
         contentView.addSubview(goalScorerLabel)
         goalScorerLabel.top(to: contentView, offset: 2)
         goalScorerLabel.leftToRight(of: playerImageView, offset: 4)
-        goalScorerLabel.right(to: contentView, offset: 4, relation: .equalOrLess)
+        
+        contentView.addSubview(attributesStackView)
+        attributesStackView.centerY(to: goalScorerLabel)
+        attributesStackView.leftToRight(of: goalScorerLabel, offset: 4)
+        attributesStackView.right(to: contentView, offset: 4, relation: .equalOrLess)
         
         contentView.addSubview(assistLabel)
         assistLabel.topToBottom(of: goalScorerLabel)

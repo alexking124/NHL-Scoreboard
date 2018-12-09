@@ -21,7 +21,6 @@ enum EventType: String, CaseIterable {
     case takeaway = "TAKEAWAY"
     case hit = "HIT"
     case stop = "STOP"
-    
 }
 
 class EventPlayer: Object {

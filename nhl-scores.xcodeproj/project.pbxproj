@@ -32,6 +32,7 @@
 		3983CBCD202FD71B00147386 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCC202FD71B00147386 /* Event.swift */; };
 		3983CBCF2045383300147386 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBCE2045383300147386 /* ReactiveSwift.framework */; };
 		3983CBD32045424300147386 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBD12045423700147386 /* Result.framework */; };
+		3995298F21BD938C0011B430 /* GoalAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995298E21BD938C0011B430 /* GoalAttributeView.swift */; };
 		399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BE4F5204B0C3C00311580 /* ReactiveExt.swift */; };
 		399BE4F9204B115900311580 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 399BE4F7204B114400311580 /* ReactiveCocoa.framework */; };
 		399BE4FD204CB7B800311580 /* GoalScoredView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BE4FC204CB7B800311580 /* GoalScoredView.swift */; };
@@ -123,6 +124,7 @@
 		3983CBCC202FD71B00147386 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3983CBCE2045383300147386 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = SOURCE_ROOT; };
 		3983CBD12045423700147386 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = SOURCE_ROOT; };
+		3995298E21BD938C0011B430 /* GoalAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAttributeView.swift; sourceTree = "<group>"; };
 		399BE4F5204B0C3C00311580 /* ReactiveExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveExt.swift; sourceTree = "<group>"; };
 		399BE4F7204B114400311580 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = SOURCE_ROOT; };
 		399BE4FC204CB7B800311580 /* GoalScoredView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalScoredView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				399BE4FC204CB7B800311580 /* GoalScoredView.swift */,
 				39A34E622054BFAB00CA2B14 /* GameDetailsViewController.swift */,
 				3917C1F521BC70D6006AFC12 /* GameDetailsTitleView.swift */,
+				3995298E21BD938C0011B430 /* GoalAttributeView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				39A34E652056128300CA2B14 /* UIImageViewExt.swift in Sources */,
 				39A83AA0208084DE00D59317 /* SeriesMatchupView.swift in Sources */,
 				3983CBCB202F7AD700147386 /* LineView.swift in Sources */,
+				3995298F21BD938C0011B430 /* GoalAttributeView.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 				39136D9E20261F5B00E0384E /* Record.swift in Sources */,
 				39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */,
