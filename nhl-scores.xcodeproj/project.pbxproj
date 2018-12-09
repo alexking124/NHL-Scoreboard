@@ -76,6 +76,8 @@
 		39D3D4AE2013A6E80077384E /* UINavigationControllerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */; };
 		39D3D4B02013DDAF0077384E /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4AF2013DDAF0077384E /* GameService.swift */; };
 		39D3D4B22015D0500077384E /* StandingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4B12015D0500077384E /* StandingsService.swift */; };
+		39D78F3421BDAB6F00E927E5 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D78F3321BDAB6F00E927E5 /* CardStackView.swift */; };
+		39D78F3621BDAE2300E927E5 /* UIStackViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */; };
 		731A7FBA2023708A00D75BCB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A7FB92023708A00D75BCB /* Player.swift */; };
 		73981D3F2049C3B700D636D8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73981D3E2049C3B700D636D8 /* LaunchScreenViewController.swift */; };
 		73981D512049C51600D636D8 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73981D502049C51600D636D8 /* RootNavigationController.swift */; };
@@ -171,6 +173,8 @@
 		39D3D4AD2013A6E80077384E /* UINavigationControllerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExt.swift; sourceTree = "<group>"; };
 		39D3D4AF2013DDAF0077384E /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		39D3D4B12015D0500077384E /* StandingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsService.swift; sourceTree = "<group>"; };
+		39D78F3321BDAB6F00E927E5 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
+		39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExt.swift; sourceTree = "<group>"; };
 		731A7FB92023708A00D75BCB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		73981D3E2049C3B700D636D8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		73981D502049C51600D636D8 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -224,6 +228,7 @@
 				39D3D4AC2013A6850077384E /* Extension */,
 				3983CBCA202F7AD700147386 /* LineView.swift */,
 				3917C1F721BC7643006AFC12 /* AspectRatioImageView.swift */,
+				39D78F3321BDAB6F00E927E5 /* CardStackView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 				3983CBC6202F78E100147386 /* UIScreenExt.swift */,
 				399BE4F5204B0C3C00311580 /* ReactiveExt.swift */,
 				39A34E642056128300CA2B14 /* UIImageViewExt.swift */,
+				39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -630,6 +636,7 @@
 				390F92ED202787100099DE94 /* StandingsCell.swift in Sources */,
 				390F01632071BCA400E5863E /* AsynchronousOperation.swift in Sources */,
 				390F92EF2027874E0099DE94 /* StandingsStatsView.swift in Sources */,
+				39D78F3421BDAB6F00E927E5 /* CardStackView.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */,
 				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
@@ -638,6 +645,7 @@
 				3917C1F821BC7643006AFC12 /* AspectRatioImageView.swift in Sources */,
 				39A34E652056128300CA2B14 /* UIImageViewExt.swift in Sources */,
 				39A83AA0208084DE00D59317 /* SeriesMatchupView.swift in Sources */,
+				39D78F3621BDAE2300E927E5 /* UIStackViewExt.swift in Sources */,
 				3983CBCB202F7AD700147386 /* LineView.swift in Sources */,
 				3995298F21BD938C0011B430 /* GoalAttributeView.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,

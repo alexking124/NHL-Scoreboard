@@ -29,7 +29,7 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var awayPowerPlayLabel: UILabel!
     @IBOutlet weak var homePowerPlayLabel: UILabel!
     
-    var notificationToken: NotificationToken? = nil
+    private var notificationToken: NotificationToken? = nil
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

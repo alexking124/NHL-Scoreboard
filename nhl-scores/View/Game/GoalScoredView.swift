@@ -13,18 +13,21 @@ import RealmSwift
 
 class GoalScoredView: UIView {
     
-    let eventID: String
-    lazy var event: Event = {
+    private let eventID: String
+    private let isHomeTeam: Bool
+    
+    private lazy var event: Event = {
         let realm = try! Realm()
         return realm.object(ofType: Event.self, forPrimaryKey: self.eventID) ?? Event()
     }()
     
-    lazy var scorer: EventPlayer? = {
+    private lazy var scorer: EventPlayer? = {
         return event.players.first { $0.playerType == "Scorer" }
     }()
     
-    init(eventID: String) {
+    init(eventID: String, isHomeTeam: Bool) {
         self.eventID = eventID
+        self.isHomeTeam = isHomeTeam
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setupViews()
@@ -35,13 +38,17 @@ class GoalScoredView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private lazy var contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 4
-        return view
+    private lazy var contentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: 2,
+                                               left: 4,
+                                               bottom: 2,
+                                               right: 4)
+        return stackView
     }()
+    
+    private lazy var goalStatsView = GoalStatsView(eventID: eventID, isHomeTeam: isHomeTeam)
     
     private lazy var playerImageView: UIImageView = {
         let imageView = UIImageView()
@@ -53,12 +60,58 @@ class GoalScoredView: UIView {
         return imageView
     }()
     
+}
+
+private extension GoalScoredView {
+    
+    func setupViews() {
+        addSubview(contentStackView)
+        contentStackView.edgesToSuperview()
+        
+//        if isHomeTeam {
+//            contentStackView.addArrangedSubview(goalStatsView)
+//            contentStackView.addArrangedSubview(playerImageView)
+//        } else {
+            contentStackView.addArrangedSubview(playerImageView)
+            contentStackView.addArrangedSubview(goalStatsView)
+//        }
+        
+        playerImageView.height(45)
+        playerImageView.width(to: playerImageView, heightAnchor)
+    }
+    
+}
+
+// MARK: - GoalStatsView
+
+private class GoalStatsView: UIView {
+    
+    private let eventID: String
+    private let isHomeTeam: Bool
+    
+    init(eventID: String, isHomeTeam: Bool) {
+        self.eventID = eventID
+        self.isHomeTeam = isHomeTeam
+        super.init(frame: .zero)
+        setupViews()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private lazy var event: Event = {
+        let realm = try! Realm()
+        return realm.object(ofType: Event.self, forPrimaryKey: self.eventID) ?? Event()
+    }()
+    
     private lazy var goalScorerLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        let playerName = scorer?.playerName ?? ""
-        let goalTotal = scorer?.seasonTotal ?? 0
+        let playerName = event.scorer?.playerName ?? ""
+        let goalTotal = event.scorer?.seasonTotal ?? 0
         label.text = "\(playerName) (\(goalTotal))"
         return label
     }()
@@ -124,41 +177,24 @@ class GoalScoredView: UIView {
         return label
     }()
     
-}
-
-private extension GoalScoredView {
-    
-    func setupViews() {
-        addSubview(contentView)
-        let contentInsets = TinyEdgeInsets(top: 4, left: 4, bottom: -4, right: -4)
-        contentView.edges(to: self, insets: contentInsets)
+    private func setupViews() {
+        addSubview(goalScorerLabel)
+        goalScorerLabel.top(to: self)
+        goalScorerLabel.left(to: self)
         
-        contentView.addSubview(playerImageView)
-        playerImageView.top(to: contentView, offset: 2)
-        playerImageView.left(to: contentView, offset: 4)
-        playerImageView.centerY(to: contentView)
-        playerImageView.width(to: playerImageView, heightAnchor)
-        playerImageView.height(45)
-        
-        contentView.addSubview(goalScorerLabel)
-        goalScorerLabel.top(to: contentView, offset: 2)
-        goalScorerLabel.leftToRight(of: playerImageView, offset: 4)
-        
-        contentView.addSubview(attributesStackView)
+        addSubview(attributesStackView)
         attributesStackView.centerY(to: goalScorerLabel)
         attributesStackView.leftToRight(of: goalScorerLabel, offset: 4)
-        attributesStackView.right(to: contentView, offset: 4, relation: .equalOrLess)
+        attributesStackView.right(to: self, relation: .equalOrLess)
         
-        contentView.addSubview(assistLabel)
+        addSubview(assistLabel)
         assistLabel.topToBottom(of: goalScorerLabel)
-        assistLabel.left(to: goalScorerLabel)
-        assistLabel.right(to: contentView, offset: 4, relation: .equalOrLess)
+        assistLabel.left(to: self)
+        assistLabel.right(to: self, relation: .equalOrLess)
         
-        contentView.addSubview(additionalStatsStackView)
+        addSubview(additionalStatsStackView)
         additionalStatsStackView.topToBottom(of: assistLabel, offset: 2, relation: .equalOrGreater)
-        additionalStatsStackView.left(to: assistLabel)
-        additionalStatsStackView.right(to: contentView, offset: -4)
-        additionalStatsStackView.bottom(to: contentView)
+        additionalStatsStackView.edgesToSuperview(excluding: [.top])
         
         additionalStatsStackView.addArrangedSubview(scoreLabel)
         additionalStatsStackView.addArrangedSubview(goalTimeLabel)

@@ -64,3 +64,11 @@ class Event: Object {
     }
     
 }
+
+extension Event {
+    
+    var scorer: EventPlayer? {
+        return players.first { $0.playerType == "Scorer" }
+    }
+    
+}

@@ -13,8 +13,8 @@ import RealmSwift
 
 class GameDetailsViewController: UIViewController {
     
-    let gameID: Int
-    lazy var game: Game = {
+    private let gameID: Int
+    private lazy var game: Game = {
         let realm = try! Realm()
         return realm.object(ofType: Game.self, forPrimaryKey: self.gameID) ?? Game()
     }()
@@ -41,10 +41,9 @@ class GameDetailsViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var goalsStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var goalsStackView: CardStackView = {
+        let stackView = CardStackView()
+        stackView.stackView.spacing = 3
         return stackView
     }()
     
@@ -88,11 +87,19 @@ private extension GameDetailsViewController {
     }
     
     func bindData() {
-        goalsStackView.arrangedSubviews.forEach { goalsStackView.removeArrangedSubview($0) }
-        game.gameEvents.forEach { event in
-            let goalView = GoalScoredView(eventID: event.eventID)
-            goalsStackView.addArrangedSubview(goalView)
+        goalsStackView.stackView.clearArrangedSubviews()
+        let goalViews = Array(game.gameEvents).map { event -> UIView in
+            let isHomeTeam = event.teamId == (game.homeTeam?.rawId ?? 0)
+            return GoalScoredView(eventID: event.eventID, isHomeTeam: isHomeTeam)
         }
+        
+        goalViews.enumerated().forEach { (index, view) in
+            goalsStackView.stackView.addArrangedSubview(view)
+            if index != goalViews.count - 1 {
+                goalsStackView.stackView.addArrangedSubview(HorizontalLineView())
+            }
+        }
+        
     }
     
 }

@@ -11,9 +11,9 @@ import RealmSwift
 
 class ScoreboardViewController: UITableViewController {
     
-    let date: Date
+    public let date: Date
     
-    var notificationToken: NotificationToken? = nil
+    private var notificationToken: NotificationToken? = nil
     private lazy var games: Results<Game> = {
         let realm = try! Realm()
         let statusSortDescriptor = SortDescriptor(keyPath: "sortStatus")
@@ -73,6 +73,11 @@ class ScoreboardViewController: UITableViewController {
         } else {
             GameService.updateFinalStats(onDate: date)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableView.refreshControl?.endRefreshing()
     }
     
 }
