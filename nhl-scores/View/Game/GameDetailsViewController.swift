@@ -43,7 +43,7 @@ class GameDetailsViewController: UIViewController {
     
     private lazy var goalsStackView: CardStackView = {
         let stackView = CardStackView()
-        stackView.stackView.spacing = 3
+        stackView.stackView.spacing = 2
         return stackView
     }()
     
@@ -65,8 +65,6 @@ class GameDetailsViewController: UIViewController {
                 assertionFailure("\(error)")
             }
         }
-        
-        GameService.fetchLiveStats(for: gameID).start()
         
         bindData()
     }

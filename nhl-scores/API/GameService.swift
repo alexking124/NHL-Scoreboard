@@ -352,7 +352,7 @@ class GameUpdateOperation: AsynchronousOperation {
     
     init(gameID: Int) {
         self.gameID = gameID
-        producer = GameService.fetchLinescore(for: gameID)
+        producer = GameService.fetchLiveStats(for: gameID)
         super.init()
     }
     

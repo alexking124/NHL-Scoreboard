@@ -41,9 +41,9 @@ class GoalScoredView: UIView {
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 2,
+        stackView.layoutMargins = UIEdgeInsets(top: 4,
                                                left: 4,
-                                               bottom: 2,
+                                               bottom: 4,
                                                right: 4)
         return stackView
     }()
