@@ -32,7 +32,11 @@ class GameDetailsViewController: UIViewController {
     private var notificationToken: NotificationToken?
     private var gameUpdateTimer: Timer?
     
-    private lazy var scrollView = UIScrollView()
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
     
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
