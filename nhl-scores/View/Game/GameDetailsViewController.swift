@@ -90,7 +90,7 @@ private extension GameDetailsViewController {
     
     func bindData() {
         goalsStackView.stackView.clearArrangedSubviews()
-        let goalViews = Array(game.gameEvents).map { event -> UIView in
+        let goalViews = Array(game.gameEvents).filter({ $0.eventType == .goal }).map { event -> UIView in
             let isHomeTeam = event.teamId == (game.homeTeam?.rawId ?? 0)
             return GoalScoredView(eventID: event.eventID, isHomeTeam: isHomeTeam)
         }

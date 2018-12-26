@@ -243,34 +243,39 @@ struct GameService {
     static func parseEvents(json eventsJson: [String: Any], gameID: Int) -> [Event] {
         var events: [Event] = []
         
-        guard let scoringPlayIndices = eventsJson["scoringPlays"] as? [Int],
-            let allPlaysJson = eventsJson["allPlays"] as? [[String: Any]] else {
+        guard
+            let scoringPlayIndices = eventsJson["scoringPlays"] as? [Int],
+            let penaltyPlayIndices = eventsJson["penaltyPlays"] as? [Int],
+            let allPlaysJson = eventsJson["allPlays"] as? [[String: Any]]
+        else {
                 return events
         }
         
         let realm = try! Realm()
-        scoringPlayIndices.forEach { scoreIndex in
-            let goalJson = allPlaysJson[scoreIndex]
+        let allPlays = scoringPlayIndices + penaltyPlayIndices
+        allPlays.forEach { eventIndex in
+            let eventJson = allPlaysJson[eventIndex]
             
-            guard let playersJson = goalJson["players"] as? [[String: Any]],
-                let resultJson = goalJson["result"] as? [String: Any],
-                let aboutJson = goalJson["about"] as? [String: Any],
-                let teamJson = goalJson["team"] as? [String: Any] else {
+            guard let playersJson = eventJson["players"] as? [[String: Any]],
+                let resultJson = eventJson["result"] as? [String: Any],
+                let aboutJson = eventJson["about"] as? [String: Any],
+                let teamJson = eventJson["team"] as? [String: Any] else {
                     return
             }
             
-            guard let strengthJson = resultJson["strength"] as? [String: String],
-                let goalsJson = aboutJson["goals"] as? [String: Int] else {
-                    return
-            }
+            let strengthJson = resultJson["strength"] as? [String: String]
+            let goalsJson = aboutJson["goals"] as? [String: Int]
             
-            let homeGoals = goalsJson["home"] ?? 0
-            let awayGoals = goalsJson["away"] ?? 0
-            let strengthCode = strengthJson["code"] ?? ""
+            let homeGoals = goalsJson?["home"] ?? 0
+            let awayGoals = goalsJson?["away"] ?? 0
+            let strengthCode = strengthJson?["code"] ?? ""
+            let description = resultJson["description"] as? String ?? ""
+            let penaltySeverity = resultJson["penaltySeverity"] as? String ?? ""
+            let penaltyMinutes = resultJson["penaltyMinutes"] as? Int ?? 0
             
             let eventType = resultJson["eventTypeId"] as? String ?? ""
             
-            let eventID = String(gameID) + String(format: "%04d", scoreIndex)
+            let eventID = String(gameID) + String(format: "%04d", eventIndex)
             let event: Event
             if let existingEvent = realm.object(ofType: Event.self, forPrimaryKey: eventID) {
                 event = existingEvent
@@ -306,11 +311,14 @@ struct GameService {
                 event.awayScore = awayGoals
                 event.strengthCode = strengthCode
                 event.rawType = eventType
+                event.eventDescription = description
                 event.secondaryType = resultJson["secondaryType"] as? String ?? ""
                 event.emptyNet = resultJson["emptyNet"] as? Bool ?? false
                 event.period = aboutJson["period"] as? Int ?? 0
                 event.periodString = aboutJson["ordinalNum"] as? String ?? ""
                 event.periodTimeRemaining = aboutJson["periodTime"] as? String ?? ""
+                event.penaltySeverity = penaltySeverity
+                event.penaltyMinutes = penaltyMinutes
                 event.teamId = teamJson["id"] as? Int ?? -1
                 event.players.removeAll()
                 event.players.append(objectsIn: players)

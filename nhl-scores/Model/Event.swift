@@ -46,6 +46,7 @@ class Event: Object {
     @objc dynamic var eventID: String = ""
     @objc dynamic var rawType: String = ""
     @objc dynamic var secondaryType: String = ""
+    @objc dynamic var eventDescription: String = ""
     @objc dynamic var strengthCode: String = ""
     @objc dynamic var emptyNet: Bool = false
     @objc dynamic var period: Int = 0
@@ -61,6 +62,10 @@ class Event: Object {
     
     override static func primaryKey() -> String? {
         return "eventID"
+    }
+    
+    var eventType: EventType {
+        return EventType(rawValue: rawType) ?? .unknown
     }
     
 }
