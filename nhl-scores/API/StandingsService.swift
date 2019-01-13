@@ -99,6 +99,7 @@ struct StandingsService {
                 
             }
             
+            completion()
         }
         task.resume()
     }

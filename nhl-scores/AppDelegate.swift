@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
         
-        UIApplication.shared.setMinimumBackgroundFetchInterval(600)
+        UIApplication.shared.setMinimumBackgroundFetchInterval(300)
         
         migrateRealm()
         
@@ -82,9 +82,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        GameService.updateLiveGames().startWithCompleted {
-            completionHandler(.newData)
-        }
+        GameService.updateLiveGames().startWithValues({ statuses in
+            print(statuses)
+            if statuses.isEmpty {
+                completionHandler(.noData)
+            } else {
+                completionHandler(.newData)
+            }
+        })
     }
 
 }

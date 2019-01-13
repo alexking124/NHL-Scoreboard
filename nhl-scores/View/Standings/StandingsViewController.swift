@@ -93,7 +93,9 @@ class StandingsViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         StandingsService.refreshStandings { [weak self] in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
     }
     

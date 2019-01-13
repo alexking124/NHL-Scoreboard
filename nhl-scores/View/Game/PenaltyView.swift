@@ -64,7 +64,8 @@ class PenaltyView: UIView {
     private lazy var penaltyDetailsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 11, weight: .light)
+        label.text = "\(event.periodTimeRemaining) \(event.periodString)  |  \(event.penaltyMinutes):00 \(event.penaltySeverity)"
         return label
     }()
     
@@ -87,7 +88,7 @@ private extension PenaltyView {
         
         addSubview(penaltyDetailsLabel)
         penaltyDetailsLabel.left(to: penaltyDescriptionLabel)
-        penaltyDetailsLabel.topToBottom(of: penaltyDescriptionLabel, offset: 4)
+        penaltyDetailsLabel.topToBottom(of: penaltyDescriptionLabel, offset: 2)
         penaltyDetailsLabel.right(to: penaltyDescriptionLabel)
         penaltyDetailsLabel.bottom(to: self, offset: -4, relation: .equalOrLess)
     }

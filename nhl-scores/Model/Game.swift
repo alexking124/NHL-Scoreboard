@@ -40,7 +40,7 @@ enum GameStatus: String {
 
 class Game: Object {
     
-    static let liveStatsVersion = 1
+    static let liveStatsVersion = 2
     
     @objc dynamic var gameID: Int = 0
     @objc dynamic var gameDay: String = ""
