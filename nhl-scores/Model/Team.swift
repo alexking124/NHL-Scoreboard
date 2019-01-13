@@ -31,7 +31,7 @@ class Team: Object {
     }
     
     var logo: UIImage? {
-        return UIImage(named: "\(id)")
+        return UIImage.logo(for: id)
     }
     
 }

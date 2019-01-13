@@ -42,10 +42,17 @@ class GameDetailsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.spacing = 20
         return stackView
     }()
     
-    private lazy var goalsStackView: CardStackView = {
+    private lazy var goalsStackContainer: CardStackView = {
+        let stackView = CardStackView()
+        stackView.stackView.spacing = 2
+        return stackView
+    }()
+    
+    private lazy var penaltiesStackContainer: CardStackView = {
         let stackView = CardStackView()
         stackView.stackView.spacing = 2
         return stackView
@@ -85,20 +92,39 @@ private extension GameDetailsViewController {
         contentStackView.edgesToSuperview()
         contentStackView.width(to: scrollView)
         
-        contentStackView.addArrangedSubview(goalsStackView)
+        contentStackView.addArrangedSubview(goalsStackContainer)
+        contentStackView.addArrangedSubview(penaltiesStackContainer)
     }
     
     func bindData() {
-        goalsStackView.stackView.clearArrangedSubviews()
-        let goalViews = Array(game.gameEvents).filter({ $0.eventType == .goal }).map { event -> UIView in
+        goalsStackContainer.stackView.clearArrangedSubviews()
+//        var goalViews = [UIView]()
+//        var penaltyViews = [UIView]()
+        let eventsArray = Array(game.gameEvents)
+        let goalViews = eventsArray.filter({ $0.eventType == .goal }).map { event -> UIView in
             let isHomeTeam = event.teamId == (game.homeTeam?.rawId ?? 0)
             return GoalScoredView(eventID: event.eventID, isHomeTeam: isHomeTeam)
         }
         
         goalViews.enumerated().forEach { (index, view) in
-            goalsStackView.stackView.addArrangedSubview(view)
+            goalsStackContainer.stackView.addArrangedSubview(view)
             if index != goalViews.count - 1 {
-                goalsStackView.stackView.addArrangedSubview(HorizontalLineView())
+                goalsStackContainer.stackView.addArrangedSubview(HorizontalLineView())
+            }
+        }
+        
+        let penaltyViews = eventsArray.filter({ $0.eventType == .penalty}).map { event -> UIView in
+            return PenaltyView(eventID: event.eventID)
+        }
+        
+        penaltiesStackContainer.stackView.clearArrangedSubviews()
+        penaltyViews.enumerated().forEach { (index, penaltyView) in
+            if index % 2 == 0 {
+                penaltyView.alpha = 0.7
+            }
+            penaltiesStackContainer.stackView.addArrangedSubview(penaltyView)
+            if index != penaltyViews.count - 1 {
+                penaltiesStackContainer.stackView.addArrangedSubview(HorizontalLineView())
             }
         }
         

@@ -27,6 +27,8 @@
 		39447043200DA49B008E402B /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 39447042200DA49B008E402B /* Cartfile */; };
 		39447047200DA71D008E402B /* TinyConstraints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39447046200DA71D008E402B /* TinyConstraints.framework */; };
 		3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3944704C200F2E9B008E402B /* ScoreboardCell.xib */; };
+		39537E1521EAAAAD00344FDB /* PenaltyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39537E1421EAAAAD00344FDB /* PenaltyView.swift */; };
+		39537E1721EAAD1100344FDB /* UIImageExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39537E1621EAAD1100344FDB /* UIImageExt.swift */; };
 		3983CBC7202F78E100147386 /* UIScreenExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBC6202F78E100147386 /* UIScreenExt.swift */; };
 		3983CBCB202F7AD700147386 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCA202F7AD700147386 /* LineView.swift */; };
 		3983CBCD202FD71B00147386 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCC202FD71B00147386 /* Event.swift */; };
@@ -121,6 +123,8 @@
 		39447042200DA49B008E402B /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = SOURCE_ROOT; };
 		39447046200DA71D008E402B /* TinyConstraints.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TinyConstraints.framework; path = Carthage/Build/iOS/TinyConstraints.framework; sourceTree = SOURCE_ROOT; };
 		3944704C200F2E9B008E402B /* ScoreboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreboardCell.xib; sourceTree = "<group>"; };
+		39537E1421EAAAAD00344FDB /* PenaltyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PenaltyView.swift; sourceTree = "<group>"; };
+		39537E1621EAAD1100344FDB /* UIImageExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExt.swift; sourceTree = "<group>"; };
 		3983CBC6202F78E100147386 /* UIScreenExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenExt.swift; sourceTree = "<group>"; };
 		3983CBCA202F7AD700147386 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3983CBCC202FD71B00147386 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 				39A34E622054BFAB00CA2B14 /* GameDetailsViewController.swift */,
 				3917C1F521BC70D6006AFC12 /* GameDetailsTitleView.swift */,
 				3995298E21BD938C0011B430 /* GoalAttributeView.swift */,
+				39537E1421EAAAAD00344FDB /* PenaltyView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 				399BE4F5204B0C3C00311580 /* ReactiveExt.swift */,
 				39A34E642056128300CA2B14 /* UIImageViewExt.swift */,
 				39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */,
+				39537E1621EAAD1100344FDB /* UIImageExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -623,6 +629,7 @@
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
 				39A34E632054BFAB00CA2B14 /* GameDetailsViewController.swift in Sources */,
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
+				39537E1721EAAD1100344FDB /* UIImageExt.swift in Sources */,
 				731A7FBA2023708A00D75BCB /* Player.swift in Sources */,
 				39D3D4B02013DDAF0077384E /* GameService.swift in Sources */,
 				39136D99201CF23C00E0384E /* StandingsViewController.swift in Sources */,
@@ -645,6 +652,7 @@
 				3917C1F821BC7643006AFC12 /* AspectRatioImageView.swift in Sources */,
 				39A34E652056128300CA2B14 /* UIImageViewExt.swift in Sources */,
 				39A83AA0208084DE00D59317 /* SeriesMatchupView.swift in Sources */,
+				39537E1521EAAAAD00344FDB /* PenaltyView.swift in Sources */,
 				39D78F3621BDAE2300E927E5 /* UIStackViewExt.swift in Sources */,
 				3983CBCB202F7AD700147386 /* LineView.swift in Sources */,
 				3995298F21BD938C0011B430 /* GoalAttributeView.swift in Sources */,
