@@ -119,9 +119,6 @@ private extension GameDetailsViewController {
         
         penaltiesStackContainer.stackView.clearArrangedSubviews()
         penaltyViews.enumerated().forEach { (index, penaltyView) in
-            if index % 2 == 0 {
-                penaltyView.alpha = 0.7
-            }
             penaltiesStackContainer.stackView.addArrangedSubview(penaltyView)
             if index != penaltyViews.count - 1 {
                 penaltiesStackContainer.stackView.addArrangedSubview(HorizontalLineView())
