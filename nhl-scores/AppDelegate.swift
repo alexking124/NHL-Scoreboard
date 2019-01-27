@@ -54,6 +54,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             teamsExistAction()
         }
         
+        if !UserDefaults.standard.bool(forKey: "AllStarTeamsAdded") {
+            let atlanticTeam = Team()
+            atlanticTeam.rawId = 87
+            
+            let metroTeam = Team()
+            metroTeam.rawId = 88
+            
+            let centralTeam = Team()
+            centralTeam.rawId = 89
+            
+            let pacificTeam = Team()
+            pacificTeam.rawId = 90
+            
+            do { 
+                try realm.write {
+                    realm.add(atlanticTeam)
+                    realm.add(metroTeam)
+                    realm.add(centralTeam)
+                    realm.add(pacificTeam)
+                }
+                UserDefaults.standard.set(true, forKey: "AllStarTeamsAdded")
+            } catch {}
+            
+            
+        }
+        
         return true
     }
 

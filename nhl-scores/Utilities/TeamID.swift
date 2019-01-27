@@ -41,4 +41,8 @@ enum NHLTeamID: Int {
     case wpg = 52
     case ari = 53
     case vgk = 54
+    case atlantic = 87
+    case metropolitan = 88
+    case central = 89
+    case pacific = 90
 }
