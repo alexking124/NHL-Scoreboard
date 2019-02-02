@@ -42,7 +42,6 @@ class GameDetailsViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = 20
         return stackView
     }()
     
