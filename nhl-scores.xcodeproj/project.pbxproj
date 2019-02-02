@@ -347,11 +347,10 @@
 		399BE4FB204CB79A00311580 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				399BE4FC204CB7B800311580 /* GoalScoredView.swift */,
+				39B309B322065250003C6EE3 /* Penalty View */,
+				39B309B22206523D003C6EE3 /* Goal View */,
 				39A34E622054BFAB00CA2B14 /* GameDetailsViewController.swift */,
 				3917C1F521BC70D6006AFC12 /* GameDetailsTitleView.swift */,
-				3995298E21BD938C0011B430 /* GoalAttributeView.swift */,
-				39537E1421EAAAAD00344FDB /* PenaltyView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -425,6 +424,23 @@
 				39A83ADC20826F1100D59317 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		39B309B22206523D003C6EE3 /* Goal View */ = {
+			isa = PBXGroup;
+			children = (
+				3995298E21BD938C0011B430 /* GoalAttributeView.swift */,
+				399BE4FC204CB7B800311580 /* GoalScoredView.swift */,
+			);
+			path = "Goal View";
+			sourceTree = "<group>";
+		};
+		39B309B322065250003C6EE3 /* Penalty View */ = {
+			isa = PBXGroup;
+			children = (
+				39537E1421EAAAAD00344FDB /* PenaltyView.swift */,
+			);
+			path = "Penalty View";
 			sourceTree = "<group>";
 		};
 		39D3D49420108C000077384E /* Resources */ = {
