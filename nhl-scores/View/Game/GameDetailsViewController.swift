@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import TinyConstraints
 import RealmSwift
+import AVKit
 
 class GameDetailsViewController: UIViewController {
     
@@ -81,6 +82,22 @@ class GameDetailsViewController: UIViewController {
         }
         
         bindData()
+        
+        reactive.viewDidAppear.take(first: 1).observeCompleted { [weak self] in
+            guard let self = self else { return }
+            GameMediaService.updateMediaFor(gameID: self.gameID)
+//            let videoVC = AVPlayerViewController()
+//            videoVC.player = AVPlayer(url: URL(string: "http://md-akc.med.nhl.com/hls/nhl/2019/02/02/e4217d73-4b97-4024-9ca5-bb357691a837/1549143888701/master_tablet60.m3u8")!)
+//            self?.present(videoVC, animated: true) {
+//                do {
+//                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+//                }
+//                catch {
+//                    print("Setting category to AVAudioSessionCategoryPlayback failed.")
+//                }
+//                videoVC.player?.play()
+//            }
+        }
     }
     
 }
@@ -99,6 +116,28 @@ private extension GameDetailsViewController {
         contentStackView.addArrangedSubview(goalsStackContainer)
         contentStackView.addArrangedSubview(penaltiesHeader)
         contentStackView.addArrangedSubview(penaltiesStackContainer)
+        
+        let button = UIButton()
+        button.setTitle("Extended Highlights", for: .normal)
+        button.reactive.controlEvents(.touchUpInside).observeValues { [weak self] _ in
+            guard let self = self else { return }
+            
+            guard let url = self.game.media?.extendedHighlightsMedia?.videoURL else { return }
+            
+            let videoVC = AVPlayerViewController()
+            videoVC.player = AVPlayer(url: URL(string: url)!)
+            self.present(videoVC, animated: true) {
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+                }
+                catch {
+                    print("Setting category to AVAudioSessionCategoryPlayback failed.")
+                }
+                videoVC.player?.play()
+            }
+        }
+
+        contentStackView.addArrangedSubview(button)
     }
     
     func bindData() {

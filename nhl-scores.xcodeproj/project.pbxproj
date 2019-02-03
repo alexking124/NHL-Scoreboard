@@ -67,6 +67,10 @@
 		39A83AE720826FCE00D59317 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A83AE620826FCE00D59317 /* StoreKit.framework */; };
 		39A83AE92082725200D59317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39A83AE82082725200D59317 /* GoogleService-Info.plist */; };
 		39B309B722065E19003C6EE3 /* GameSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */; };
+		39B309B92206881D003C6EE3 /* GameMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309B82206881D003C6EE3 /* GameMedia.swift */; };
+		39B309BB2206CE41003C6EE3 /* VideoMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309BA2206CE41003C6EE3 /* VideoMedia.swift */; };
+		39B309BD2206D412003C6EE3 /* GameMediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309BC2206D412003C6EE3 /* GameMediaService.swift */; };
+		39B309BF2206D882003C6EE3 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B309BE2206D881003C6EE3 /* SwiftyJSON.framework */; };
 		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
 		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
 		39D3D49320108B3E0077384E /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D49220108B3E0077384E /* Team.swift */; };
@@ -166,6 +170,10 @@
 		39A83AE620826FCE00D59317 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		39A83AE82082725200D59317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSectionHeaderView.swift; sourceTree = "<group>"; };
+		39B309B82206881D003C6EE3 /* GameMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMedia.swift; sourceTree = "<group>"; };
+		39B309BA2206CE41003C6EE3 /* VideoMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMedia.swift; sourceTree = "<group>"; };
+		39B309BC2206D412003C6EE3 /* GameMediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMediaService.swift; sourceTree = "<group>"; };
+		39B309BE2206D881003C6EE3 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 				39A83AD920826D4300D59317 /* Fabric.framework in Frameworks */,
 				39A83AAA2082692000D59317 /* FirebaseAnalytics.framework in Frameworks */,
 				39A83ABA208269C000D59317 /* Protobuf.framework in Frameworks */,
+				39B309BF2206D882003C6EE3 /* SwiftyJSON.framework in Frameworks */,
 				399BE4F9204B115900311580 /* ReactiveCocoa.framework in Frameworks */,
 				39A83AAC2082692000D59317 /* FirebaseInstanceID.framework in Frameworks */,
 				39A83AB7208269C000D59317 /* FirebaseMethodSwizzler.framework in Frameworks */,
@@ -332,6 +341,7 @@
 		39447045200DA700008E402B /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
+				39B309BE2206D881003C6EE3 /* SwiftyJSON.framework */,
 				39A34E6620562E9100CA2B14 /* Haneke.framework */,
 				399BE4F7204B114400311580 /* ReactiveCocoa.framework */,
 				3983CBD12045423700147386 /* Result.framework */,
@@ -477,6 +487,7 @@
 				39D3D4A7201324400077384E /* TeamService.swift */,
 				39D3D4AF2013DDAF0077384E /* GameService.swift */,
 				39D3D4B12015D0500077384E /* StandingsService.swift */,
+				39B309BC2206D412003C6EE3 /* GameMediaService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -490,6 +501,8 @@
 				731A7FB92023708A00D75BCB /* Player.swift */,
 				39136D9D20261F5B00E0384E /* Record.swift */,
 				3983CBCC202FD71B00147386 /* Event.swift */,
+				39B309B82206881D003C6EE3 /* GameMedia.swift */,
+				39B309BA2206CE41003C6EE3 /* VideoMedia.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -687,14 +700,17 @@
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
 				3917C1F821BC7643006AFC12 /* AspectRatioImageView.swift in Sources */,
 				39A34E652056128300CA2B14 /* UIImageViewExt.swift in Sources */,
+				39B309BD2206D412003C6EE3 /* GameMediaService.swift in Sources */,
 				39A83AA0208084DE00D59317 /* SeriesMatchupView.swift in Sources */,
 				39537E1521EAAAAD00344FDB /* PenaltyView.swift in Sources */,
 				39D78F3621BDAE2300E927E5 /* UIStackViewExt.swift in Sources */,
 				3983CBCB202F7AD700147386 /* LineView.swift in Sources */,
+				39B309BB2206CE41003C6EE3 /* VideoMedia.swift in Sources */,
 				3995298F21BD938C0011B430 /* GoalAttributeView.swift in Sources */,
 				3944703E200C232E008E402B /* ScoreboardViewController.swift in Sources */,
 				39136D9E20261F5B00E0384E /* Record.swift in Sources */,
 				39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */,
+				39B309B92206881D003C6EE3 /* GameMedia.swift in Sources */,
 				3983CBCD202FD71B00147386 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

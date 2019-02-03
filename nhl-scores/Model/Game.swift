@@ -64,6 +64,7 @@ class Game: Object {
     @objc dynamic var seriesGameNumber: Int = 0
     
     let gameEvents = List<Event>()
+    @objc dynamic var media: GameMedia?
     
     @objc dynamic var finalLiveStatsVersion: Int = 0
     
