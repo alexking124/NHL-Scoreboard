@@ -45,11 +45,15 @@ class GameDetailsViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var goalsHeader = GameSectionHeaderView(title: "Goals")
+    
     private lazy var goalsStackContainer: CardStackView = {
         let stackView = CardStackView()
         stackView.stackView.spacing = 2
         return stackView
     }()
+    
+    private lazy var penaltiesHeader = GameSectionHeaderView(title: "Penalties")
     
     private lazy var penaltiesStackContainer: CardStackView = {
         let stackView = CardStackView()
@@ -91,7 +95,9 @@ private extension GameDetailsViewController {
         contentStackView.edgesToSuperview()
         contentStackView.width(to: scrollView)
         
+        contentStackView.addArrangedSubview(goalsHeader)
         contentStackView.addArrangedSubview(goalsStackContainer)
+        contentStackView.addArrangedSubview(penaltiesHeader)
         contentStackView.addArrangedSubview(penaltiesStackContainer)
     }
     

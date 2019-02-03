@@ -66,6 +66,7 @@
 		39A83AE520826FAA00D59317 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A83AE420826FAA00D59317 /* SystemConfiguration.framework */; };
 		39A83AE720826FCE00D59317 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A83AE620826FCE00D59317 /* StoreKit.framework */; };
 		39A83AE92082725200D59317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39A83AE82082725200D59317 /* GoogleService-Info.plist */; };
+		39B309B722065E19003C6EE3 /* GameSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */; };
 		39D3D48E20107A7B0077384E /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39D3D48C20107A6F0077384E /* SwiftDate.framework */; };
 		39D3D491201083E80077384E /* ScoreboardPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D490201083E80077384E /* ScoreboardPageViewController.swift */; };
 		39D3D49320108B3E0077384E /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D49220108B3E0077384E /* Team.swift */; };
@@ -164,6 +165,7 @@
 		39A83AE420826FAA00D59317 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		39A83AE620826FCE00D59317 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		39A83AE82082725200D59317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSectionHeaderView.swift; sourceTree = "<group>"; };
 		39D3D48C20107A6F0077384E /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = SOURCE_ROOT; };
 		39D3D490201083E80077384E /* ScoreboardPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardPageViewController.swift; sourceTree = "<group>"; };
 		39D3D49220108B3E0077384E /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -347,6 +349,8 @@
 		399BE4FB204CB79A00311580 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				39B309B522065285003C6EE3 /* Media */,
+				39B309B422065278003C6EE3 /* Header */,
 				39B309B322065250003C6EE3 /* Penalty View */,
 				39B309B22206523D003C6EE3 /* Goal View */,
 				39A34E622054BFAB00CA2B14 /* GameDetailsViewController.swift */,
@@ -441,6 +445,21 @@
 				39537E1421EAAAAD00344FDB /* PenaltyView.swift */,
 			);
 			path = "Penalty View";
+			sourceTree = "<group>";
+		};
+		39B309B422065278003C6EE3 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		39B309B522065285003C6EE3 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Media;
 			sourceTree = "<group>";
 		};
 		39D3D49420108C000077384E /* Resources */ = {
@@ -662,6 +681,7 @@
 				39D78F3421BDAB6F00E927E5 /* CardStackView.swift in Sources */,
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */,
+				39B309B722065E19003C6EE3 /* GameSectionHeaderView.swift in Sources */,
 				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
 				399BE4FD204CB7B800311580 /* GoalScoredView.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,
