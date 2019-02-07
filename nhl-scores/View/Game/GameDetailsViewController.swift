@@ -62,6 +62,11 @@ class GameDetailsViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var mediaStackView: UIStackView = {
+        let stackView = UIStackView()
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.titleView = GameDetailsTitleView(homeLogo: game.homeTeam?.logo, awayLogo: game.awayTeam?.logo)
@@ -86,17 +91,6 @@ class GameDetailsViewController: UIViewController {
         reactive.viewDidAppear.take(first: 1).observeCompleted { [weak self] in
             guard let self = self else { return }
             GameMediaService.updateMediaFor(gameID: self.gameID)
-//            let videoVC = AVPlayerViewController()
-//            videoVC.player = AVPlayer(url: URL(string: "http://md-akc.med.nhl.com/hls/nhl/2019/02/02/e4217d73-4b97-4024-9ca5-bb357691a837/1549143888701/master_tablet60.m3u8")!)
-//            self?.present(videoVC, animated: true) {
-//                do {
-//                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-//                }
-//                catch {
-//                    print("Setting category to AVAudioSessionCategoryPlayback failed.")
-//                }
-//                videoVC.player?.play()
-//            }
         }
     }
     
@@ -116,28 +110,7 @@ private extension GameDetailsViewController {
         contentStackView.addArrangedSubview(goalsStackContainer)
         contentStackView.addArrangedSubview(penaltiesHeader)
         contentStackView.addArrangedSubview(penaltiesStackContainer)
-        
-        let button = UIButton()
-        button.setTitle("Extended Highlights", for: .normal)
-        button.reactive.controlEvents(.touchUpInside).observeValues { [weak self] _ in
-            guard let self = self else { return }
-            
-            guard let url = self.game.media?.extendedHighlightsMedia?.videoURL else { return }
-            
-            let videoVC = AVPlayerViewController()
-            videoVC.player = AVPlayer(url: URL(string: url)!)
-            self.present(videoVC, animated: true) {
-                do {
-                    try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-                }
-                catch {
-                    print("Setting category to AVAudioSessionCategoryPlayback failed.")
-                }
-                videoVC.player?.play()
-            }
-        }
-
-        contentStackView.addArrangedSubview(button)
+        contentStackView.addArrangedSubview(mediaStackView)
     }
     
     func bindData() {
@@ -169,6 +142,28 @@ private extension GameDetailsViewController {
             }
         }
         
+        mediaStackView.clearArrangedSubviews()
+        let media = [game.media?.gameRecapMedia, game.media?.extendedHighlightsMedia]
+        media.compactMap({ $0 }).forEach { media in
+            let mediaView = GameVideoMediaView(videoMedia: media, tapClosure: { [weak self] url in
+                self?.openMedia(url: url)
+            })
+            mediaStackView.addArrangedSubview(mediaView)
+        }
+    }
+    
+    func openMedia(url: URL) {
+        let videoVC = AVPlayerViewController()
+        videoVC.player = AVPlayer(url: url)
+        self.present(videoVC, animated: true) {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            }
+            catch {
+                print("Setting category to AVAudioSessionCategoryPlayback failed.")
+            }
+            videoVC.player?.play()
+        }
     }
     
 }

@@ -14,7 +14,6 @@ class CardStackView: UIView {
     
     private enum Constants {
         static let shadowOffset = CGSize(width: 0, height: 2)
-        static let shadowRadius: CGFloat = 4
         static let shadowOpacity: Float = 0.25
         static let contentInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
     }
@@ -31,11 +30,7 @@ class CardStackView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = Constants.shadowOpacity
-        view.layer.shadowOffset = Constants.shadowOffset
-        view.layer.cornerRadius = 5
+        view.applyCardStyle()
         return view
     }()
     

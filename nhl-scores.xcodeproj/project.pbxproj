@@ -85,6 +85,8 @@
 		39D3D4B22015D0500077384E /* StandingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D3D4B12015D0500077384E /* StandingsService.swift */; };
 		39D78F3421BDAB6F00E927E5 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D78F3321BDAB6F00E927E5 /* CardStackView.swift */; };
 		39D78F3621BDAE2300E927E5 /* UIStackViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */; };
+		39F9B77D220BE9340072F5A7 /* GameVideoMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F9B77C220BE9340072F5A7 /* GameVideoMediaView.swift */; };
+		39F9B77F220BEBDF0072F5A7 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F9B77E220BEBDF0072F5A7 /* UIViewExt.swift */; };
 		731A7FBA2023708A00D75BCB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A7FB92023708A00D75BCB /* Player.swift */; };
 		73981D3F2049C3B700D636D8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73981D3E2049C3B700D636D8 /* LaunchScreenViewController.swift */; };
 		73981D512049C51600D636D8 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73981D502049C51600D636D8 /* RootNavigationController.swift */; };
@@ -189,6 +191,8 @@
 		39D3D4B12015D0500077384E /* StandingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsService.swift; sourceTree = "<group>"; };
 		39D78F3321BDAB6F00E927E5 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExt.swift; sourceTree = "<group>"; };
+		39F9B77C220BE9340072F5A7 /* GameVideoMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVideoMediaView.swift; sourceTree = "<group>"; };
+		39F9B77E220BEBDF0072F5A7 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		731A7FB92023708A00D75BCB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		73981D3E2049C3B700D636D8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		73981D502049C51600D636D8 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -468,6 +472,7 @@
 		39B309B522065285003C6EE3 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				39F9B77C220BE9340072F5A7 /* GameVideoMediaView.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				39A34E642056128300CA2B14 /* UIImageViewExt.swift */,
 				39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */,
 				39537E1621EAAD1100344FDB /* UIImageExt.swift */,
+				39F9B77E220BEBDF0072F5A7 /* UIViewExt.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -676,6 +682,7 @@
 				3944703A200C2244008E402B /* ScoreboardCell.swift in Sources */,
 				39D3D4A220130E690077384E /* Game.swift in Sources */,
 				39A34E632054BFAB00CA2B14 /* GameDetailsViewController.swift in Sources */,
+				39F9B77D220BE9340072F5A7 /* GameVideoMediaView.swift in Sources */,
 				39D3D4A8201324400077384E /* TeamService.swift in Sources */,
 				39537E1721EAAD1100344FDB /* UIImageExt.swift in Sources */,
 				731A7FBA2023708A00D75BCB /* Player.swift in Sources */,
@@ -695,6 +702,7 @@
 				39447028200C21DA008E402B /* AppDelegate.swift in Sources */,
 				399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */,
 				39B309B722065E19003C6EE3 /* GameSectionHeaderView.swift in Sources */,
+				39F9B77F220BEBDF0072F5A7 /* UIViewExt.swift in Sources */,
 				39136DA020262B3F00E0384E /* UIColorExt.swift in Sources */,
 				399BE4FD204CB7B800311580 /* GoalScoredView.swift in Sources */,
 				39447040200C2E4A008E402B /* Score.swift in Sources */,

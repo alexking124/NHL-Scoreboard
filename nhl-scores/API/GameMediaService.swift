@@ -45,6 +45,16 @@ struct GameMediaService {
                 extendedHighlightsMedia = media
             }
             
+            var recapMedia: VideoMedia?
+            if let videoHighlights = epgJSON.first(where: { $0["title"].stringValue == "Recap" }),
+                let items = videoHighlights["items"].arrayValue.first,
+                let videoURL = items["playbacks"].arrayValue.first(where: { $0["name"] == "HTTP_CLOUD_TABLET_60" })?["url"].string {
+                let media = VideoMedia()
+                media.thumbnailImageURL = items["image"]["cuts"]["768x432"]["src"].string
+                media.videoURL = videoURL
+                recapMedia = media
+            }
+            
             guard let game = realm.object(ofType: Game.self, forPrimaryKey: gameID) else {
                 print("No game found")
                 return
@@ -53,7 +63,9 @@ struct GameMediaService {
             let media = game.media ?? GameMedia()
             try? realm.write {
                 extendedHighlightsMedia.flatMap { realm.add($0, update: true) }
+                recapMedia.flatMap { realm.add($0, update: true) }
                 media.extendedHighlightsMedia = extendedHighlightsMedia
+                media.gameRecapMedia = recapMedia
                 game.media = media
             }
             
