@@ -62,6 +62,13 @@ class GameDetailsViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var mediaScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.alwaysBounceHorizontal = true
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    
     private lazy var mediaStackView: UIStackView = {
         let stackView = UIStackView()
         return stackView
@@ -110,7 +117,11 @@ private extension GameDetailsViewController {
         contentStackView.addArrangedSubview(goalsStackContainer)
         contentStackView.addArrangedSubview(penaltiesHeader)
         contentStackView.addArrangedSubview(penaltiesStackContainer)
-        contentStackView.addArrangedSubview(mediaStackView)
+        contentStackView.addArrangedSubview(mediaScrollView)
+        
+        mediaScrollView.addSubview(mediaStackView)
+        mediaStackView.edgesToSuperview()
+        mediaStackView.height(to: mediaScrollView)
     }
     
     func bindData() {
