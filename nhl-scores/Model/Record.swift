@@ -22,6 +22,7 @@ class Record: Object {
     @objc dynamic var goalsFor: Int = 0
     @objc dynamic var goalsAgainst: Int = 0
     @objc dynamic var streak: String = ""
+    @objc dynamic var last10: String = ""
     
     @objc dynamic var leagueRank: Int = 0
     @objc dynamic var conferenceRank: Int = 0

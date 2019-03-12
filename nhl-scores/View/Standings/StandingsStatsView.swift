@@ -14,10 +14,6 @@ import Result
 
 class StandingsStatsView: UIView {
     
-    private enum Constants {
-        static let itemWidth: CGFloat = 38
-    }
-    
     private enum Stats: String, CaseIterable {
         case points = "PTS"
         case gamesPlayed = "GP"
@@ -27,6 +23,7 @@ class StandingsStatsView: UIView {
         case row = "ROW"
         case goalDifferential = "+/-"
         case streak = "STRK"
+        case last10 = "LAST 10"
         
         func value(team: Team) -> String {
             switch self {
@@ -45,7 +42,18 @@ class StandingsStatsView: UIView {
             case .goalDifferential:
                 return "\((team.record?.goalsFor ?? 0) - (team.record?.goalsAgainst ?? 0))"
             case .streak:
-                return "\(team.record?.streak ?? "")"
+                return team.record?.streak ?? ""
+            case .last10:
+                return team.record?.last10 ?? ""
+            }
+        }
+        
+        var itemWidth: CGFloat {
+            switch self {
+            case .last10:
+                return 70
+            default:
+                return 38
             }
         }
     }
@@ -62,7 +70,7 @@ class StandingsStatsView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.distribution = .equalCentering
+        stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.setContentHuggingPriority(.defaultLow, for: .vertical)
         return stackView
@@ -77,7 +85,7 @@ class StandingsStatsView: UIView {
             label.translatesAutoresizingMaskIntoConstraints = false
             label.setContentHuggingPriority(.defaultLow, for: .vertical)
             label.text = stat.rawValue
-            label.width(Constants.itemWidth)
+            label.width(stat.itemWidth)
             labels.append(label)
         }
         return labels
@@ -99,12 +107,9 @@ class StandingsStatsView: UIView {
     }
     
     func setTeam(_ team: Team) {
-        stackView.arrangedSubviews.forEach {
-            $0.removeFromSuperview()
-        }
+        assert(statLabels.count == Stats.allCases.count)
         
-        Stats.allCases.enumerated().forEach { index, stat in
-            let label = statLabels[index]
+        zip(statLabels, Stats.allCases).forEach { (label, stat) in
             label.text = stat.value(team: team)
             if stat == .goalDifferential,
                 let differential = Int(stat.value(team: team)) {
@@ -117,19 +122,12 @@ class StandingsStatsView: UIView {
                     label.textColor = .black
                 }
             }
-            stackView.addArrangedSubview(label)
         }
     }
     
     func setupAsHeader() {
-        stackView.arrangedSubviews.forEach {
-            $0.removeFromSuperview()
-        }
-        
-        Stats.allCases.enumerated().forEach { index, stat in
-            let label = statLabels[index]
-            label.font = UIFont.systemFont(ofSize: 12)
-            stackView.addArrangedSubview(label)
+        statLabels.forEach {
+            $0.font = UIFont.systemFont(ofSize: 12)
         }
     }
 }
@@ -143,6 +141,8 @@ private extension StandingsStatsView {
         scrollView.addSubview(stackView)
         stackView.edges(to: scrollView, insets: TinyEdgeInsets(top: 0, left: 0, bottom: 0, right: -5))
         stackView.height(to: scrollView)
+        
+        statLabels.forEach { stackView.addArrangedSubview($0) }
     }
     
 }

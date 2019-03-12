@@ -8,35 +8,42 @@
 
 import Foundation
 import RealmSwift
+import SwiftyJSON
 
 struct StandingsService {
     
     static func refreshStandings(_ completion: @escaping (() -> Void)) {
-        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/standings/wildCardWithLeaders") else {
+        guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/standings/wildCardWithLeaders?hydrate=record(overall)") else {
             return
         }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data,
-                let json = try? JSONSerialization.jsonObject(with: data, options: []),
-                let dictionary = json as? [String: Any] else {
-                    print("Error reading json")
-                    return
+            guard let data = data else {
+                print("No Standings data")
+                return
             }
             
-            guard let divisionRecords = dictionary["records"] as? [[String: Any]] else {
+            let json: JSON
+            do {
+                json = try JSON(data: data)
+            } catch {
+                print(error)
+                return
+            }
+            
+            guard let divisionRecords = json["records"].array else {
                 return
             }
             
             let realm = try! Realm()
             for divisionJson in divisionRecords {
                 
-                guard let divisionTeamsJson = divisionJson["teamRecords"] as? [[String: Any]] else {
+                guard let divisionTeamsJson = divisionJson["teamRecords"].array else {
                     continue
                 }
                 
                 for teamRecordJson in divisionTeamsJson {
-                    guard let teamInfo = teamRecordJson["team"] as? [String: Any],
-                        let leagueRecord = teamRecordJson["leagueRecord"] as? [String: Any] else {
+                    guard let teamInfo = teamRecordJson["team"].dictionaryObject,
+                        let leagueRecord = teamRecordJson["leagueRecord"].dictionaryObject else {
                             continue
                     }
                     
@@ -47,27 +54,26 @@ struct StandingsService {
                             continue
                     }
                     
-                    guard let goalsAgainst = teamRecordJson["goalsAgainst"] as? Int,
-                        let goalsScored = teamRecordJson["goalsScored"] as? Int,
-                        let points = teamRecordJson["points"] as? Int,
-                        let divisionRank = teamRecordJson["divisionRank"] as? String,
-                        let conferenceRank = teamRecordJson["conferenceRank"] as? String,
-                        let leagueRank = teamRecordJson["leagueRank"] as? String,
-                        let wildCardRank = teamRecordJson["wildCardRank"] as? String,
-                        let row = teamRecordJson["row"] as? Int,
-                        let gamesPlayed = teamRecordJson["gamesPlayed"] as? Int else {
+                    guard let goalsAgainst = teamRecordJson["goalsAgainst"].int,
+                        let goalsScored = teamRecordJson["goalsScored"].int,
+                        let points = teamRecordJson["points"].int,
+                        let divisionRank = teamRecordJson["divisionRank"].string,
+                        let conferenceRank = teamRecordJson["conferenceRank"].string,
+                        let leagueRank = teamRecordJson["leagueRank"].string,
+                        let wildCardRank = teamRecordJson["wildCardRank"].string,
+                        let row = teamRecordJson["row"].int,
+                        let gamesPlayed = teamRecordJson["gamesPlayed"].int else {
                             continue
                     }
                     
-                    let clinchStatus: String?
-                    if let clinchIndicator = teamRecordJson["clinchIndicator"] as? String {
-                        clinchStatus = clinchIndicator
-                    } else {
-                        clinchStatus = nil
-                    }
+                    let clinchStatus = teamRecordJson["clinchIndicator"].string
                     
-                    let streakJson = teamRecordJson["streak"] as? [String: Any]
-                    let streak = streakJson?["streakCode"] as? String
+                    let streak = teamRecordJson["streak"]["streakCode"].string
+                    
+                    let last10JSON = teamRecordJson["records"]["overallRecords"].arrayValue
+                        .compactMap({ $0.dictionary })
+                        .first(where: { $0["type"]?.stringValue == "lastTen" })
+                    let last10 = "\(last10JSON?["wins"]?.intValue ?? 0)-\(last10JSON?["losses"]?.intValue ?? 0)-\(last10JSON?["ot"]?.intValue ?? 0)"
                     
                     guard let team = realm.object(ofType: Team.self, forPrimaryKey: teamID) else {
                         print("No team found")
@@ -92,6 +98,7 @@ struct StandingsService {
                         record.clinchStatus = clinchStatus
                         
                         record.streak = streak ?? ""
+                        record.last10 = last10
                     
                         team.record = record
                     }
