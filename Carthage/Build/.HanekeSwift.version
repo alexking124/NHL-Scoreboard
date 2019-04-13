@@ -3,7 +3,8 @@
   "iOS" : [
     {
       "name" : "Haneke",
-      "hash" : "78b628db02a97e88e7e5c0ae77b5d36a22086fa16e3d5ac99e308649e16d8c29"
+      "hash" : "60c267a763ca9fef6d793bc701708d524655b7e25d5f92190ec5e4304febaedb",
+      "swiftToolchainVersion" : "4.2 (swiftlang-1000.11.37.1 clang-1000.11.45.1)"
     }
   ]
 }
