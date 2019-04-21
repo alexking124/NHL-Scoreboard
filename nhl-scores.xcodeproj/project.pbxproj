@@ -901,7 +901,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pryanik.nhl-scores.debug";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pryanik.nhl-scores";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
