@@ -28,6 +28,7 @@ class ScoreboardCell: UITableViewCell {
     @IBOutlet weak var powerPlayTimeLabel: UILabel!
     @IBOutlet weak var awayPowerPlayLabel: UILabel!
     @IBOutlet weak var homePowerPlayLabel: UILabel!
+    @IBOutlet weak var seriesStatusLabel: UILabel!
     
     private var notificationToken: NotificationToken? = nil
     
@@ -141,6 +142,11 @@ private extension ScoreboardCell {
         
         homeLogo.image = game.homeTeam?.logo
         awayLogo.image = game.awayTeam?.logo
+        
+        seriesStatusLabel.isHidden = game.seriesStandings.isEmpty
+        if !game.seriesStandings.isEmpty {
+            seriesStatusLabel.text = game.seriesStandings
+        }
     }
     
 }

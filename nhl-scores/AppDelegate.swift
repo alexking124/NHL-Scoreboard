@@ -36,13 +36,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
 
         let teamsExistAction: (() -> Void) = {
-            rootNavigation.hideLaunchImage()
-            StandingsService.refreshStandings {
+            if !UserDefaults.standard.bool(forKey: "AllStarTeamsAdded") {
+                let atlanticTeam = Team()
+                atlanticTeam.rawId = 87
+                
+                let metroTeam = Team()
+                metroTeam.rawId = 88
+                
+                let centralTeam = Team()
+                centralTeam.rawId = 89
+                
+                let pacificTeam = Team()
+                pacificTeam.rawId = 90
+                
+                do {
+                    let realm = try Realm()
+                    try realm.write {
+                        realm.add(atlanticTeam)
+                        realm.add(metroTeam)
+                        realm.add(centralTeam)
+                        realm.add(pacificTeam)
+                    }
+                    UserDefaults.standard.set(true, forKey: "AllStarTeamsAdded")
+                } catch {}
             }
+            
+            rootNavigation.hideLaunchImage()
+            StandingsService.refreshStandings {}
         }
 
         let realm = try! Realm()
-        let teamsFetched = realm.objects(Team.self).count != 0
+        let teamsFetched = realm.objects(Team.self).count >= 31
 
         if !teamsFetched {
             TeamService.fetchTeams {
@@ -52,32 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else {
             teamsExistAction()
-        }
-        
-        if !UserDefaults.standard.bool(forKey: "AllStarTeamsAdded") {
-            let atlanticTeam = Team()
-            atlanticTeam.rawId = 87
-            
-            let metroTeam = Team()
-            metroTeam.rawId = 88
-            
-            let centralTeam = Team()
-            centralTeam.rawId = 89
-            
-            let pacificTeam = Team()
-            pacificTeam.rawId = 90
-            
-            do { 
-                try realm.write {
-                    realm.add(atlanticTeam)
-                    realm.add(metroTeam)
-                    realm.add(centralTeam)
-                    realm.add(pacificTeam)
-                }
-                UserDefaults.standard.set(true, forKey: "AllStarTeamsAdded")
-            } catch {}
-            
-            
         }
         
         return true
