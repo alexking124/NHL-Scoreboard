@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import TinyConstraints
 import ReactiveSwift
-import Result
 
 class StandingsStatsView: UIView {
     
@@ -91,11 +90,11 @@ class StandingsStatsView: UIView {
         return labels
     }()
     
-    let contentOffset: Signal<CGPoint, NoError>
-    private let contentOffsetObserver: Signal<CGPoint, NoError>.Observer
+    let contentOffset: Signal<CGPoint, Never>
+    private let contentOffsetObserver: Signal<CGPoint, Never>.Observer
     
     override init(frame: CGRect) {
-        (contentOffset, contentOffsetObserver) = Signal<CGPoint, NoError>.pipe()
+        (contentOffset, contentOffsetObserver) = Signal<CGPoint, Never>.pipe()
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         setupViews()

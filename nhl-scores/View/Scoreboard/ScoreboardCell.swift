@@ -102,7 +102,7 @@ private extension ScoreboardCell {
         awayTeamNameLabel.text = game.awayTeam?.teamName
         
         if game.gameStatus == .scheduled || game.gameStatus == .pregame {
-            scoreLabel.text = game.gameTime?.inDefaultRegion().string(custom: "h:mm a")
+            scoreLabel.text = game.gameTime?.inDefaultRegion().toFormat("h:mm a")
             scoreLabel.font = scoreLabel.font.withSize(18)
             statusLabel.text = game.rawGameStatus
             homeRecordLabel.text = game.homeTeam?.record?.recordString ?? ""

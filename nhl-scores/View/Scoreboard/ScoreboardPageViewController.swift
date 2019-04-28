@@ -84,7 +84,7 @@ private extension ScoreboardPageViewController {
     }
     
     func setTitleFor(date: Date) {
-        title = "\(date.weekdayName), \(date.shortMonthName). \(date.day)"
+        title = "\(date.weekdayName(.default)), \(date.monthName(.short)). \(date.day)"
     }
     
 }

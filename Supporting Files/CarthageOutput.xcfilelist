@@ -8,7 +8,6 @@
 # List file paths below; one per line. These paths will be considered inputs or outputs for the script phase.
 # Build settings will be expanded, e.g. $(SRCROOT)/fileName
 
-$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Result.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveSwift.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ReactiveCocoa.framework
 $(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Haneke.framework

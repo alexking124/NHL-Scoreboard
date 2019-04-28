@@ -30,7 +30,7 @@ struct ScoreboardService {
                 let dateString = currentDate["date"] as? String,
                 let currentGames = currentDate["games"] as? [[String: Any]] else {
                     print("No games found")
-                    ScoreboardService.pruneGames(gameDay: date.string(custom: "yyyy-MM-dd"), fetchedGameIDs: [])
+                    ScoreboardService.pruneGames(gameDay: date.toFormat("yyyy-MM-dd"), fetchedGameIDs: [])
                     completion()
                     return
             }
@@ -45,7 +45,7 @@ struct ScoreboardService {
                         continue
                 }
                 
-                let gameDate = DateInRegion(string: gameDateString, format: .iso8601(options: .withInternetDateTime))
+                let gameDate = gameDateString.toISODate() // DateInRegion(string: gameDateString, format: .iso8601(options: .withInternetDateTime))
                 
                 guard let teams = gameJson["teams"] as? [String: Any],
                 let homeTeamDict = teams["home"] as? [String: Any],
@@ -91,7 +91,7 @@ struct ScoreboardService {
                 try? realm.write {
                     game.homeTeam = homeTeam
                     game.awayTeam = awayTeam
-                    game.gameTime = gameDate?.absoluteDate
+                    game.gameTime = gameDate?.date
                     game.rawGameStatus = status
                     game.gameDay = dateString
                     game.sortStatus = GameState(rawValue: Int(codedGameState) ?? 0)?.valueForSort() ?? 0

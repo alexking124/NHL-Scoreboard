@@ -18,7 +18,7 @@ class ScoreboardViewController: UITableViewController {
         let realm = try! Realm()
         let statusSortDescriptor = SortDescriptor(keyPath: "sortStatus")
         let dateSortDescriptor = SortDescriptor(keyPath: "gameTime", ascending: true)
-        let games = realm.objects(Game.self).filter("gameDay = '\(date.string(custom: "yyyy-MM-dd"))'").sorted(by: [statusSortDescriptor, dateSortDescriptor])
+        let games = realm.objects(Game.self).filter("gameDay = '\(date.toFormat("yyyy-MM-dd"))'").sorted(by: [statusSortDescriptor, dateSortDescriptor])
         return games
     }()
     

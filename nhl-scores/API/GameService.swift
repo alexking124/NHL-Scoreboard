@@ -9,9 +9,8 @@
 import Foundation
 import RealmSwift
 import ReactiveSwift
-import Result
 
-typealias GameUpdateSignal = Signal<Void, NoError>
+typealias GameUpdateSignal = Signal<Void, Never>
 
 enum GameUpdateStatus {
     case started(dataTask: URLSessionDataTask)
@@ -41,7 +40,7 @@ struct GameService {
     
     private var todaysLiveGames: [Game] {
         let realm = try! Realm()
-        let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))'")).filter { (game) -> Bool in
+        let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().toFormat("yyyy-MM-dd"))'")).filter { (game) -> Bool in
             if game.gameStatus == .completed {
                 return false
             }
@@ -53,9 +52,9 @@ struct GameService {
         return liveGames
     }
     
-    static func updateLiveGames() -> SignalProducer<[GameUpdateStatus], NoError> {
+    static func updateLiveGames() -> SignalProducer<[GameUpdateStatus], Never> {
         let realm = try! Realm()
-        let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().string(custom: "yyyy-MM-dd"))'")).filter { (game) -> Bool in
+        let liveGames = Array(realm.objects(Game.self).filter("gameDay = '\(Date().toFormat("yyyy-MM-dd"))'")).filter { (game) -> Bool in
             if game.gameStatus == .completed {
                 return false
             }
@@ -65,7 +64,7 @@ struct GameService {
             return false
         }
         
-        var updateSignals = [SignalProducer<GameUpdateStatus, NoError>]()
+        var updateSignals = [SignalProducer<GameUpdateStatus, Never>]()
         liveGames.forEach { game in
             updateSignals.append(GameService.fetchLinescore(for: game.gameID))
         }
@@ -74,7 +73,7 @@ struct GameService {
     
     static func updateFinalStats(onDate date: Date = Date()) {
         let realm = try! Realm()
-        let finalGames = Array(realm.objects(Game.self).filter("finalLiveStatsVersion < %@ AND gameDay = '\(date.string(custom: "yyyy-MM-dd"))'", Game.liveStatsVersion)).filter { (game) -> Bool in
+        let finalGames = Array(realm.objects(Game.self).filter("finalLiveStatsVersion < %@ AND gameDay = '\(date.toFormat("yyyy-MM-dd"))'", Game.liveStatsVersion)).filter { (game) -> Bool in
             if game.gameStatus != .completed {
                 return false
             }
@@ -86,8 +85,8 @@ struct GameService {
         }
     }
     
-    static func fetchLinescore(for gameID: Int) -> SignalProducer<GameUpdateStatus, NoError> {
-        return SignalProducer<GameUpdateStatus, NoError> {  observer, _ in
+    static func fetchLinescore(for gameID: Int) -> SignalProducer<GameUpdateStatus, Never> {
+        return SignalProducer<GameUpdateStatus, Never> {  observer, _ in
             guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/game/\(gameID)/linescore") else {
                 observer.sendCompleted()
                 return
@@ -152,8 +151,8 @@ struct GameService {
         }
     }
     
-    static func fetchLiveStats(for gameID: Int) -> SignalProducer<GameUpdateStatus, NoError> {
-        return SignalProducer<GameUpdateStatus, NoError> {  observer, _ in
+    static func fetchLiveStats(for gameID: Int) -> SignalProducer<GameUpdateStatus, Never> {
+        return SignalProducer<GameUpdateStatus, Never> {  observer, _ in
             guard let url = URL(string: "https://statsapi.web.nhl.com/api/v1/game/\(gameID)/feed/live") else {
                 observer.sendCompleted()
                 return
@@ -338,7 +337,7 @@ private extension GameService {
         updateOperation.completionBlock = {
             if updateOperation.isCancelled { return }
             
-            if let game = try? Realm().object(ofType: Game.self, forPrimaryKey: gameID),
+            if let game = ((try? Realm().object(ofType: Game.self, forPrimaryKey: gameID)) as Game??),
                 game?.gameStatus == .completed {
                 return
             }
@@ -355,7 +354,7 @@ private extension GameService {
 class GameUpdateOperation: AsynchronousOperation {
     
     let gameID: Int
-    private let producer: SignalProducer<GameUpdateStatus, NoError>
+    private let producer: SignalProducer<GameUpdateStatus, Never>
     private var dataTask: URLSessionDataTask?
     
     init(gameID: Int) {

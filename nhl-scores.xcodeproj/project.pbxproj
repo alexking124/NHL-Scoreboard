@@ -33,7 +33,6 @@
 		3983CBCB202F7AD700147386 /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCA202F7AD700147386 /* LineView.swift */; };
 		3983CBCD202FD71B00147386 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3983CBCC202FD71B00147386 /* Event.swift */; };
 		3983CBCF2045383300147386 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBCE2045383300147386 /* ReactiveSwift.framework */; };
-		3983CBD32045424300147386 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3983CBD12045423700147386 /* Result.framework */; };
 		3995298F21BD938C0011B430 /* GoalAttributeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3995298E21BD938C0011B430 /* GoalAttributeView.swift */; };
 		399BE4F6204B0C3C00311580 /* ReactiveExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399BE4F5204B0C3C00311580 /* ReactiveExt.swift */; };
 		399BE4F9204B115900311580 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 399BE4F7204B114400311580 /* ReactiveCocoa.framework */; };
@@ -137,7 +136,6 @@
 		3983CBCA202F7AD700147386 /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		3983CBCC202FD71B00147386 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		3983CBCE2045383300147386 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = SOURCE_ROOT; };
-		3983CBD12045423700147386 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = SOURCE_ROOT; };
 		3995298E21BD938C0011B430 /* GoalAttributeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAttributeView.swift; sourceTree = "<group>"; };
 		399BE4F5204B0C3C00311580 /* ReactiveExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveExt.swift; sourceTree = "<group>"; };
 		399BE4F7204B114400311580 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/iOS/ReactiveCocoa.framework; sourceTree = SOURCE_ROOT; };
@@ -212,7 +210,6 @@
 				39A83ADF20826F1F00D59317 /* libz.tbd in Frameworks */,
 				39A83ADD20826F1100D59317 /* libsqlite3.tbd in Frameworks */,
 				39D3D49B201308660077384E /* Realm.framework in Frameworks */,
-				3983CBD32045424300147386 /* Result.framework in Frameworks */,
 				39A34E6820562E9D00CA2B14 /* Haneke.framework in Frameworks */,
 				39A83ABB208269C000D59317 /* FirebaseISASwizzler.framework in Frameworks */,
 				39A83AB9208269C000D59317 /* FirebasePerformance.framework in Frameworks */,
@@ -350,7 +347,6 @@
 				39B309BE2206D881003C6EE3 /* SwiftyJSON.framework */,
 				39A34E6620562E9100CA2B14 /* Haneke.framework */,
 				399BE4F7204B114400311580 /* ReactiveCocoa.framework */,
-				3983CBD12045423700147386 /* Result.framework */,
 				3983CBCE2045383300147386 /* ReactiveSwift.framework */,
 				39D3D4A92013A62F0077384E /* FLEX.framework */,
 				39D3D498201308580077384E /* Realm.framework */,
@@ -601,7 +597,7 @@
 				TargetAttributes = {
 					39447023200C21D9008E402B = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -906,7 +902,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pryanik.nhl-scores.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -936,7 +932,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pryanik.nhl-scores";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
