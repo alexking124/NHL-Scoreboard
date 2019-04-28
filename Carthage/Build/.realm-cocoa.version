@@ -1,14 +1,14 @@
 {
-  "commitish" : "v3.1.0",
+  "commitish" : "v3.14.2",
   "iOS" : [
     {
       "name" : "RealmSwift",
-      "hash" : "f83588a3e47dd39edc05e96cc809ae2c50b0ca99471ff22156f195c0ba4a7fdf",
-      "swiftToolchainVersion" : "4.2 (swiftlang-1000.11.37.1 clang-1000.11.45.1)"
+      "hash" : "b89305c90b7aeb406fdb39c4351f54fc916a5b4123c74b1b9793dc5df6f0f8ca",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     },
     {
       "name" : "Realm",
-      "hash" : "c018a4f261ed18d533a636ec9f00b5445487e182bd0fa848abfcc8ef207cb13a"
+      "hash" : "f060149619ba8bd74e6ba7d8d772053555b8d75f91faf39961f9f8f85e7e8a04"
     }
   ]
 }
