@@ -1,9 +1,9 @@
 {
-  "commitish" : "2.4.0",
+  "commitish" : "3.0.0",
   "iOS" : [
     {
       "name" : "FLEX",
-      "hash" : "66d60bc468d35522445ee59449bd3e9d63baa28f3674bb2106c345ef08ce51d3"
+      "hash" : "301987d3c437a7f7a6620bc28436e1d63f5c4cd7fa2c7fb49cf971f1353f43c1"
     }
   ]
 }
