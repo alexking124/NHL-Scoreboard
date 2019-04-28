@@ -65,7 +65,7 @@
 		39A83AE320826F8600D59317 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A83AE220826F8500D59317 /* CoreTelephony.framework */; };
 		39A83AE520826FAA00D59317 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A83AE420826FAA00D59317 /* SystemConfiguration.framework */; };
 		39A83AE720826FCE00D59317 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39A83AE620826FCE00D59317 /* StoreKit.framework */; };
-		39A83AE92082725200D59317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39A83AE82082725200D59317 /* GoogleService-Info.plist */; };
+		39A83AE92082725200D59317 /* GoogleService-Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39A83AE82082725200D59317 /* GoogleService-Info-Debug.plist */; };
 		39B309B722065E19003C6EE3 /* GameSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */; };
 		39B309B92206881D003C6EE3 /* GameMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309B82206881D003C6EE3 /* GameMedia.swift */; };
 		39B309BB2206CE41003C6EE3 /* VideoMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B309BA2206CE41003C6EE3 /* VideoMedia.swift */; };
@@ -87,6 +87,7 @@
 		39D78F3621BDAE2300E927E5 /* UIStackViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */; };
 		39F9B77D220BE9340072F5A7 /* GameVideoMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F9B77C220BE9340072F5A7 /* GameVideoMediaView.swift */; };
 		39F9B77F220BEBDF0072F5A7 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F9B77E220BEBDF0072F5A7 /* UIViewExt.swift */; };
+		39FDB77122763B2600223C94 /* GoogleService-Info-Prod.plist in Resources */ = {isa = PBXBuildFile; fileRef = 39FDB77022763B2600223C94 /* GoogleService-Info-Prod.plist */; };
 		731A7FBA2023708A00D75BCB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731A7FB92023708A00D75BCB /* Player.swift */; };
 		73981D3F2049C3B700D636D8 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73981D3E2049C3B700D636D8 /* LaunchScreenViewController.swift */; };
 		73981D512049C51600D636D8 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73981D502049C51600D636D8 /* RootNavigationController.swift */; };
@@ -170,7 +171,7 @@
 		39A83AE220826F8500D59317 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		39A83AE420826FAA00D59317 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		39A83AE620826FCE00D59317 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		39A83AE82082725200D59317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		39A83AE82082725200D59317 /* GoogleService-Info-Debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Debug.plist"; sourceTree = "<group>"; };
 		39B309B622065E19003C6EE3 /* GameSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSectionHeaderView.swift; sourceTree = "<group>"; };
 		39B309B82206881D003C6EE3 /* GameMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMedia.swift; sourceTree = "<group>"; };
 		39B309BA2206CE41003C6EE3 /* VideoMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMedia.swift; sourceTree = "<group>"; };
@@ -193,6 +194,7 @@
 		39D78F3521BDAE2300E927E5 /* UIStackViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewExt.swift; sourceTree = "<group>"; };
 		39F9B77C220BE9340072F5A7 /* GameVideoMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVideoMediaView.swift; sourceTree = "<group>"; };
 		39F9B77E220BEBDF0072F5A7 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		39FDB77022763B2600223C94 /* GoogleService-Info-Prod.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Prod.plist"; sourceTree = "<group>"; };
 		731A7FB92023708A00D75BCB /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		73981D3E2049C3B700D636D8 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		73981D502049C51600D636D8 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
@@ -320,11 +322,11 @@
 		39447041200DA482008E402B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39FDB76F22763B0000223C94 /* Firebase */,
 				39D3D49420108C000077384E /* Resources */,
 				3944702E200C21DA008E402B /* Assets.xcassets */,
 				39447030200C21DA008E402B /* LaunchScreen.storyboard */,
 				39447033200C21DA008E402B /* Info.plist */,
-				39A83AE82082725200D59317 /* GoogleService-Info.plist */,
 				39447042200DA49B008E402B /* Cartfile */,
 				3917C1F321BC5D6F006AFC12 /* CarthageInput.xcfilelist */,
 				3917C1F421BC5E0A006AFC12 /* CarthageOutput.xcfilelist */,
@@ -546,6 +548,15 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		39FDB76F22763B0000223C94 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				39A83AE82082725200D59317 /* GoogleService-Info-Debug.plist */,
+				39FDB77022763B2600223C94 /* GoogleService-Info-Prod.plist */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		73981D4F2049C4F300D636D8 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +577,7 @@
 				39D3D4AB2013A6520077384E /* Copy Debug Frameworks */,
 				39447022200C21D9008E402B /* Resources */,
 				3944704B200DAB5E008E402B /* Embed Frameworks */,
+				39FDB77222763B6D00223C94 /* Copy Google Info Plist */,
 				39A83ADA20826D9C00D59317 /* Fabric */,
 			);
 			buildRules = (
@@ -590,7 +602,6 @@
 					39447023200C21D9008E402B = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1010;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -623,9 +634,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3944704D200F2E9B008E402B /* ScoreboardCell.xib in Resources */,
-				39A83AE92082725200D59317 /* GoogleService-Info.plist in Resources */,
+				39A83AE92082725200D59317 /* GoogleService-Info-Debug.plist in Resources */,
 				39447043200DA49B008E402B /* Cartfile in Resources */,
 				39447032200C21DA008E402B /* LaunchScreen.storyboard in Resources */,
+				39FDB77122763B2600223C94 /* GoogleService-Info-Prod.plist in Resources */,
 				3944702F200C21DA008E402B /* Assets.xcassets in Resources */,
 				39D3D49620108C0F0077384E /* Logos.xcassets in Resources */,
 			);
@@ -667,6 +679,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		39FDB77222763B6D00223C94 /* Copy Google Info Plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Google Info Plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_GOOGLE_PLISTS=\"${PROJECT_DIR}/Supporting Files/Firebase\"\necho \"$PATH_TO_GOOGLE_PLISTS\"\ncase \"${CONFIGURATION}\" in\n\n\"Debug\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/GoogleService-Info-Debug.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;;\n\n\"Release\" )\ncp -r \"$PATH_TO_GOOGLE_PLISTS/GoogleService-Info-Prod.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\" ;;\n\n*)\n;;\nesac\n\necho \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -853,6 +883,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Debug";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -884,6 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DUYQ44RPLQ;
