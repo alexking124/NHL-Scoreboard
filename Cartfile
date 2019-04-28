@@ -1,7 +1,7 @@
 # carthage update --no-use-binaries --platform ios <repo-name>
 
 github "roberthein/TinyConstraints" == 4.0.0
-github "malcommac/SwiftDate" == 4.5.1
+github "malcommac/SwiftDate" == 6.0.2
 github "realm/realm-cocoa" == 3.1.0
 github "Flipboard/FLEX" == 2.4.0
 github "ReactiveCocoa/ReactiveSwift" == 4.0.0

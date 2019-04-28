@@ -1,9 +1,10 @@
 {
-  "commitish" : "4.5.1",
+  "commitish" : "6.0.2",
   "iOS" : [
     {
       "name" : "SwiftDate",
-      "hash" : "d948dfa4bb83eae3443402c9d855afda09340898a02ac8a1b61620e5ce376226"
+      "hash" : "ca48031d4faf2ece512c5561df47b3cc0bec9f0551b0abdca937cc658c67bd9e",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     }
   ]
 }
