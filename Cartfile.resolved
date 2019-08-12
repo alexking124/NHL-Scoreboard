@@ -1,5 +1,5 @@
 github "Flipboard/FLEX" "3.0.0"
-github "GreenlightMe/HanekeSwift" "c21c1c55850db934a25fb431c42185e7107d7fe0"
+github "GreenlightMe/HanekeSwift" "1f27e3af52dc04af3e9e32ac1135603664f7ac43"
 github "ReactiveCocoa/ReactiveCocoa" "10.0.0"
 github "ReactiveCocoa/ReactiveSwift" "6.0.0"
 github "SwiftyJSON/SwiftyJSON" "5.0.0"

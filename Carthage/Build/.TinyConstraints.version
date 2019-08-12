@@ -3,7 +3,8 @@
   "iOS" : [
     {
       "name" : "TinyConstraints",
-      "hash" : "7228508ba1c5f6545eeade015e2e76a6c952aac4b54bcd0507ef24247a3d7488"
+      "hash" : "de01455dbe566bd3056c56ffa66c5e26aa0326fe3c1230cf22168a51b5095ba5",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     }
   ]
 }

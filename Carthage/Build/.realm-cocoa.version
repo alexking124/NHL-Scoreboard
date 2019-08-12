@@ -3,12 +3,12 @@
   "iOS" : [
     {
       "name" : "RealmSwift",
-      "hash" : "b89305c90b7aeb406fdb39c4351f54fc916a5b4123c74b1b9793dc5df6f0f8ca",
+      "hash" : "26b877c16ba14703f845f6913094fe8c63211b071a68f3f12d46e783152428c9",
       "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     },
     {
       "name" : "Realm",
-      "hash" : "f060149619ba8bd74e6ba7d8d772053555b8d75f91faf39961f9f8f85e7e8a04"
+      "hash" : "2d61a88f0bce023de4731bbf960e3afb065eeb9d733f524787d9e082f5a4e9e3"
     }
   ]
 }
